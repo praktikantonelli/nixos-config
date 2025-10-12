@@ -2,6 +2,7 @@
   programs = {
     nushell = {
       enable = true;
+      environmentVariables = { EDITOR = "nvim"; };
       settings = { show_banner = false; };
       extraConfig = ''
         $env.config = {
@@ -17,7 +18,16 @@
               }
             }]
           }
-        }'';
+        }
+        def gcma [msg:string] {
+          git add .
+          git commit -m $msg
+        }
+
+        def gcm [msg:string] {
+          git commit -m $msg
+        }
+      '';
       shellAliases = {
 
         # Utils
@@ -68,8 +78,6 @@
         gpst = "git push --follow-tags";
         gpso = "git push origin";
         gc = "git commit";
-        gcm = "git commit -m";
-        gcma = "git add --all; git commit -m";
         gtag = "git tag -ma";
         gch = "git checkout";
         gchb = "git checkout -b";
