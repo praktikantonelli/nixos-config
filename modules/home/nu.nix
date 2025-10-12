@@ -67,7 +67,7 @@
         nix-switch-all = "hm-switch and nix-switch";
 
         # Git
-        ga = "git add";
+        ga = "git add .";
         gaa = "git add --all";
         gs = "git status";
         gb = "git branch";
