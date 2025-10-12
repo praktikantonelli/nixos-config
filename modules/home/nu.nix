@@ -16,6 +16,15 @@
               if 'ENV_CONVERSIONS' in $env and 'PATH' in $env.ENV_CONVERSIONS {
                 $env.PATH = do $env.ENV_CONVERSIONS.PATH.from_string $env.PATH
               }
+            }
+            { ||  # tmux auto-attach
+              let has_tmux    = (which tmux |is-not-empty)
+              let has_display = ($env.DISPLAY | is-not-empty)
+              let in_tmux     = ('TMUX' in $env)
+
+              if $has_tmux and $has_display and (not $in_tmux) {
+                exec tmux new-session -A -s ($env | get --optional USER | default 'user') | ignore 
+              }
             }]
           }
         }
