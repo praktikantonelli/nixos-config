@@ -4,6 +4,11 @@ This folder contains the configuration for all services hosted on my Homelab ser
 ## Cloudflare Tunnel
 Cloudflare Tunnel is the main access way for services hosted on the server. By letting Cloudflare manage the domain, I can create new DNS records that map to the local IP address of the server, plus some port. 
 
+## Tailscale
+For other services, Tailscale is used to connect to the homelab from anywhere. The Cloudflare Tunnel is mainly used for services that I need from foreign devices, such as my work desktop where Tailscale is not an option. 
+
+As a security feature, Tailscale connections expire after a given period. In order to re-authenticate an already registered device, run `sudo tailscale up --force-reauth`. This will try to re-authenticate the device with the old tailnet, prompting you to open a link and logging in with the admin user.
+
 ## Fail2Ban
 This service is primarily used to detect brute-force attacks on any service I'm hosting, and to ban IP addresses in such a case.
 
