@@ -1,8 +1,7 @@
-{ host, ... }: 
-{
+{ host, ... }: {
   wayland.windowManager.hyprland = {
     settings = {
-      
+
       # autostart
       exec-once = [
         "systemctl --user import-environment &"
@@ -23,13 +22,11 @@
 
       input = {
         kb_layout = "ch";
-        kb_options ="grp:alt_caps_toggle"; 
+        kb_options = "grp:alt_caps_toggle";
         numlock_by_default = true;
         follow_mouse = 1;
         sensitivity = 0;
-        touchpad = {
-          natural_scroll = true;
-        };
+        touchpad = { natural_scroll = true; };
       };
 
       general = {
@@ -40,8 +37,6 @@
         border_size = 2;
         "col.active_border" = "rgb(fe8019) rgb(458588) 45deg";
         "col.inactive_border" = "0x00000000";
-        # border_part_of_window = false;
-        no_border_on_floating = false;
       };
 
       misc = {
@@ -81,7 +76,7 @@
           # size = 4;
           # passes = 2;
           brightness = 1;
-          contrast = 1.400;
+          contrast = 1.4;
           ignore_opacity = true;
           noise = 0;
           new_optimizations = true;
@@ -223,21 +218,22 @@
         ",XF86MonBrightnessDown, exec, brightnessctl set 5%-"
       ];
 
-      # windowrule
-      windowrule = [
+      # windowrulev2
+      windowrulev2 = [
         "float,title:^(float_kitty)$"
         "center,title:^(float_kitty)$"
         "size 950 600,title:^(float_kitty)$"
-        "float,title:^(Transmission)$"
-        "float,title:^(Volume Control)$"
-        "float,title:^(Firefox — Sharing Indicator)$"
-        "move 0 0,title:^(Firefox — Sharing Indicator)$"
-        "size 700 450,title:^(Volume Control)$"
-        "move 40 55%,title:^(Volume Control)$"
-      ];
 
-      # windowrulev2
-      windowrulev2 = [
+        "float,title:^(Transmission)$"
+
+        # Volume Control (note escaped space)
+        "float,title:^(Volume\\ Control)$"
+        "size 700 450,title:^(Volume\\ Control)$"
+        "move 40 55%,title:^(Volume\\ Control)$"
+
+        # Firefox sharing indicator (note escaped spaces + em dash)
+        "float,title:^(Firefox\\ —\\ Sharing\\ Indicator)$"
+        "move 0 0,title:^(Firefox\\ —\\ Sharing\\ Indicator)$"
         "float, title:^(Picture-in-Picture)$"
         "opacity 1.0 override 1.0 override, title:^(Picture-in-Picture)$"
         "pin, title:^(Picture-in-Picture)$"
@@ -276,7 +272,7 @@
         "maxsize 1 1,class:^(xwaylandvideobridge)$"
         "noblur,class:^(xwaylandvideobridge)$"
       ];
-      
+
       # On desktop: workspaces 1-5 on left screen, 6-10 on right
       workspace = if host == "desktop" then [
         "workspace = 1, monitor: HDMI-A-1"
@@ -290,7 +286,8 @@
         "workspace = 8, monitor: HDMI-A-2"
         "workspace = 9, monitor: HDMI-A-2"
         "workspace = 10, monitor: HDMI-A-2"
-      ] else [] ;
+      ] else
+        [ ];
 
     };
 
