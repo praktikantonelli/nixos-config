@@ -1,15 +1,21 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
+set -euo pipefail
 
-respond="$(echo " Shutdown\n Restart\n Cancel" | fuzzel --dmenu --lines=3 --width=10 --prompt='')"
+respond="$(
+  printf "Shutdown\nRestart\nCancel\n" |
+    fuzzel --dmenu --lines=3 --width=10 --prompt=''
+)"
 
-if [ $respond = ' Shutdown' ] 
-then
+case "$respond" in
+  Shutdown)
     echo "shutdown"
-	shutdown now    
-elif [ $respond = ' Restart' ] 
-then
+    shutdown now
+    ;;
+  Restart)
     echo "restart"
     reboot
-else
+    ;;
+  ""|Cancel)
     notify-send "cancel shutdown"
-fi
+    ;;
+esac
