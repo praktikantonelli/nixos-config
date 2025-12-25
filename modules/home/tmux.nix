@@ -1,5 +1,4 @@
-{pkgs, ...}:
-{
+{ pkgs, ... }: {
   programs.tmux = {
     enable = true;
     baseIndex = 1;
@@ -17,6 +16,7 @@
     extraConfig = ''
       bind '"' split-window -v -c "#{pane_current_path}"
       bind '%' split-window -h -c "#{pane_current_path}"
+      set -g status-right "#[bg=colour237,fg=colour239,nobold,nounderscore,noitalics]#[bg=colour239,fg=colour246] %Y-%m-%d  %H:%M #[bg=colour239,fg=colour248,nobold,noitalics,nounderscore]#[bg=colour248,fg=colour237] #h#[bg=colour248] "
     '';
   };
 }
