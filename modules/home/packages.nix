@@ -45,6 +45,5 @@
     # sops
     age
     ssh-to-age
-    inputs.alejandra.defaultPackage.${stdenv.hostPlatform.system}
   ]);
 }
