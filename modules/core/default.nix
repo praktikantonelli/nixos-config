@@ -1,5 +1,4 @@
-{...}:
-{
+{ ... }: {
   imports = [
     ./bootloader.nix
     ./hardware.nix

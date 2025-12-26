@@ -7,15 +7,15 @@ respond="$(
 )"
 
 case "$respond" in
-  Shutdown)
-    echo "shutdown"
-    shutdown now
-    ;;
-  Restart)
-    echo "restart"
-    reboot
-    ;;
-  ""|Cancel)
-    notify-send "cancel shutdown"
-    ;;
+Shutdown)
+  echo "shutdown"
+  shutdown now
+  ;;
+Restart)
+  echo "restart"
+  reboot
+  ;;
+"" | Cancel)
+  notify-send "cancel shutdown"
+  ;;
 esac

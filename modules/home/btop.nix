@@ -1,10 +1,9 @@
-{ pkgs, ... }: 
-{
+{ pkgs, ... }: {
   programs.btop = {
     enable = true;
 
     package = pkgs.btop.override { cudaSupport = true; };
-    
+
     settings = {
       color_theme = "gruvbox_dark";
       theme_background = false;
@@ -14,3 +13,4 @@
 
   home.packages = (with pkgs; [ nvtopPackages.intel ]);
 }
+

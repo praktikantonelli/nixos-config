@@ -1,9 +1,5 @@
-{ pkgs, config, ... }: 
-{
-  imports = [
-    ./hardware-configuration.nix
-    ./../../modules/core
-  ];
+{ pkgs, config, ... }: {
+  imports = [ ./hardware-configuration.nix ./../../modules/core ];
 
   environment.systemPackages = with pkgs; [
     acpi
@@ -12,9 +8,7 @@
     powertop
   ];
 
-  hardware.graphics = {
-    enable = true;
-  };
+  hardware.graphics = { enable = true; };
 
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
@@ -35,12 +29,12 @@
       nvidiaBusId = "PCI:2:0:0";
     };
   };
-  
-  services = {    
+
+  services = {
     # thermald.enable = true;
     # cpupower-gui.enable = true;
     power-profiles-daemon.enable = true;
- 
+
     upower = {
       enable = true;
       percentageLow = 20;
@@ -67,12 +61,8 @@
   powerManagement.cpuFreqGovernor = "performance";
 
   boot = {
-    kernelModules = ["acpi_call"];
+    kernelModules = [ "acpi_call" ];
     extraModulePackages = with config.boot.kernelPackages;
-      [
-        acpi_call
-        cpupower
-      ]
-      ++ [pkgs.cpupower-gui];
+      [ acpi_call cpupower ] ++ [ pkgs.cpupower-gui ];
   };
 }

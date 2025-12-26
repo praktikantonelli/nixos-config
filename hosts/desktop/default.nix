@@ -1,14 +1,8 @@
-{ config, ... }: 
-{
-  imports = [
-    ./hardware-configuration.nix
-    ./../../modules/core
-  ];
+{ config, ... }: {
+  imports = [ ./hardware-configuration.nix ./../../modules/core ];
 
   powerManagement.cpuFreqGovernor = "performance";
-  hardware.graphics = {
-    enable = true;
-  };
+  hardware.graphics = { enable = true; };
 
   services.xserver.videoDrivers = [ "nvidia" ];
 

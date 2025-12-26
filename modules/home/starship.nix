@@ -1,5 +1,4 @@
-{ lib, ... }: 
-{
+{ lib, ... }: {
   programs.starship = {
     enable = true;
 
@@ -41,9 +40,7 @@
       os = {
         disabled = false;
         style = "bg:color_orange bold fg:color_fg0";
-        symbols = {
-          NixOS = " ";
-        };
+        symbols = { NixOS = " "; };
       };
 
       directory = {
@@ -55,30 +52,25 @@
       git_branch = {
         symbol = "";
         style = "bg:color_aqua";
-        format = "[[ $symbol $branch ](bold fg:color_fg0 bg:color_aqua)]($style)";
+        format =
+          "[[ $symbol $branch ](bold fg:color_fg0 bg:color_aqua)]($style)";
       };
 
       git_status = {
         style = "bg:color_aqua bold fg:color_fg0";
         format = "[$all_status$ahead_behind]($style)";
       };
-      
+
       nix_shell = {
         format = "[ via nix $name ]($style)";
         style = "bg:color_blue bold fg:color_fg0";
       };
 
-      time = {
-        disabled = true;
-      };
+      time = { disabled = true; };
 
-      cmd_duration = {
-        disabled = true;
-      };
+      cmd_duration = { disabled = true; };
 
-      line_break = {
-        disabled = false;
-      };
+      line_break = { disabled = false; };
 
       character = {
         disabled = false;

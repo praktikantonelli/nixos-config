@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   programs.fuzzel = {
     enable = true;
     settings = {
@@ -8,7 +7,7 @@
         line-height = 25;
         fields = "name,generic,comment,categories,filename,keywords";
         terminal = "kitty";
-        prompt = "' ➜  '" ;
+        prompt = "' ➜  '";
         icon-theme = "oomox-gruvbox-dark";
         layer = "top";
         lines = 10;
@@ -32,3 +31,4 @@
     };
   };
 }
+

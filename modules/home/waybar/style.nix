@@ -1,16 +1,16 @@
 { ... }:
-let custom = {
+let
+  custom = {
     font = "JetBrainsMono Nerd Font";
     font_size = "15px";
     font_weight = "bold";
     text_color = "#ebdbb2";
     secondary_accent = "#d79921";
-    tertiary_accent= "#fe8019";
+    tertiary_accent = "#fe8019";
     background = "#11111B";
     opacity = "0.98";
-};
-in 
-{
+  };
+in {
   programs.waybar.style = ''
 
     * {
@@ -108,7 +108,7 @@ in
         padding-left: 20px;
         padding-right: 20px;
     }
-    
+
     #clock {
         padding-left: 9px;
         padding-right: 15px;

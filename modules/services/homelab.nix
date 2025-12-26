@@ -1,5 +1,4 @@
-{...}:
-{
+{ ... }: {
   imports = [
     ./nginx.nix
     ./immich.nix

@@ -1,5 +1,4 @@
-{ pkgs, ... }: 
-{
+{ pkgs, ... }: {
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
@@ -11,12 +10,11 @@
         arrterian.nix-env-selector
         # python
         # ms-python.python
-        
+
         # Rust
         rust-lang.rust-analyzer
         fill-labs.dependi
         tamasfe.even-better-toml
-
 
         usernamehw.errorlens
         vscodevim.vim
@@ -28,12 +26,16 @@
       ];
       userSettings = {
         "update.mode" = "none";
-        "extensions.autoUpdate" = false; # This stuff fixes vscode freaking out when theres an update
-        "window.titleBarStyle" = "custom"; # needed otherwise vscode crashes, see https://github.com/NixOS/nixpkgs/issues/246509
+        "extensions.autoUpdate" =
+          false; # This stuff fixes vscode freaking out when theres an update
+        "window.titleBarStyle" =
+          "custom"; # needed otherwise vscode crashes, see https://github.com/NixOS/nixpkgs/issues/246509
 
         "window.menuBarVisibility" = "toggle";
-        "editor.fontFamily" = "'JetBrainsMono Nerd Font', 'SymbolsNerdFont', 'monospace', monospace";
-        "terminal.integrated.fontFamily" = "'JetBrainsMono Nerd Font', 'SymbolsNerdFont'";
+        "editor.fontFamily" =
+          "'JetBrainsMono Nerd Font', 'SymbolsNerdFont', 'monospace', monospace";
+        "terminal.integrated.fontFamily" =
+          "'JetBrainsMono Nerd Font', 'SymbolsNerdFont'";
         "editor.fontSize" = 16;
         "workbench.colorTheme" = "Gruvbox Dark Hard";
         "workbench.iconTheme" = "material-icon-theme";
@@ -65,13 +67,15 @@
         "editor.scrollbar.horizontal" = "hidden";
         "workbench.layoutControl.enabled" = false;
 
-        "security.workspace.trust.untrustedFiles" = "open"; # Always trust new files/folders
+        "security.workspace.trust.untrustedFiles" =
+          "open"; # Always trust new files/folders
 
         "editor.mouseWheelZoom" = true;
 
-        "git.enableSmartCommit" = true; # Automatically stage all changes when committing
-        "git.confirmSync" = false; # Don't ask for confirmation upon pushing changes
-
+        "git.enableSmartCommit" =
+          true; # Automatically stage all changes when committing
+        "git.confirmSync" =
+          false; # Don't ask for confirmation upon pushing changes
 
       };
       # Keybindings

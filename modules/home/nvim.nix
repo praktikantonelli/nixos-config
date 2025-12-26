@@ -1,4 +1,4 @@
-{pkgs,...}: {
+{ pkgs, ... }: {
   programs.neovim = {
     enable = true;
     extraPackages = with pkgs; [
@@ -9,8 +9,8 @@
       ripgrep
       # C compiler for treesitter
       gcc
-      
+
     ];
 
-  };  
+  };
 }
