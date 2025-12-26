@@ -40,7 +40,7 @@ This is my NixOS configuration, based on [FrostPhoenix's amazing config](https:/
 
 ### :asterisk: Main Differences
 - Home-Manager is installed as a standalone
-- The config includes NeoVim, configured with [NixVim](https://github.com/nix-community/nixvim)
+- NeoVim is my editor of choice, the configuration is at [here][https://github.com/praktikantonelli/lazyvim-config]. It is manually cloned in the installer script
 - The color scheme is Gruvbox-Dark
 There are other minor differences, mainly small changes like installed packages and extensions.
 
@@ -50,9 +50,11 @@ There are other minor differences, mainly small changes like installed packages 
 -   [hosts](hosts) 🌳 per-host configurations that contain machine specific configurations
     - [desktop](hosts/desktop/) 🖥️ Desktop specific configuration
     - [laptop](hosts/laptop/) 💻 Laptop specific configuration
+    - [homelab](hosts/homelab/) 🖥️ Homelab specific configuration
 -   [modules](modules) 🍱 modularized NixOS configurations
     -   [core](modules/core/) ⚙️ Core NixOS configuration
     -   [homes](modules/home/) 🏠 my [Home-Manager](https://github.com/nix-community/home-manager) config
+    -   [services](modules/services/) 📥 Self-hosted services mainly running on homelab
 -   [wallpapers](wallpapers/) 🌄 wallpaper and lock screen images
 
 ### 📓 Components
@@ -63,12 +65,12 @@ There are other minor differences, mainly small changes like installed packages 
 | **Application Launcher**    | [fuzzel][fuzzel] |
 | **Notification Daemon**     | [swaync][swaync] |
 | **Terminal Emulator**       | [Kitty][Kitty] |
-| **Shell**                   | [zsh][zsh] + [oh-my-zsh][oh-my-zsh] + [Starship][Starship] |
+| **Shell**                   | [zsh][zsh] + [oh-my-zsh][oh-my-zsh] / [nushell][nushell] + [Starship][Starship] |
 | **Text Editor**             | [VSCodium][VSCodium] + [Neovim][Neovim] |
 | **network management tool** | [NetworkManager][NetworkManager] + [network-manager-applet][network-manager-applet] |
 | **System resource monitor** | [Btop][Btop] |
 | **File Manager**            | [nemo][nemo] + [yazi][yazi] |
-| **Fonts**                   | [Nerd fonts][Nerd fonts] |
+| **Fonts**                   | [Nerd fonts][Nerd fonts] + [SN Pro][SN Pro] |
 | **Color Scheme**            | [Gruvbox-Dark][Gruvbox-Dark] |
 | **Cursor**                  | [Nordzy-cursors][Nordzy-cursors] |
 | **Icons**                   | [Gruvbox-Icons][Gruvbox-Icons] + [Gruvbox-Icons-Plus][Gruvbox-Icons-Plus] |
@@ -450,7 +452,7 @@ Other dotfiles that I learned/copied from:
   - [nomadics9/NixOS-Flake](https://github.com/nomadics9/NixOS-Flake): This is where I started my NixOS / hyprland journey.
   - [samiulbasirfahim/Flakes](https://github.com/samiulbasirfahim/Flakes): General flake / files structure
   - [justinlime/dotfiles](https://github.com/justinlime/dotfiles): Mainly waybar (old design)
-  - [skiletro/nixfiles](https://github.com/skiletro/nixfiles): Vscodium config (that prevents crashing)
+  - [skiletro/nixfiles](https://github.com/skiletro/nixfiles): Vscodium config (that prevents crash)
   - [fufexan/dotfiles](https://github.com/fufexan/dotfiles)
 
 - README
@@ -477,6 +479,7 @@ Other dotfiles that I learned/copied from:
 [Hyprland]: https://github.com/hyprwm/Hyprland
 [Kitty]: https://github.com/kovidgoyal/kitty
 [Starship]: https://github.com/starship/starship
+[nushell]: https://github.com/nushell/nushell
 [Waybar]: https://github.com/Alexays/Waybar
 [fuzzel]: https://codeberg.org/dnkl/fuzzel>
 [Btop]: https://github.com/aristocratos/btop
@@ -493,6 +496,7 @@ Other dotfiles that I learned/copied from:
 [imv]: https://sr.ht/~exec64/imv/
 [swaync]: https://github.com/ErikReider/SwayNotificationCenter
 [Nerd fonts]: https://github.com/ryanoasis/nerd-fonts
+[SN Pro]: https://supernotes.app/open-source/sn-pro/
 [NetworkManager]: https://wiki.gnome.org/Projects/NetworkManager
 [network-manager-applet]: https://gitlab.gnome.org/GNOME/network-manager-applet/
 [wl-clip-persist]: https://github.com/Linus789/wl-clip-persist
