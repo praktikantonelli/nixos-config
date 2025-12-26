@@ -1,22 +1,22 @@
 <h1 align="center">
     <img src="./.github/assets/logo/nixos-logo.png  " width="100px" /> 
     <br>
-        LucaAAntonelli's Flakes 
+        praktikantonelli's Flakes 
     <br>
         <img src="./.github/assets/palette/gruvbox-pallet.png" width="600px" /> <br>
     <div align="center">
         <p></p>
       <div align="center">
-         <a href="https://github.com/LucaAAntonelli/nixos-config/stargazers">
-            <img src="https://img.shields.io/github/stars/LucaAAntonelli/nixos-config?color=FABD2F&labelColor=282828&style=for-the-badge&logo=starship&logoColor=FABD2F">
+         <a href="https://github.com/praktikantonelli/nixos-config/stargazers">
+            <img src="https://img.shields.io/github/stars/praktikantonelli/nixos-config?color=FABD2F&labelColor=282828&style=for-the-badge&logo=starship&logoColor=FABD2F">
          </a>
-         <a href="https://github.com/LucaAAntonelli/nixos-config/">
-            <img src="https://img.shields.io/github/repo-size/LucaAAntonelli/nixos-config?color=B16286&labelColor=282828&style=for-the-badge&logo=github&logoColor=B16286">
+         <a href="https://github.com/praktikantonelli/nixos-config/">
+            <img src="https://img.shields.io/github/repo-size/praktikantonelli/nixos-config?color=B16286&labelColor=282828&style=for-the-badge&logo=github&logoColor=B16286">
          </a>
          <a = href="https://nixos.org">
             <img src="https://img.shields.io/badge/NixOS-unstable-blue.svg?style=for-the-badge&labelColor=282828&logo=NixOS&logoColor=458588&color=458588">
          </a>
-         <a href="https://github.com/LucaAAntonelli/nixos-config/blob/main/LICENSE">
+         <a href="https://github.com/praktikantonelli/nixos-config/blob/main/LICENSE">
             <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&colorA=282828&colorB=98971A&logo=unlicense&logoColor=98971A&"/>
          </a>
       </div>
@@ -366,7 +366,7 @@ Mouse binding
 
    ```
    nix-shell -p git
-   git clone https://github.com/LucaAAntonelli/nixos-config
+   git clone https://github.com/praktikantonelli/nixos-config
    cd nixos-config
    ```
 3. **Install script**
@@ -381,8 +381,10 @@ Mouse binding
    ```
       programs.git = {
          ...
-         userName = "LucaAAntonelli";
-         userEmail = "luca.antonelli@gmx.ch";
+          settings.user = {
+            name = "yourName";
+            email = "your.name@domain.com";
+          };
          ...
       };
    ```
