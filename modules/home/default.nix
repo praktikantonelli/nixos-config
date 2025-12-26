@@ -3,7 +3,6 @@
     ./bat.nix # better cat command
     ./btop.nix # resouces monitor
     ./discord.nix # discord with catppuccin theme
-    ./floorp.nix # firefox based browser
     ./fuzzel.nix # launcher
     ./gaming.nix # packages related to gaming
     ./git.nix # version control
