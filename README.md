@@ -53,7 +53,7 @@ There are other minor differences, mainly small changes like installed packages 
     - [homelab](hosts/homelab/) 🖥️ Homelab specific configuration
 -   [modules](modules) 🍱 modularized NixOS configurations
     -   [core](modules/core/) ⚙️ Core NixOS configuration
-    -   [homes](modules/home/) 🏠 my [Home-Manager](https://github.com/nix-community/home-manager) config
+    -   [home](modules/home/) 🏠 my [Home-Manager](https://github.com/nix-community/home-manager) config
     -   [services](modules/services/) 📥 Self-hosted services mainly running on homelab
 -   [wallpapers](wallpapers/) 🌄 wallpaper and lock screen images
 
