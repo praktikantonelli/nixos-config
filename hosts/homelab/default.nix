@@ -1,9 +1,4 @@
-{config, ... }: 
-{
-  imports = [
-    ./hardware-configuration.nix
-    ./../../modules/core/homelab.nix
-  ]; 
-
+{ ... }: {
+  imports = [ ./hardware-configuration.nix ./../../modules/core/homelab.nix ];
 
 }

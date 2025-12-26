@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   system.fsPackages = [ pkgs.bindfs ];
