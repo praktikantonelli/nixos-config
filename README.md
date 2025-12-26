@@ -40,7 +40,7 @@ This is my NixOS configuration, based on [FrostPhoenix's amazing config](https:/
 
 ### :asterisk: Main Differences
 - Home-Manager is installed as a standalone
-- NeoVim is my editor of choice, the configuration is at [here](https://github.com/praktikantonelli/lazyvim-config). It is manually cloned in the installer script
+- NeoVim is my editor of choice, the configuration is in its own [repository](https://github.com/praktikantonelli/lazyvim-config). It is manually cloned in the installer script
 - The color scheme is Gruvbox-Dark
 There are other minor differences, mainly small changes like installed packages and extensions.
 
