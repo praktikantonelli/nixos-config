@@ -22,6 +22,7 @@
     ./waybar # status bar
     ./zsh.nix # shell
     ./nu.nix # nushell
+    ./zen.nix # zen browser
   ];
   nixpkgs.config.allowUnfree = true;
   home = {
