@@ -45,5 +45,7 @@
     # sops
     age
     ssh-to-age
+    # whatsapp client
+    whatsapp-electron
   ]);
 }
