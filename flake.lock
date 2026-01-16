@@ -911,12 +911,12 @@
         "rev": "490301a48320b2858345cd1588fba57ebe55265f",
         "revCount": 21,
         "type": "git",
-        "url": "ssh://git@github.com/LucaAAntonelli/nix-secrets.git"
+        "url": "ssh://git@github.com/praktikantonelli/nix-secrets.git"
       },
       "original": {
         "ref": "main",
         "type": "git",
-        "url": "ssh://git@github.com/LucaAAntonelli/nix-secrets.git"
+        "url": "ssh://git@github.com/praktikantonelli/nix-secrets.git"
       }
     },
     "sops-nix": {

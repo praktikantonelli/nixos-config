@@ -105,7 +105,7 @@ install() {
   sleep 0.2
 
   # General installation will be via HTTPS, not ssh -> switch
-  git remote set-url origin git@github.com:LucaAAntonelli/nixos-config.git
+  git remote set-url origin git@github.com:praktikantonelli/nixos-config.git
 
   # Last Confirmation
   echo -en "You are about to start the system build, do you want to process ? "
@@ -114,11 +114,11 @@ install() {
   # Start with LazyVim config setup
   # NeoVim itself will be installed by home-manager afterwards
   echo -en "Cloning NeoVim config into ~/.config/nvim"
-  git clone git@github.com:LucaAAntonelli/lazyvim-config.git ~/.config/nvim
+  git clone git@github.com:praktikantonelli/lazyvim-config.git ~/.config/nvim
 
   # Build the system (flakes + home manager)
   echo -e "\nBuilding dotfiles with home-manager...\n"
-  nix run .#homeConfigurations.${username}@${HOST}.activationPackage --extra-experimental-features "nix-command flakes" switch
+  nix run .#homeConfigurations."${username}@${HOST}".activationPackage --extra-experimental-features "nix-command flakes" -- switch
   echo -e "\nBuilding NixOS core configuration...\n"
   sudo nixos-rebuild switch --flake .#${HOST}
 }
