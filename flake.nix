@@ -39,7 +39,7 @@
     # This can be achieved by copying the ~/.ssh directory to /root/.ssh
     # and adding the necessary permissions for the root user
     secrets = {
-      url = "git+ssh://git@github.com/LucaAAntonelli/nix-secrets.git?ref=main";
+      url = "git+ssh://git@github.com/praktikantonelli/nix-secrets.git?ref=main";
       inputs = { };
     };
 
