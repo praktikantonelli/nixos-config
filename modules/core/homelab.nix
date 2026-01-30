@@ -19,7 +19,7 @@
     isNormalUser = true;
     description = "${username}";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    shell = pkgs.zsh;
+    shell = pkgs.nushell;
   };
 
   # Add zsh program here too
