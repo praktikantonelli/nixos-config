@@ -24,7 +24,7 @@ in {
           path = "/home/luca/library";
           devices = peerNames;
         };
-        "Audibooks" = {
+        "Audiobooks" = {
           path = "/home/luca/audiobooks";
           devices = peerNames;
         };
