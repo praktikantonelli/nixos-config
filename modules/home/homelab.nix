@@ -1,6 +1,13 @@
 { pkgs, username, ... }: {
-  imports =
-    [ ./bat.nix ./nvim.nix ./tmux.nix ./starship.nix ./zsh.nix ./git.nix ];
+  imports = [
+    ./bat.nix
+    ./nvim.nix
+    ./tmux.nix
+    ./starship.nix
+    ./zsh.nix
+    ./git.nix
+    ./nu.nix
+  ];
   nixpkgs.config.allowUnfree = true;
   home = {
     username = "${username}";
