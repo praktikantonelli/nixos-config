@@ -19,10 +19,9 @@
             }
             { ||  # tmux auto-attach
               let has_tmux    = (which tmux |is-not-empty)
-              let has_display = ($env.DISPLAY | is-not-empty)
               let in_tmux     = ('TMUX' in $env)
 
-              if $has_tmux and $has_display and (not $in_tmux) {
+              if $has_tmux and (not $in_tmux) {
                 exec tmux new-session -A -s ($env | get --optional USER | default 'user') | ignore 
               }
             }]
