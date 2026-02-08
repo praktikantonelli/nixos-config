@@ -1,6 +1,7 @@
 { host, ... }: {
   wayland.windowManager.hyprland = {
     settings = {
+      "$mainMod" = "ALT";
 
       # autostart
       exec-once = [
@@ -30,7 +31,6 @@
       };
 
       general = {
-        "$mainMod" = "ALT";
         layout = "dwindle";
         gaps_in = 0;
         gaps_out = 0;
