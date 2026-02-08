@@ -218,59 +218,151 @@
         ",XF86MonBrightnessDown, exec, brightnessctl set 5%-"
       ];
 
-      # windowrulev2
-      windowrulev2 = [
-        "float,title:^(float_kitty)$"
-        "center,title:^(float_kitty)$"
-        "size 950 600,title:^(float_kitty)$"
+      windowrule = [
+        # float_kitty
+        "match:title ^(float_kitty)$, float on"
+        "match:title ^(float_kitty)$, center on"
+        "match:title ^(float_kitty)$, size 950 600"
 
-        "float,title:^(Transmission)$"
+        # Transmission
+        "match:title ^(Transmission)$, float on"
 
-        # Volume Control (note escaped space)
-        "float,title:^(Volume\\ Control)$"
-        "size 700 450,title:^(Volume\\ Control)$"
-        "move 40 55%,title:^(Volume\\ Control)$"
+        # Volume Control (escaped space)
+        "match:title ^(Volume\\ Control)$, float on"
+        "match:title ^(Volume\\ Control)$, size 700 450"
+        "match:title ^(Volume\\ Control)$, move 40 55%"
 
-        # Firefox sharing indicator (note escaped spaces + em dash)
-        "float,title:^(Firefox\\ —\\ Sharing\\ Indicator)$"
-        "move 0 0,title:^(Firefox\\ —\\ Sharing\\ Indicator)$"
-        "float, title:^(Picture-in-Picture)$"
-        "opacity 1.0 override 1.0 override, title:^(Picture-in-Picture)$"
-        "pin, title:^(Picture-in-Picture)$"
-        "opacity 1.0 override 1.0 override, class:(Unity)"
-        "idleinhibit fullscreen, class:^(firefox)$"
-        "float,class:^(zenity)$"
-        "center,class:^(zenity)$"
-        "size 850 500,class:^(zenity)$"
-        "float,class:^(pavucontrol)$"
-        "float,class:^(.sameboy-wrapped)$"
-        "float,class:^(file_progress)$"
-        "float,class:^(confirm)$"
-        "float,class:^(dialog)$"
-        "center,title:^(Open Folder)$"
-        "center,title:^(Open File)$"
-        "center,title:^(Open)$" # Name of file dialog in LibreOffice
-        "center,title:^(Enter name of file to save to...)$"
-        "size 850 500,title:^(Open)$"
-        "size 850 500,title:^(Enter name of file to save to...)$"
-        "float,class:^(download)$"
-        "float,class:^(notification)$"
-        "float,class:^(error)$"
-        "float,class:^(confirmreset)$"
-        "float,title:^(Open File)$"
-        "float,title:^(branchdialog)$"
-        "float,title:^(Confirm to replace files)$"
-        "float,title:^(File Operation Progress)$"
-        "float,class:thunderbird,title:^(?!Mozilla*)" # Make Thunderbird windows float except main mail client
-        "size 850 500,class:thunderbird,title:^(?!Mozilla*)" # resize
-        "size 900 700,class:^(?=.*thunderbird),title:^(?=.*New Event)"
-        "keepaspectratio 0,class:thunderbird,title:^(?!Mozilla*)" # ignore original aspect ratio
+        # Firefox sharing indicator (escaped spaces + em dash)
+        "match:title ^(Firefox\\ —\\ Sharing\\ Indicator)$, float on"
+        "match:title ^(Firefox\\ —\\ Sharing\\ Indicator)$, move 0 0"
 
-        "opacity 0.0 override,class:^(xwaylandvideobridge)$"
-        "noanim,class:^(xwaylandvideobridge)$"
-        "noinitialfocus,class:^(xwaylandvideobridge)$"
-        "maxsize 1 1,class:^(xwaylandvideobridge)$"
-        "noblur,class:^(xwaylandvideobridge)$"
+        # Picture-in-Picture
+        "match:title ^(Picture-in-Picture)$, float on"
+        "match:title ^(Picture-in-Picture)$, opacity 1.0 override 1.0 override"
+        "match:title ^(Picture-in-Picture)$, pin on"
+
+        # Unity
+        "match:class ^(Unity)$, opacity 1.0 override 1.0 override"
+
+        # Firefox fullscreen idle inhibit
+        "match:class ^(firefox)$, idle_inhibit fullscreen"
+
+        # Zenity dialogs
+        "match:class ^(zenity)$, float on"
+        "match:class ^(zenity)$, center on"
+        "match:class ^(zenity)$, size 850 500"
+
+        # Misc floating windows
+        "match:class ^(pavucontrol)$, float on"
+        "match:class ^(.sameboy-wrapped)$, float on"
+        "match:class ^(file_progress)$, float on"
+        "match:class ^(confirm)$, float on"
+        "match:class ^(dialog)$, float on"
+
+        # File dialogs
+        "match:title ^(Open Folder)$, center on"
+        "match:title ^(Open File)$, center on"
+        "match:title ^(Open)$, center on" # LibreOffice dialog
+        "match:title ^(Enter name of file to save to...)$, center on"
+        "match:title ^(Open)$, size 850 500"
+        "match:title ^(Enter name of file to save to...)$, size 850 500"
+
+        # Download / notification / error dialogs
+        "match:class ^(download)$, float on"
+        "match:class ^(notification)$, float on"
+        "match:class ^(error)$, float on"
+        "match:class ^(confirmreset)$, float on"
+
+        # Misc dialogs
+        "match:title ^(Open File)$, float on"
+        "match:title ^(branchdialog)$, float on"
+        "match:title ^(Confirm to replace files)$, float on"
+        "match:title ^(File Operation Progress)$, float on"
+
+        # Thunderbird (float everything except main window)
+        "match:class thunderbird title:^(?!Mozilla*), float on"
+        "match:class thunderbird title:^(?!Mozilla*), size 850 500"
+        "match:class thunderbird title:^(?!Mozilla*), keep_aspect_ratio 0"
+        "match:class ^(?=.*thunderbird) title:^(?=.*New Event), size 900 700"
+
+        # xwaylandvideobridge
+        "match:class ^(xwaylandvideobridge)$, opacity 0.0 override"
+        "match:class ^(xwaylandvideobridge)$, no_anim on"
+        "match:class ^(xwaylandvideobridge)$, no_initial_focus on"
+        "match:class ^(xwaylandvideobridge)$, max_size 1 1"
+        "match:class ^(xwaylandvideobridge)$, no_blur on"
+        # float_kitty
+        "match:title ^(float_kitty)$, float on"
+        "match:title ^(float_kitty)$, center on"
+        "match:title ^(float_kitty)$, size 950 600"
+
+        # Transmission
+        "match:title ^(Transmission)$, float on"
+
+        # Volume Control (escaped space)
+        "match:title ^(Volume\\ Control)$, float on"
+        "match:title ^(Volume\\ Control)$, size 700 450"
+        "match:title ^(Volume\\ Control)$, move 40 55%"
+
+        # Firefox sharing indicator (escaped spaces + em dash)
+        "match:title ^(Firefox\\ —\\ Sharing\\ Indicator)$, float on"
+        "match:title ^(Firefox\\ —\\ Sharing\\ Indicator)$, move 0 0"
+
+        # Picture-in-Picture
+        "match:title ^(Picture-in-Picture)$, float on"
+        "match:title ^(Picture-in-Picture)$, opacity 1.0 override 1.0 override"
+        "match:title ^(Picture-in-Picture)$, pin on"
+
+        # Unity
+        "match:class ^(Unity)$, opacity 1.0 override 1.0 override"
+
+        # Firefox fullscreen idle inhibit
+        "match:class ^(firefox)$, idle_inhibit fullscreen"
+
+        # Zenity dialogs
+        "match:class ^(zenity)$, float on"
+        "match:class ^(zenity)$, center on"
+        "match:class ^(zenity)$, size 850 500"
+
+        # Misc floating windows
+        "match:class ^(pavucontrol)$, float on"
+        "match:class ^(.sameboy-wrapped)$, float on"
+        "match:class ^(file_progress)$, float on"
+        "match:class ^(confirm)$, float on"
+        "match:class ^(dialog)$, float on"
+
+        # File dialogs
+        "match:title ^(Open Folder)$, center on"
+        "match:title ^(Open File)$, center on"
+        "match:title ^(Open)$, center on" # LibreOffice dialog
+        "match:title ^(Enter name of file to save to...)$, center on"
+        "match:title ^(Open)$, size 850 500"
+        "match:title ^(Enter name of file to save to...)$, size 850 500"
+
+        # Download / notification / error dialogs
+        "match:class ^(download)$, float on"
+        "match:class ^(notification)$, float on"
+        "match:class ^(error)$, float on"
+        "match:class ^(confirmreset)$, float on"
+
+        # Misc dialogs
+        "match:title ^(Open File)$, float on"
+        "match:title ^(branchdialog)$, float on"
+        "match:title ^(Confirm to replace files)$, float on"
+        "match:title ^(File Operation Progress)$, float on"
+
+        # Thunderbird (float everything except main window)
+        "match:class thunderbird title:^(?!Mozilla*), float on"
+        "match:class thunderbird title:^(?!Mozilla*), size 850 500"
+        "match:class thunderbird title:^(?!Mozilla*), keep_aspect_ratio 0"
+        "match:class ^(?=.*thunderbird) title:^(?=.*New Event), size 900 700"
+
+        # xwaylandvideobridge
+        "match:class ^(xwaylandvideobridge)$, opacity 0.0 override"
+        "match:class ^(xwaylandvideobridge)$, no_anim on"
+        "match:class ^(xwaylandvideobridge)$, no_initial_focus on"
+        "match:class ^(xwaylandvideobridge)$, max_size 1 1"
+        "match:class ^(xwaylandvideobridge)$, no_blur on"
       ];
 
       # On desktop: workspaces 1-5 on left screen, 6-10 on right
