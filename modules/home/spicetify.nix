@@ -15,7 +15,7 @@ in {
       hidePodcasts
       shuffle # shuffle+ (special characters are sanitized out of extension names)
     ];
-    # theme = spicePkgs.themes.onepunch;
+    theme = spicePkgs.themes.onepunch;
   };
 }
 
