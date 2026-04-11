@@ -17,6 +17,9 @@
       nodejs
 
     ];
+    # needed because of backwards compatibility
+    withRuby = false;
+    withPython3 = false;
 
   };
 }
