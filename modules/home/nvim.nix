@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.neovim = {
     enable = true;
     extraPackages = with pkgs; [
@@ -11,6 +12,9 @@
       gcc
       # prevents Mason from installing it in a non-working way
       tree-sitter
+      # required for Mason
+      unzip
+      nodejs
 
     ];
 
