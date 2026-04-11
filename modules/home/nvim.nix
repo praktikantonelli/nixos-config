@@ -9,6 +9,8 @@
       ripgrep
       # C compiler for treesitter
       gcc
+      # prevents Mason from installing it in a non-working way
+      tree-sitter
 
     ];
 
