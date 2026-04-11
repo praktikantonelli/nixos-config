@@ -1,7 +1,7 @@
 { pkgs, username, inputs, config, ... }: {
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud31;
+    package = pkgs.nextcloud33;
     hostName = "nextcloud.${inputs.secrets.domain}";
     config = {
       adminuser = username;
@@ -13,6 +13,6 @@
     maxUploadSize = "16G";
     https = true;
     extraAppsEnable = true;
-    extraApps = { inherit (pkgs.nextcloud31Packages.apps) onlyoffice; };
+    extraApps = { inherit (pkgs.nextcloud33Packages.apps) onlyoffice; };
   };
 }
