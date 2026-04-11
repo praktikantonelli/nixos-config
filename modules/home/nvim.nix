@@ -15,6 +15,8 @@
       # required for Mason
       unzip
       nodejs
+      # required for nix
+      statix
 
     ];
     # needed because of backwards compatibility
