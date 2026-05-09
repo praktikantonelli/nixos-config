@@ -17,6 +17,7 @@
       nodejs
       # required for nix
       statix
+      nil
 
     ];
     # needed because of backwards compatibility
