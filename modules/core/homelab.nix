@@ -9,6 +9,7 @@
   imports = [
     ./sops.nix # secrets management
     ../services/homelab.nix # definitions of systemd services for homelab
+    ./nix-helper.nix
   ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
