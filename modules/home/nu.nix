@@ -1,9 +1,14 @@
-{ ... }: {
+{ ... }:
+{
   programs = {
     nushell = {
       enable = true;
-      environmentVariables = { EDITOR = "nvim"; };
-      settings = { show_banner = false; };
+      environmentVariables = {
+        EDITOR = "nvim";
+      };
+      settings = {
+        show_banner = false;
+      };
       extraConfig = ''
         $env.config = {
           hooks: {
@@ -50,8 +55,7 @@
         findw = "grep -rl";
         pdf = "tdf";
         open = "xdg-open";
-        inv = ''
-          fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"''; # open fuzzy finder for neovim with syntax-highlighted preview
+        inv = ''fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"''; # open fuzzy finder for neovim with syntax-highlighted preview
         clip = "wl-copy < "; # use with file path to copy file content
 
         l = "eza --icons  -a --group-directories-first -1"; # EZA_ICON_SPACING=2
@@ -60,17 +64,14 @@
 
         # Nixos
         cdnix = "cd ~/nixos-config and codium ~/nixos-config";
-        nix-switch = "sudo nixos-rebuild switch --flake ~/nixos-config#";
-        nix-switchu =
-          "sudo nixos-rebuild switch --upgrade --flake ~/nixos-config"; # Upgrade all packages, including flake inputs
-        nix-flake-update =
-          "nix flake update --flake ~/nixos-config#"; # Upgrade just the flake inputs
-        nix-list =
-          "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
+        nix-switch = "nh os switch ~/nixos-config";
+        nix-switchu = "sudo nixos-rebuild switch --upgrade --flake ~/nixos-config"; # Upgrade all packages, including flake inputs
+        nix-flake-update = "nix flake update --flake ~/nixos-config#"; # Upgrade just the flake inputs
+        nix-list = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
         nix-clean = "nh clean all --keep 5";
         # nix-clean = "sudo nix-collect-garbage && sudo nix-collect-garbage -d && sudo rm /nix/var/nix/gcroots/auto/* && nix-collect-garbage && nix-collect-garbage -d";
         nix-develop = "nix develop -c $env.SHELL";
-        hm-switch = "home-manager switch --flake ~/nixos-config";
+        hm-switch = "nh home switch ~/nixos-config";
         hm-list = "home-manager generations";
         nix-switch-all = "hm-switch and nix-switch";
 
