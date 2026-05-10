@@ -65,7 +65,7 @@ There are other minor differences, mainly small changes like installed packages 
 | **Application Launcher**    | [fuzzel][fuzzel] |
 | **Notification Daemon**     | [swaync][swaync] |
 | **Terminal Emulator**       | [Kitty][Kitty] |
-| **Shell**                   | [zsh][zsh] + [oh-my-zsh][oh-my-zsh] / [nushell][nushell] + [Starship][Starship] |
+| **Shell**                   [nushell][nushell] + [Starship][Starship] |
 | **Text Editor**             | [VSCodium][VSCodium] + [Neovim][Neovim] |
 | **network management tool** | [NetworkManager][NetworkManager] + [network-manager-applet][network-manager-applet] |
 | **System resource monitor** | [Btop][Btop] |
@@ -487,8 +487,6 @@ Other dotfiles that I learned/copied from:
 [Btop]: https://github.com/aristocratos/btop
 [nemo]: https://github.com/linuxmint/nemo
 [yazi]: https://github.com/sxyazi/yazi
-[zsh]: https://ohmyz.sh/
-[oh-my-zsh]: https://ohmyz.sh/
 [Swaylock-effects]: https://github.com/mortie/swaylock-effects
 [audacious]: https://audacious-media-player.org/
 [mpv]: https://github.com/mpv-player/mpv

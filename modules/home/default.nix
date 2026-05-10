@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   imports = [
     ./bat.nix # better cat command
     ./btop.nix # resouces monitor
@@ -19,7 +20,6 @@
     ./vscodium.nix # vscode forck
     ./tmux.nix # tmux
     ./waybar # status bar
-    ./zsh.nix # shell
     ./nu.nix # nushell
     ./zen.nix # zen browser
   ];
