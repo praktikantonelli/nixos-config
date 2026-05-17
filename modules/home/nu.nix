@@ -64,7 +64,7 @@
 
         # Nixos
         cdnix = "cd ~/nixos-config and codium ~/nixos-config";
-        nix-switch = "sudo nh os switch ~/nixos-config";
+        nix-switch = "nh os switch ~/nixos-config";
         nix-flake-update = "nh os  switch --upgrade ~/nixos-config#"; # Upgrade just the flake inputs
         nix-list = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
         nix-clean = "nh clean all --keep 5 --no-gcroots";
