@@ -115,12 +115,11 @@ Nixos (EXPAND)
 > ${host} is either `desktop` or `laptop`
 
 - ```cdnix```            $\rightarrow$ ```cd ~/nixos-config && codium ~/nixos-config```
-- ```nix-switch```       $\rightarrow$ ```sudo nixos-rebuild switch --flake ~/nixos-config#${host}```
-- ```nix-switchu```      $\rightarrow$ ```sudo nixos-rebuild switch --upgrade --flake ~/nixos-config#${host}```
-- ```nix-flake-update``` $\rightarrow$ ```sudo nix flake update ~/nixos-config#```
+- ```nix-switch```       $\rightarrow$ ```nh os switch ~/nixos-config```
+- ```nix-flake-update``` $\rightarrow$ ```nh os switch --upgrade ~/nixos-config#```
 - ```nix-clean```        $\rightarrow$ ```nh clean all --keep 5```
 - ```nix-list```         $\rightarrow$ ```sudo nix-env --list-generations --profile /nix/var/nix/profiles/system```
-- ```hm-switch```        $\rightarrow$ ```home-manager switch --flake ~/nixos-config```
+- ```hm-switch```        $\rightarrow$ ```nh home switch ~/nixos-config```
 - ```hm-list```          $\rightarrow$ ```home-manager generations```
 - ```nix-switch-all```   $\rightarrow$ ```hm-switch && nix-switch```
 - ```nix-develop```      $\rightarrow$ ```nix develop -c $SHELL```
