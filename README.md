@@ -112,7 +112,7 @@ Utils (EXPAND)
 Nixos (EXPAND)
 </summary>
 
-> ${host} is either `desktop` or `laptop`
+> ${host} is either `desktop`, `laptop` or `homelab`
 
 - ```cdnix```            $\rightarrow$ ```cd ~/nixos-config && codium ~/nixos-config```
 - ```nix-switch```       $\rightarrow$ ```nh os switch ~/nixos-config```
@@ -437,9 +437,9 @@ A brief walkthrough of what the install script does.
 
    It will also automatically copy the hardware configuration from ```/etc/nixos/hardware-configuration.nix``` to ```./hosts/nixos/hardware-configuration.nix``` so that the hardware configuration used is yours and not the default one.
 
-6. Choose a host (desktop / laptop)
+6. Choose a host (desktop / laptop / homelab)
 
-   Now you will need to choose the host you want. It depends on whether you are using a desktop or laptop.
+   Now you will need to choose the host you want. It depends on whether you are using a desktop or laptop, or setting up a homelab server.
 
 7. Build the system
 
