@@ -12,6 +12,5 @@
     ./calibre-web.nix
     ./audiobookshelf.nix
     ./syncthing.nix
-    ./jellyfin.nix
   ];
 }
