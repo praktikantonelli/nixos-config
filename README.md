@@ -65,7 +65,7 @@ There are other minor differences, mainly small changes like installed packages 
 | **Application Launcher**    | [fuzzel][fuzzel] |
 | **Notification Daemon**     | [swaync][swaync] |
 | **Terminal Emulator**       | [Kitty][Kitty] |
-| **Shell**                   [nushell][nushell] + [Starship][Starship] |
+| **Shell**                   | [nushell][nushell] + [Starship][Starship] |
 | **Text Editor**             | [VSCodium][VSCodium] + [Neovim][Neovim] |
 | **network management tool** | [NetworkManager][NetworkManager] + [network-manager-applet][network-manager-applet] |
 | **System resource monitor** | [Btop][Btop] |
@@ -112,15 +112,14 @@ Utils (EXPAND)
 Nixos (EXPAND)
 </summary>
 
-> ${host} is either `desktop` or `laptop`
+> ${host} is either `desktop`, `laptop` or `homelab`
 
 - ```cdnix```            $\rightarrow$ ```cd ~/nixos-config && codium ~/nixos-config```
-- ```nix-switch```       $\rightarrow$ ```sudo nixos-rebuild switch --flake ~/nixos-config#${host}```
-- ```nix-switchu```      $\rightarrow$ ```sudo nixos-rebuild switch --upgrade --flake ~/nixos-config#${host}```
-- ```nix-flake-update``` $\rightarrow$ ```sudo nix flake update ~/nixos-config#```
+- ```nix-switch```       $\rightarrow$ ```nh os switch ~/nixos-config```
+- ```nix-flake-update``` $\rightarrow$ ```nh os switch --upgrade ~/nixos-config#```
 - ```nix-clean```        $\rightarrow$ ```nh clean all --keep 5```
 - ```nix-list```         $\rightarrow$ ```sudo nix-env --list-generations --profile /nix/var/nix/profiles/system```
-- ```hm-switch```        $\rightarrow$ ```home-manager switch --flake ~/nixos-config```
+- ```hm-switch```        $\rightarrow$ ```nh home switch ~/nixos-config```
 - ```hm-list```          $\rightarrow$ ```home-manager generations```
 - ```nix-switch-all```   $\rightarrow$ ```hm-switch && nix-switch```
 - ```nix-develop```      $\rightarrow$ ```nix develop -c $SHELL```
@@ -438,9 +437,9 @@ A brief walkthrough of what the install script does.
 
    It will also automatically copy the hardware configuration from ```/etc/nixos/hardware-configuration.nix``` to ```./hosts/nixos/hardware-configuration.nix``` so that the hardware configuration used is yours and not the default one.
 
-6. Choose a host (desktop / laptop)
+6. Choose a host (desktop / laptop / homelab)
 
-   Now you will need to choose the host you want. It depends on whether you are using a desktop or laptop.
+   Now you will need to choose the host you want. It depends on whether you are using a desktop or laptop, or setting up a homelab server.
 
 7. Build the system
 
