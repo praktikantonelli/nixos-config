@@ -12,5 +12,6 @@
     ./calibre-web.nix
     ./audiobookshelf.nix
     ./syncthing.nix
+    ./navidrome.nix
   ];
 }
