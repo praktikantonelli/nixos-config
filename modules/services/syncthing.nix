@@ -33,12 +33,19 @@ in
       devices = peers;
       folders = {
         "Library" = {
-          path = "/home/luca/library";
+          path = "/srv/library";
           devices = peerNames;
+          ignorePerms = true;
         };
         "Audiobooks" = {
-          path = "/home/luca/audiobooks";
+          path = "/srv/audiobooks";
           devices = peerNames;
+          ignorePerms = true;
+        };
+        "Music" = {
+          path = "/srv/music";
+          devices = peerNames;
+          ignorePerms = true;
         };
       };
     };
