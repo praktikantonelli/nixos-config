@@ -10,6 +10,7 @@
     ./sops.nix # secrets management
     ../services/homelab.nix # definitions of systemd services for homelab
     ./nix-helper.nix
+    ./groups.nix # extra config for handling user access to folders
   ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
