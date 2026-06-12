@@ -11,10 +11,9 @@ in
     options = {
       enableBookUploading = true;
       enableKepubify = true;
-      calibreLibrary = "/home/luca/library";
+      calibreLibrary = "/srv/library";
     };
-    user = "luca"; # allow access to /home/luca/library
-    group = "syncthing"; # allow using syncthing to sync library
+    group = "media"; # allow using syncthing to sync library
     listen = {
       ip = "192.168.1.212";
       port = 8083;
@@ -22,5 +21,10 @@ in
 
   };
 
-  systemd.services.calibre-web.serviceConfig.ProtectHome = lib.mkForce false;
+  systemd.services.calibre-web.serviceConfig.UMask = "0002";
+
+  systemd.tmpfiles.rules = [
+    "d /srv/library 2775 calibre-web media - -"
+  ];
+
 }
