@@ -17,5 +17,6 @@
     ./tailscale-client.nix
     ./sops.nix
     ../services
+    ./groups.nix
   ];
 }

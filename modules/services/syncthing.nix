@@ -1,28 +1,15 @@
-{
-  inputs,
-  host,
-  lib,
-  ...
-}:
+{ inputs, host, lib, ... }:
 let
   allDevices = {
-    "Desktop-Windows" = {
-      id = inputs.secrets.syncthing-ids.windows;
-    };
-    "phone" = {
-      id = inputs.secrets.syncthing-ids.phone;
-    };
-    "laptop" = {
-      id = inputs.secrets.syncthing-ids.laptop;
-    };
-    "homelab" = {
-      id = inputs.secrets.syncthing-ids.homelab;
-    };
+    "Desktop-Windows" = { id = inputs.secrets.syncthing-ids.windows; };
+    "phone" = { id = inputs.secrets.syncthing-ids.phone; };
+    "laptop" = { id = inputs.secrets.syncthing-ids.laptop; };
+    "homelab" = { id = inputs.secrets.syncthing-ids.homelab; };
   };
-  peers = lib.removeAttrs allDevices [ host ]; # avoids referencing only other devices for folders
+  peers = lib.removeAttrs allDevices
+    [ host ]; # avoids referencing only other devices for folders
   peerNames = builtins.attrNames peers;
-in
-{
+in {
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
@@ -59,4 +46,13 @@ in
     UMask = "0002";
     SupplementaryGroups = [ "media" ];
   };
+
+  systemd.tmpfiles.rules = [
+    "d /srv/audiobooks 2775 syncthing media - -"
+    # syncthing writes, navidrome reads only
+    # 2775 = rwxrwsr-x, with setgid so new subdirs inherit group media
+    "d /srv/music 2775 syncthing media - -"
+    "d /srv/library 2775 syncthing media - -"
+  ];
+  systemd.services.calibre-web.serviceConfig.UMask = "0002";
 }

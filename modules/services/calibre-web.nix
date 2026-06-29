@@ -1,10 +1,10 @@
 { pkgs, lib, ... }:
 let
   calibre-web-with-kobo = pkgs.calibre-web.overridePythonAttrs (oldAttrs: {
-    dependencies = oldAttrs.dependencies ++ [ pkgs.calibre-web.optional-dependencies.kobo ];
+    dependencies = oldAttrs.dependencies
+      ++ [ pkgs.calibre-web.optional-dependencies.kobo ];
   });
-in
-{
+in {
   services.calibre-web = {
     enable = true;
     package = calibre-web-with-kobo;
@@ -18,13 +18,5 @@ in
       ip = "192.168.1.212";
       port = 8083;
     };
-
   };
-
-  systemd.services.calibre-web.serviceConfig.UMask = "0002";
-
-  systemd.tmpfiles.rules = [
-    "d /srv/library 2775 calibre-web media - -"
-  ];
-
 }
