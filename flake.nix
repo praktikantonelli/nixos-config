@@ -3,12 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nur.url = "github:nix-community/NUR";
 
     hypr-contrib.url = "github:hyprwm/contrib";
-    hyprpicker.url = "github:hyprwm/hyprpicker";
-
-    nix-gaming.url = "github:fufexan/nix-gaming";
 
     # nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     mms.url = "github:mkaito/nixos-modded-minecraft-servers";
@@ -39,7 +35,8 @@
     # This can be achieved by copying the ~/.ssh directory to /root/.ssh
     # and adding the necessary permissions for the root user
     secrets = {
-      url = "git+ssh://git@github.com/praktikantonelli/nix-secrets.git?ref=main";
+      url =
+        "git+ssh://git@github.com/praktikantonelli/nix-secrets.git?ref=main";
       inputs = { };
     };
 
