@@ -40,9 +40,9 @@
           ];
         };
         "bookorbit-app" = {
-          image = "ghcr.io/bookorbit/bookorbit:latest";
+          image = "ghcr.io/bookorbit/bookorbit:sha-54e228eb2a79";
           environment = {
-            "APP_IMAGE" = "ghcr.io/bookorbit/bookorbit:latest";
+            "APP_IMAGE" = "ghcr.io/bookorbit/bookorbit:sha-54e228eb2a79";
             "APP_PORT" = "3000";
             "APP_URL" = "https://bookorbit.lucaantonelli.xyz";
             "BOOKS_HOST_PATH" = "./books";
