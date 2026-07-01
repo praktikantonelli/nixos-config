@@ -97,6 +97,24 @@
     1234
   ];
 
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
+  };
+
+  nix.settings = {
+    max-jobs = 1;
+    cores = 1;
+  };
+
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 8192;
+    }
+  ];
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
