@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   imports = [
     ./nginx.nix
     ./immich.nix
@@ -12,6 +13,5 @@
     ./audiobookshelf.nix
     ./syncthing.nix
     ./navidrome.nix
-    # ./bookorbit.nix
   ];
 }
