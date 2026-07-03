@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   imports = [
     ./bat.nix # better cat command
     ./btop.nix # resouces monitor
@@ -18,7 +17,8 @@
     ./starship.nix # shell prompt
     ./swaylock.nix # lock screen
     ./vscodium.nix # vscode forck
-    ./tmux.nix # tmux
+    # ./tmux.nix # tmux
+    ./zellij.nix
     ./waybar # status bar
     ./nu.nix # nushell
     ./zen.nix # zen browser

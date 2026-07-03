@@ -1,5 +1,6 @@
 { host, ... }: {
   wayland.windowManager.hyprland = {
+    configType = "hyprlang";
     settings = {
       "$mainMod" = "ALT";
 
