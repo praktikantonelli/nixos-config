@@ -106,6 +106,7 @@
   nix.settings = {
     max-jobs = 1;
     cores = 1;
+    auto-optimise-store = true;
   };
 
   swapDevices = [
