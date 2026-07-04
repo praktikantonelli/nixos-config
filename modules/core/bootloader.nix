@@ -4,7 +4,7 @@
     enable = true;
     device = "nodev";
     efiSupport = true;
-    efiInstallAsRemovable = false;
+    efiInstallAsRemovable = true;
     useOSProber = false;
     # Add Windows boot entry and make it appear before NixOS
     extraEntriesBeforeNixOS = true;
@@ -18,6 +18,7 @@
     '' else
       "";
   };
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.canTouchEfiVariables = false;
+  boot.loader.efi.efiSysMountPoint = "/boot";
   boot.kernelPackages = pkgs.linuxPackages_latest;
 }
