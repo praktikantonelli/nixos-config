@@ -6,7 +6,6 @@
 
     hypr-contrib.url = "github:hyprwm/contrib";
 
-    # nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     mms.url = "github:mkaito/nixos-modded-minecraft-servers";
 
     hyprland = {

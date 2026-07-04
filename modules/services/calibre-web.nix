@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 let
   calibre-web-with-kobo = pkgs.calibre-web.overridePythonAttrs (oldAttrs: {
     dependencies = oldAttrs.dependencies
