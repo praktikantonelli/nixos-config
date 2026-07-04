@@ -60,15 +60,15 @@
 
         # Nixos
         cdnix = "cd ~/nixos-config and codium ~/nixos-config";
-        nix-switch = "nh os switch ~/nixos-config";
+        nix-switch = "nh os switch";
         nix-flake-update =
-          "nh os  switch --update ~/nixos-config#"; # Upgrade just the flake inputs
+          "nh os  switch --update"; # Upgrade just the flake inputs
         nix-list =
           "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
         nix-clean = "nh clean all --keep 5 --no-gcroots";
         # nix-clean = "sudo nix-collect-garbage && sudo nix-collect-garbage -d && sudo rm /nix/var/nix/gcroots/auto/* && nix-collect-garbage && nix-collect-garbage -d";
         nix-develop = "nix develop -c $env.SHELL";
-        hm-switch = "nh home switch ~/nixos-config";
+        hm-switch = "nh home switch";
         hm-list = "home-manager generations";
         nix-switch-all = "hm-switch and nix-switch";
 
