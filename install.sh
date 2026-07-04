@@ -63,7 +63,7 @@ set_username() {
 }
 
 get_host() {
-  echo -en "Choose a ${GREEN}host${NORMAL} - [${YELLOW}D${NORMAL}]esktop or [${YELLOW}L${NORMAL}]aptop: "
+  echo -en "Choose a ${GREEN}host${NORMAL} - [${YELLOW}D${NORMAL}]esktop, [${YELLOW}L${NORMAL}]aptop or [${YELLOW}H{NORMAL}]omelab: "
   read -n 1 -r
   echo
 
@@ -71,8 +71,10 @@ get_host() {
     HOST='desktop'
   elif [[ $REPLY =~ ^[Ll]$ ]]; then
     HOST='laptop'
+  elif [[ $REPLY =~ ^[Hh]$ ]]; then
+    HOST='homelab'
   else
-    echo "Invalid choice. Please select 'D' for desktop or 'L' for laptop"
+    echo "Invalid choice. Please select 'D' for desktop, 'L' for laptop or 'H' for homelab"
     exit 1
   fi
 
@@ -85,19 +87,22 @@ install() {
   echo -e "\n${RED}START INSTALL PHASE${NORMAL}\n"
   sleep 0.2
 
-  # Create basic directories
-  echo -e "Creating folders:"
-  echo -e "    - ${MAGENTA}~/Documents${NORMAL}"
-  echo -e "    - ${MAGENTA}~/Pictures/wallpapers/others${NORMAL}"
-  mkdir -p ~/Documents
-  mkdir -p ~/Pictures/wallpapers/others
-  sleep 0.2
+  # do not need wallpapers etc. on headless homelab instance
+  if [[ "$HOST" != "homelab" ]]; then
+    # Create basic directories
+    echo -e "Creating folders:"
+    echo -e "    - ${MAGENTA}~/Documents${NORMAL}"
+    echo -e "    - ${MAGENTA}~/Pictures/wallpapers/others${NORMAL}"
+    mkdir -p ~/Documents
+    mkdir -p ~/Pictures/wallpapers/others
+    sleep 0.2
 
-  # Copy the wallpapers
-  echo -e "Copying all ${MAGENTA}wallpapers${NORMAL}"
-  cp -r wallpapers/wallpaper.png ~/Pictures/wallpapers
-  cp -r wallpapers/lock-screen.png ~/Pictures/wallpapers/others
-  sleep 0.2
+    # Copy the wallpapers
+    echo -e "Copying all ${MAGENTA}wallpapers${NORMAL}"
+    cp -r wallpapers/wallpaper.png ~/Pictures/wallpapers
+    cp -r wallpapers/lock-screen.png ~/Pictures/wallpapers/others
+    sleep 0.2
+  fi
 
   # Get the hardware configuration
   echo -e "Copying ${MAGENTA}/etc/nixos/hardware-configuration.nix${NORMAL} to ${MAGENTA}./hosts/${HOST}/${NORMAL}\n"

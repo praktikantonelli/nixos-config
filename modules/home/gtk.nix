@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
@@ -17,6 +17,7 @@
 
   gtk = {
     enable = true;
+    gtk4.theme = config.gtk.theme;
     font = {
       name = "SN Pro";
       size = 11;

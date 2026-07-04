@@ -37,7 +37,7 @@ let
     pkgs.writeShellScriptBin "fzfdiff" (builtins.readFile ./scripts/fzfdiff.sh);
 
 in {
-  home.packages = with pkgs; [
+  home.packages = [
     wall-change
     wallpaper-picker
 

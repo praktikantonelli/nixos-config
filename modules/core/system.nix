@@ -1,8 +1,9 @@
-{ pkgs, inputs, host, ... }: {
+{ pkgs, host, ... }: {
   # imports = [ inputs.nix-gaming.nixosModules.default ];
   nix = {
     settings = {
       auto-optimise-store = true;
+      download-buffer-size = 524288000;
       experimental-features = [ "nix-command" "flakes" ];
       substituters = [ "https://nix-gaming.cachix.org" ];
       trusted-public-keys = [
@@ -15,7 +16,6 @@
     #   options = "--delete-older-than 7d";
     # };
   };
-  nixpkgs = { overlays = [ inputs.nur.overlays.default ]; };
 
   environment.systemPackages = with pkgs; [
     wget

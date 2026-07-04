@@ -13,22 +13,46 @@ in {
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
-    user = "luca";
-    configDir =
-      "/home/luca/.config/syncthing"; # set to somewhere in home directory to have access with user
+    user = "syncthing";
+    group = "syncthing";
 
     settings = {
       devices = peers;
       folders = {
         "Library" = {
-          path = "/home/luca/library";
+          path = "/srv/library";
           devices = peerNames;
+          ignorePerms = true;
         };
-        "Audibooks" = {
-          path = "/home/luca/audiobooks";
+        "Audiobooks" = {
+          path = "/srv/audiobooks";
           devices = peerNames;
+          ignorePerms = true;
+        };
+        "Music" = {
+          path = "/srv/music";
+          devices = peerNames;
+          ignorePerms = true;
         };
       };
     };
   };
+
+  # add syncthing user to media group for accessing media directories in /srv
+  users.users.syncthing.extraGroups = [ "media" ];
+
+  # make syncthing-created files group-readable/writable
+  systemd.services.syncthing.serviceConfig = {
+    UMask = "0002";
+    SupplementaryGroups = [ "media" ];
+  };
+
+  systemd.tmpfiles.rules = [
+    "d /srv/audiobooks 2775 syncthing media - -"
+    # syncthing writes, navidrome reads only
+    # 2775 = rwxrwsr-x, with setgid so new subdirs inherit group media
+    "d /srv/music 2775 syncthing media - -"
+    "d /srv/library 2775 syncthing media - -"
+  ];
+  systemd.services.calibre-web.serviceConfig.UMask = "0002";
 }

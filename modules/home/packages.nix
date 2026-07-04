@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }: {
+{ pkgs, ... }: {
   home.packages = (with pkgs; [
     evince # gnome pdf viewer
     eza # ls replacement
