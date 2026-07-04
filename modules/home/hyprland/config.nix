@@ -293,8 +293,7 @@
 
     # Import extraConfig from host-specific folder -> Screen setup is different between hosts
     extraConfig = if host == "desktop" then ''
-      monitor=HDMI-A-1, preferred, 0x0, auto
-      monitor=HDMI-A-2, preferred, 1920x260, auto
+      monitor=,preferred,auto,1
     '' else ''
       monitor=HDMI-A-1,disable
       monitor=,preferred,auto,auto
