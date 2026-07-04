@@ -379,6 +379,9 @@
         "workspace = 10, monitor: HDMI-A-2"
       ] else
         [ ];
+      ecosystem = {
+        no_update_news = true;
+      };
 
     };
 
