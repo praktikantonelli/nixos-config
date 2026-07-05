@@ -370,9 +370,9 @@
       workspace =
         if host == "desktop" then
           [
-            "workspace = 1, monitor: DP-1"
-            "workspace = 2, monitor: DP-2"
-            "workspace = 3, monitor: HDMI-A-1"
+            "workspace = 1, monitor: DP-1,default:true"
+            "workspace = 2, monitor: DP-2,default:true"
+            "workspace = 3, monitor: HDMI-A-1,default:true"
           ]
         else
           [ ];
