@@ -16,6 +16,7 @@
     };
     nix-ld.enable = true;
     kdeconnect.enable = true;
+    gamescope.enable = true;
 
   };
 }
