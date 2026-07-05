@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  home.packages = (with pkgs; [
+  home.packages = with pkgs; [
     evince # gnome pdf viewer
     eza # ls replacement
     entr # perform action when file change
@@ -47,5 +47,5 @@
     ssh-to-age
     # whatsapp client
     whatsapp-electron
-  ]);
+  ];
 }
