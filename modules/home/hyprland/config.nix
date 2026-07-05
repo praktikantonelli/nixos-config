@@ -389,6 +389,9 @@
           monitor=DP-1,preferred,0x0,1.25
           monitor=DP-2,preferred,-1920x270,1
           monitor=HDMI-A-1,preferred,-1920x-810,1,transform,2
+          xwayland {
+            force_zero_scaling = true
+          }
         ''
       else
         ''
