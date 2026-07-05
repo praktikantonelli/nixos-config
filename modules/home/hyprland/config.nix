@@ -28,7 +28,9 @@
         numlock_by_default = true;
         follow_mouse = 1;
         sensitivity = 0;
-        touchpad = { natural_scroll = true; };
+        touchpad = {
+          natural_scroll = true;
+        };
       };
 
       general = {
@@ -209,7 +211,7 @@
       ];
       # bindings for press and hold
       binde = [
-        # volume control 
+        # volume control
         ",XF86AudioRaiseVolume,exec, pamixer -i 2"
         ",XF86AudioLowerVolume,exec, pamixer -d 2"
         # screen brightness control
