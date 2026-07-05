@@ -386,15 +386,21 @@
     };
 
     # Import extraConfig from host-specific folder -> Screen setup is different between hosts
-    extraConfig = if host == "desktop" then ''
-      monitor=,preferred,auto,1
-    '' else ''
-      monitor=HDMI-A-1,disable
-      monitor=,preferred,auto,auto
+    extraConfig =
+      if host == "desktop" then
+        ''
+          monitor=DP-1,preferred,0x0,1.25
+          monitor=DP-2,preferred,-1920x270,1
+          monitor=HDMI-A-1,preferred,-1920x-810,1,transform,2
+        ''
+      else
+        ''
+          monitor=HDMI-A-1,disable
+          monitor=,preferred,auto,auto
 
-      xwayland {
-        force_zero_scaling = true
-      }
-    '';
+          xwayland {
+            force_zero_scaling = true
+          }
+        '';
   };
 }
