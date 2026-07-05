@@ -194,6 +194,7 @@
                 "1"
               ];
               GoToTab = [ 1 ];
+              SwitchToMode = [ "Normal" ];
             };
           }
           {
@@ -202,6 +203,7 @@
                 "2"
               ];
               GoToTab = [ 2 ];
+              SwitchToMode = [ "Normal" ];
             };
           }
           {
@@ -210,6 +212,7 @@
                 "3"
               ];
               GoToTab = [ 3 ];
+              SwitchToMode = [ "Normal" ];
             };
           }
           {
@@ -218,6 +221,7 @@
                 "4"
               ];
               GoToTab = [ 4 ];
+              SwitchToMode = [ "Normal" ];
             };
           }
           {
@@ -226,6 +230,7 @@
                 "5"
               ];
               GoToTab = [ 5 ];
+              SwitchToMode = [ "Normal" ];
             };
           }
         ];
