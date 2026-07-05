@@ -41,7 +41,19 @@
     nextcloud-client
   ];
 
-  services.tailscale.enable = true;
+  services = {
+    tailscale.enable = true;
+    # Enable automatic login for the user.
+    getty.autologinUser = username;
+    openssh = {
+      enable = true;
+      settings = {
+        PermitRootLogin = "yes";
+        PasswordAuthentication = false;
+      };
+      allowSFTP = true;
+    };
+  };
 
   security = {
     acme = {
@@ -61,9 +73,6 @@
     ];
   };
 
-  # Enable automatic login for the user.
-  services.getty.autologinUser = username;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -73,14 +82,6 @@
     "flakes"
   ];
 
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "yes";
-      PasswordAuthentication = false;
-    };
-    allowSFTP = true;
-  };
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     22
