@@ -13,14 +13,11 @@
     username = "${username}";
     homeDirectory = "/home/${username}";
     stateVersion = "24.05";
-    packages = (
-      with pkgs;
-      [
-        fzf
-        direnv
-        fd
-      ]
-    );
+    packages = with pkgs; [
+      fzf
+      direnv
+      fd
+    ];
   };
   programs.home-manager.enable = true;
 }
