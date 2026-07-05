@@ -1,4 +1,4 @@
-{ username, ... }: {
+{ ... }: {
   services = {
     xserver = {
       enable = true;
@@ -6,10 +6,6 @@
       xkb.variant = "";
     };
 
-    displayManager.autoLogin = {
-      enable = true;
-      user = "${username}";
-    };
     libinput = {
       enable = true;
       # mouse = {
