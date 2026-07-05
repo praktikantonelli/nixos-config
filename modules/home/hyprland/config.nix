@@ -18,7 +18,6 @@
         "waybar &"
         "swaync &"
         "wl-paste --watch cliphist store &"
-        "hyprlock &"
         "owncloud"
       ];
 
