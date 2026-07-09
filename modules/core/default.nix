@@ -18,5 +18,6 @@
     ./sops.nix
     ../services
     ./groups.nix
+    ./hyprlogin.nix
   ];
 }
