@@ -3,7 +3,7 @@
   imports = [
     ./bat.nix
     ./nvim.nix
-    ./tmux.nix
+    ./zellij.nix
     ./starship.nix
     ./git.nix
     ./nu.nix
