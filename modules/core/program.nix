@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   programs = {
     dconf.enable = true;
     gnupg.agent = {
@@ -16,7 +16,14 @@
     };
     nix-ld.enable = true;
     kdeconnect.enable = true;
-    gamescope.enable = true;
-
+    gamescope = {
+      enable = true;
+      capSysNice = false;
+    };
   };
+
+  environment.systemPackages = with pkgs; [
+    gamescope
+    mangohud
+  ];
 }
