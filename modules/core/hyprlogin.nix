@@ -1,17 +1,26 @@
-{ config, pkgs, lib, username, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  username,
+  inputs,
+  ...
+}:
 
 let
   desktops = config.services.displayManager.sessionData.desktops;
 
-  runtimePath = lib.makeBinPath [
-    pkgs.bash
-    pkgs.coreutils
-    pkgs.gnugrep
-    pkgs.gnused
-    pkgs.hyprland
-    pkgs.uwsm
-    pkgs.hyprlogin
-  ] + ":/run/current-system/sw/bin";
+  runtimePath =
+    lib.makeBinPath [
+      pkgs.bash
+      pkgs.coreutils
+      pkgs.gnugrep
+      pkgs.gnused
+      pkgs.hyprland
+      pkgs.uwsm
+      pkgs.hyprlogin
+    ]
+    + ":/run/current-system/sw/bin";
 
   hyprloginConfig = pkgs.writeText "hyprlogin.conf" ''
 
@@ -84,7 +93,6 @@ let
 
         image {
           monitor = 
-          path = ~/Pictures/pp/pp.png
           size = 125
           border_color = $accent
 
@@ -146,27 +154,20 @@ let
       exec ${pkgs.hyprland}/bin/Hyprland --config ${hyprlandGreeterConfig}
     fi
   '';
-in {
+in
+{
 
   nixpkgs.overlays = [ inputs.nix-hyprlogin.overlays.default ];
   imports = [ inputs.nix-hyprlogin.nixosModules.default ];
 
-  # Do not let the nix-hyprlogin module own greetd for now.
-  services.hyprlogin.enable = lib.mkForce false;
-
-  # Make sure ReGreet is not also configuring greetd.
-  programs.regreet.enable = lib.mkForce false;
-
-  # Keep your actual Hyprland session available system-wide.
-  programs.hyprland.enable = true;
-
-  # If you want the UWSM session, keep/enable UWSM.
   programs.uwsm.enable = true;
 
-  # This makes the NixOS-generated desktop-session bundle visible
-  # in /run/current-system/sw/share as well.
-  environment.systemPackages =
-    [ desktops pkgs.hyprlogin pkgs.hyprland pkgs.uwsm ];
+  environment.systemPackages = [
+    desktops
+    pkgs.hyprlogin
+    pkgs.hyprland
+    pkgs.uwsm
+  ];
 
   services.greetd = {
     enable = true;
@@ -184,11 +185,12 @@ in {
   users.users.greeter = {
     isSystemUser = true;
     group = "greeter";
-    extraGroups = [ "video" "render" "input" ];
+    extraGroups = [
+      "video"
+      "render"
+      "input"
+    ];
   };
 
   users.groups.greeter = { };
-
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.greetd.enableGnomeKeyring = true;
 }
