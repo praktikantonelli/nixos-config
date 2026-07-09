@@ -15,10 +15,106 @@ let
 
   hyprloginConfig = pkgs.writeText "hyprlogin.conf" ''
 
-    general {
-      exit_command = ${pkgs.hyprland}/bin/hyprctl dispatch exit
-      debug_mode = true
-      debug_log_path = /tmp/hyprlogin-debug.log
+        general {
+          exit_command = ${pkgs.hyprland}/bin/hyprctl dispatch exit
+          disable_loading_bar = true
+          hide_cursor = true
+        }
+
+        sessions {
+          wayland_path = ${desktops}/share/wayland-sessions
+          x11_path = ${desktops}/share/xsessions
+
+          default_user = ${username}
+          default_session = hyprland-uwsm.desktop
+        }
+
+        $red = rgb(cc241d)
+        $yellow = rgb(d79921)
+        $lavender = rgb(458588)
+
+        $mauve = rgb(b16286)
+        $mauveAlpha = b16286
+
+        $base = rgb(1e1e2e)
+        $surface0 = rgb(313244)
+        $text = rgb(fbf1c7)
+        $textAlpha = fbf1c7
+
+        $accent = $lavender
+        $accentAlpha = $mauveAlpha
+        $font = JetBrainsMono Nerd Font
+
+        # BACKGROUND
+        background {
+          monitor =
+          path = ${./../../wallpapers/lock-screen.png}
+          color = $base
+          blur_passes = 0
+        }
+
+        # TIME
+        label {
+          monitor =
+          text = cmd[update:30000] echo "<b><big> $(date +"%R") </big></b>"
+          color = $text
+          font_size = 110
+          font_family = $font
+          shadow_passes = 3
+          shadow_size = 3
+
+          position = 0, -100
+          halign = center
+          valign = top
+        }
+
+        # DATE 
+        label {
+          monitor = 
+          text = cmd[update:43200000] echo "$(date +"%A, %d %B %Y")"
+          color = $text
+          font_size = 18
+          font_family = $font
+          position = 0, -300
+          halign = center
+          valign = top
+        }
+
+        # USER AVATAR
+
+        image {
+          monitor = 
+          path = ~/Pictures/pp/pp.png
+          size = 125
+          border_color = $accent
+
+          position = 0, -450
+          halign = center
+          valign = center
+        }
+
+        # INPUT FIELD
+        input-field {
+          monitor =
+          size = 300, 60
+          outline_thickness = 4
+          dots_size = 0.2
+          dots_spacing = 0.4
+          dots_center = true
+          outer_color = $accent
+          inner_color = $surface0
+          font_color = $text
+          fade_on_empty = false
+          placeholder_text = <span foreground="##$textAlpha"><i>󰌾</i></span>
+          hide_input = false
+          check_color = $accent
+          fail_color = $red
+          fail_text = <i>$FAIL <b>($ATTEMPTS)</b></i>
+          capslock_color = $yellow
+          position = 0, -100
+          halign = center
+          valign = center
+        }
     }
 
     sessions {
