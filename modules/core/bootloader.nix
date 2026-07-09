@@ -11,7 +11,7 @@
         efiInstallAsRemovable = false;
         useOSProber = false;
         # Add Windows boot entry and make it appear before NixOS
-        extraEntriesBeforeNixOS = true;
+        extraEntriesBeforeNixOS = false;
         extraEntries =
           if host == "desktop" then
             ''
