@@ -19,5 +19,6 @@
     ../services
     ./groups.nix
     ./hyprlogin.nix
+    ./work.nix
   ];
 }
