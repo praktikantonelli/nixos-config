@@ -48,6 +48,11 @@
         home-manager.follows = "home-manager";
       };
     };
+
+    nix-hyprlogin = {
+      url = "github:sashisashi569/nix-hyprlogin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, self, home-manager, ... }@inputs:

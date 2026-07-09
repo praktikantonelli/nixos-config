@@ -352,6 +352,22 @@
         "type": "github"
       }
     },
+    "hyprlogin-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1780094239,
+        "narHash": "sha256-TkkBr5PeOLA5r19paXmgwE/lRz7OSZp7KHfEkviHkpI=",
+        "owner": "AuthenticSm1les",
+        "repo": "hyprlogin",
+        "rev": "254a6a14e37d7a5533498c39fb09f2d631b504d4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AuthenticSm1les",
+        "repo": "hyprlogin",
+        "type": "github"
+      }
+    },
     "hyprtoolkit": {
       "inputs": {
         "aquamarine": [
@@ -540,6 +556,27 @@
         "type": "github"
       }
     },
+    "nix-hyprlogin": {
+      "inputs": {
+        "hyprlogin-src": "hyprlogin-src",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1782568542,
+        "narHash": "sha256-CUGhJXMtugCLlrxVf9Lgu0m/jRjcEWx6YhuY6JSfE7s=",
+        "owner": "sashisashi569",
+        "repo": "nix-hyprlogin",
+        "rev": "ac7c48ac05b19f77ef6fee1b0477c61b3495b701",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sashisashi569",
+        "repo": "nix-hyprlogin",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1712163089,
@@ -682,6 +719,7 @@
         "hypr-contrib": "hypr-contrib",
         "hyprland": "hyprland",
         "mms": "mms",
+        "nix-hyprlogin": "nix-hyprlogin",
         "nixpkgs": "nixpkgs_5",
         "secrets": "secrets",
         "sops-nix": "sops-nix",
