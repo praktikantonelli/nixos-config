@@ -14,7 +14,6 @@ let
   ] + ":/run/current-system/sw/bin";
 
   hyprloginConfig = pkgs.writeText "hyprlogin.conf" ''
-    source = ${pkgs.hyprlogin}/share/hyprlogin/examples/hyprlogin.conf
 
     general {
       exit_command = ${pkgs.hyprland}/bin/hyprctl dispatch exit
