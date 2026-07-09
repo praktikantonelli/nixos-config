@@ -13,5 +13,6 @@
     ./audiobookshelf.nix
     ./syncthing.nix
     ./navidrome.nix
+    ./zellij-web.nix
   ];
 }
