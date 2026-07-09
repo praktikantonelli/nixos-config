@@ -1,32 +1,45 @@
-{ ... }: {
+{ lib, pkgs, ... }:
+let
+  zellijBin = lib.getExe pkgs.zellij;
+in
+{
   programs = {
     nushell = {
       enable = true;
-      environmentVariables = { EDITOR = "nvim"; };
-      settings = { show_banner = false; };
+      environmentVariables = {
+        EDITOR = "nvim";
+      };
+      settings = {
+        show_banner = false;
+      };
       extraConfig = ''
         $env.config = {
           hooks: {
-            pre_prompt: [{ ||
-              if (which direnv | is-empty) {
-                return
+            pre_prompt: [
+              { ||
+                if (which direnv | is-empty) {
+                  return
+                }
+
+                direnv export json | from json | default {} | load-env
+
+                if 'ENV_CONVERSIONS' in $env and 'PATH' in $env.ENV_CONVERSIONS {
+                  $env.PATH = do $env.ENV_CONVERSIONS.PATH.from_string $env.PATH
+                }
               }
 
-              direnv export json | from json | default {} | load-env
-              if 'ENV_CONVERSIONS' in $env and 'PATH' in $env.ENV_CONVERSIONS {
-                $env.PATH = do $env.ENV_CONVERSIONS.PATH.from_string $env.PATH
-              }
-            }
-            { ||  # tmux auto-attach
-              let has_tmux    = (which tmux |is-not-empty)
-              let in_tmux     = ('TMUX' in $env)
+              { ||  # zellij auto-attach
+                let in_zellij = ('ZELLIJ' in $env)
+                let term = ($env | get --optional TERM | default "")
 
-              if $has_tmux and (not $in_tmux) {
-                exec tmux new-session -A -s ($env | get --optional USER | default 'user') | ignore 
+                if $nu.is-interactive and (not $in_zellij) and ($term != "dumb") {
+                  exec ${zellijBin} attach --create ($env | get --optional USER | default 'user')
+                }
               }
-            }]
+            ]
           }
         }
+
         def gcma [msg:string] {
           git add .
           git commit -m $msg
@@ -50,8 +63,7 @@
         findw = "grep -rl";
         pdf = "tdf";
         open = "xdg-open";
-        inv = ''
-          fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"''; # open fuzzy finder for neovim with syntax-highlighted preview
+        inv = ''fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"''; # open fuzzy finder for neovim with syntax-highlighted preview
         clip = "wl-copy < "; # use with file path to copy file content
 
         l = "eza --icons  -a --group-directories-first -1"; # EZA_ICON_SPACING=2
@@ -61,10 +73,8 @@
         # Nixos
         cdnix = "cd ~/nixos-config and codium ~/nixos-config";
         nix-switch = "nh os switch";
-        nix-flake-update =
-          "nh os  switch --update"; # Upgrade just the flake inputs
-        nix-list =
-          "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
+        nix-flake-update = "nh os  switch --update"; # Upgrade just the flake inputs
+        nix-list = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
         nix-clean = "nh clean all --keep 5 --no-gcroots";
         # nix-clean = "sudo nix-collect-garbage && sudo nix-collect-garbage -d && sudo rm /nix/var/nix/gcroots/auto/* && nix-collect-garbage && nix-collect-garbage -d";
         nix-develop = "nix develop -c $env.SHELL";

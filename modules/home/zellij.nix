@@ -6,8 +6,21 @@
       theme = "gruvbox-dark";
       show_startup_tips = false;
       focus_follows_mouse = true;
+      mouse_mode = true;
+
       default_mode = "normal";
-      default_shell = "nu";
+      default_shell = "${pkgs.nushell}/bin/nu";
+
+      # tmux-resurrect-like behavior
+      session_serialization = true;
+      pane_viewport_serialization = true;
+      scrollback_lines_to_serialize = 10000;
+
+      session_name = "main";
+      attach_to_session = true;
+
+      # Detach rather than kill the session on terminal close.
+      on_force_close = "detach";
       keybinds = {
         _props.clear-defaults = true;
 
