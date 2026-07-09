@@ -4,7 +4,6 @@
     ./btop.nix # resouces monitor
     ./discord.nix # discord with catppuccin theme
     ./fuzzel.nix # launcher
-    ./gaming.nix # packages related to gaming
     ./git.nix # version control
     ./gtk.nix # gtk theme
     ./hyprland # window manager
