@@ -21,6 +21,12 @@
 
       # Detach rather than kill the session on terminal close.
       on_force_close = "detach";
+
+      # settings for zellij web, only used on homelab
+      web_server_ip = "127.0.0.1";
+      web_server_port = 8082;
+      web_sharing = "on";
+
       keybinds = {
         _props.clear-defaults = true;
 
