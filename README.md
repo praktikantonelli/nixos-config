@@ -36,7 +36,7 @@
 
 # 🗃️ Overview
 
-This is my NixOS configuration, based on [FrostPhoenix's amazing config](https://github.com/FrostPhoenix/nixos-config)
+This is my NixOS configuration, based on [FrostPhoenix's amazing config](https://github.com/Frost-Phoenix/nixos-config)
 
 ### :asterisk: Main Differences
 - Home-Manager is installed as a standalone
