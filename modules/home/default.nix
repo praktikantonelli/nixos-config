@@ -20,6 +20,7 @@
     ./waybar # status bar
     ./nu.nix # nushell
     ./zen.nix # zen browser
+    ./direnv.nix
   ];
   nixpkgs.config.allowUnfree = true;
   home = {
