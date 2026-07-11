@@ -1,4 +1,11 @@
-{ pkgs, host, username, inputs, ... }: {
+{
+  pkgs,
+  host,
+  username,
+  inputs,
+  ...
+}:
+{
   imports = [
     ./sops.nix # secrets management
     ../services/homelab.nix # definitions of systemd services for homelab
@@ -20,13 +27,24 @@
   users.users.${username} = {
     isNormalUser = true;
     description = "${username}";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-    openssh.authorizedKeys.keyFiles =
-      [ ../../hosts/desktop/ssh-key.pub ../../hosts/laptop/ssh-key.pub ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
+    openssh.authorizedKeys.keyFiles = [
+      ../../hosts/desktop/ssh-key.pub
+      ../../hosts/laptop/ssh-key.pub
+    ];
     shell = pkgs.nushell;
   };
 
-  environment.systemPackages = with pkgs; [ tailscale jdk8 nextcloud-client ];
+  environment.systemPackages = with pkgs; [
+    tailscale
+    jdk8
+    nextcloud-client
+    kitty.terminfo
+  ];
 
   services = {
     tailscale.enable = true;
@@ -47,24 +65,43 @@
       defaults.email = inputs.secrets.email;
       acceptTerms = true;
     };
-    sudo.extraRules = [{
-      users = [ "luca" ];
-      commands = [{
-        command = "ALL";
-        options = [ "NOPASSWD" ];
-      }];
-    }];
+    sudo.extraRules = [
+      {
+        users = [ "luca" ];
+        commands = [
+          {
+            command = "ALL";
+            options = [ "NOPASSWD" ];
+          }
+        ];
+      }
+    ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # Enable experimental features
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts =
-    [ 22 80 180 443 1443 2283 8080 8083 8084 8222 8888 1234 ];
+  networking.firewall.allowedTCPPorts = [
+    22
+    80
+    180
+    443
+    1443
+    2283
+    8080
+    8083
+    8084
+    8222
+    8888
+    1234
+  ];
 
   zramSwap = {
     enable = true;
@@ -78,10 +115,12 @@
     auto-optimise-store = true;
   };
 
-  swapDevices = [{
-    device = "/swapfile";
-    size = 8192;
-  }];
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 8192;
+    }
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
