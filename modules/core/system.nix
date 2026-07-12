@@ -1,4 +1,4 @@
-{ pkgs, host, ... }: {
+{ pkgs, host, lib, ... }: {
   # imports = [ inputs.nix-gaming.nixosModules.default ];
   nix = {
     settings = {
@@ -26,7 +26,7 @@
     calibre
   ];
 
-  time.timeZone = "Europe/Zurich";
+  time.timeZone = lib.mkDefault "Europe/Zurich";
   time.hardwareClockInLocalTime = host == "desktop";
   i18n.defaultLocale = "en_US.UTF-8";
   nixpkgs.config.allowUnfree = true;
