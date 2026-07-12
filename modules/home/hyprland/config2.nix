@@ -7,7 +7,7 @@
       on = {
         _args = [
           "hyprland.start"
-          (lib.generators.mkLuaInLine ''
+          (lib.generators.mkLuaInline ''
                 function()
             hl.exec_cmd("systemctl --user import-environment")
             hl.exec_cmd("hash dbus-update-activation-environment 2>/dev/null")
