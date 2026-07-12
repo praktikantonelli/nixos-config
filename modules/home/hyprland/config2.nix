@@ -60,6 +60,21 @@
         };
       };
 
+      bind = [
+        {
+          _args = [
+            "mainMod + D"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("fuzzel")'')
+          ];
+        }
+        {
+          _args = [
+            "mainMod + Return"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("kitty")'')
+          ];
+        }
+      ];
+
     };
   };
 }
