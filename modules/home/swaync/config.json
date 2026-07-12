@@ -68,7 +68,7 @@
           },
           {
             "label": "󰩭  Window / Region",
-            "command": "grimblast --notify --cursor --freeze copy area"
+            "command": "grimblast --notify --freeze copy area"
           }
         ]
       },
