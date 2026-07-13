@@ -27,14 +27,6 @@
         ];
       };
 
-      input = {
-        kb_layout = "ch";
-        kb_options = "grp:alt_caps_toggle";
-        numlock_by_default = true;
-        follow_mouse = 1;
-        touchpad = { natural_scroll = true; };
-      };
-
       misc = {
         disable_autoreload = true;
         disable_hyprland_logo = true;
@@ -43,6 +35,13 @@
       };
 
       config = {
+        input = {
+          kb_layout = "ch";
+          kb_options = "grp:alt_caps_toggle";
+          numlock_by_default = true;
+          follow_mouse = 1;
+          touchpad = { natural_scroll = true; };
+        };
         dwindle = { preserve_split = true; };
         general = {
           gaps_in = 0;
