@@ -35,14 +35,6 @@
         touchpad = { natural_scroll = true; };
       };
 
-      general = {
-        gaps_in = 0;
-        gaps_out = 0;
-        border_size = 2;
-        "col.active_border" = "rgb(fe8019) rgb(458588) 45deg";
-        "col.inactive_border" = "0x00000000";
-      };
-
       misc = {
         disable_autoreload = true;
         disable_hyprland_logo = true;
@@ -50,14 +42,22 @@
         focus_on_activate = true;
       };
 
-      dwindle = { preserve_split = true; };
-
-      decoration = {
-        blur = {
-          size = 1;
-          contrast = 1.4;
-          noise = 0;
-          xray = true;
+      config = {
+        dwindle = { preserve_split = true; };
+        general = {
+          gaps_in = 0;
+          gaps_out = 0;
+          border_size = 2;
+          "col.active_border" = "rgb(fe8019) rgb(458588) 45deg";
+          "col.inactive_border" = "0x00000000";
+        };
+        decoration = {
+          blur = {
+            size = 1;
+            contrast = 1.4;
+            noise = 0;
+            xray = true;
+          };
         };
       };
 
