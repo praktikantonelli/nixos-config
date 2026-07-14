@@ -42,7 +42,13 @@ hl.config({
 	},
 	["general"] = {
 		["border_size"] = 2,
-		["col.active_border"] = "rgb(fe8019) rgb(458588) 45deg",
+		["col.active_border"] = {
+			colors = {
+				"rgb(fe8019)",
+				"rgb(458588)",
+				45,
+			},
+		},
 		["col.inactive_border"] = "0x00000000",
 		["gaps_in"] = 0,
 		["gaps_out"] = 0,
