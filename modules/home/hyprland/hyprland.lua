@@ -16,6 +16,17 @@ hl.bind((mod .. " + 8"), (hl.dsp.focus({ workspace = 8 })))
 hl.bind((mod .. " + 9"), (hl.dsp.focus({ workspace = 9 })))
 hl.bind((mod .. " + 0"), (hl.dsp.focus({ workspace = 10 })))
 
+hl.bind((mod .. " + SHIFT + 1"), (hl.dsp.window.move({ workspace = 1 })))
+hl.bind((mod .. " + SHIFT + 2"), (hl.dsp.window.move({ workspace = 2 })))
+hl.bind((mod .. " + SHIFT + 3"), (hl.dsp.window.move({ workspace = 3 })))
+hl.bind((mod .. " + SHIFT + 4"), (hl.dsp.window.move({ workspace = 4 })))
+hl.bind((mod .. " + SHIFT + 5"), (hl.dsp.window.move({ workspace = 5 })))
+hl.bind((mod .. " + SHIFT + 6"), (hl.dsp.window.move({ workspace = 6 })))
+hl.bind((mod .. " + SHIFT + 7"), (hl.dsp.window.move({ workspace = 7 })))
+hl.bind((mod .. " + SHIFT + 8"), (hl.dsp.window.move({ workspace = 8 })))
+hl.bind((mod .. " + SHIFT + 9"), (hl.dsp.window.move({ workspace = 9 })))
+hl.bind((mod .. " + SHIFT + 0"), (hl.dsp.window.move({ workspace = 10 })))
+
 -- settings.config
 hl.config({
 	["decoration"] = {
