@@ -81,16 +81,6 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("swaybg -m fill -i $(find ~/Pictures/wallpapers/ -maxdepth 1 -type f)")
 	hl.exec_cmd("hyprctl setcursor Nordzy-cursors 22")
 	hl.exec_cmd("hyprctl dispatch workspace 1")
-	hl.exec_cmd("poweralertd")
-	hl.exec_cmd("waybar")
-	hl.exec_cmd("swaync")
+	hl.exec_cmd("poweralertd & waybar & swaync & owncloud")
 	hl.exec_cmd("wl-paste --watch cliphist store")
-	hl.exec_cmd("owncloud")
-end)
-
--- startup
-hl.on("hyprland.start", function()
-	hl.exec_cmd(
-		"/nix/store/165rncxlyi4f9pjf1zk3hmj3mh2v881w-dbus-1.16.2/bin/dbus-update-activation-environment --systemd DISPLAY HYPRLAND_INSTANCE_SIGNATURE WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE && systemctl --user stop hyprland-session.target && systemctl --user start hyprland-session.target"
-	)
 end)
