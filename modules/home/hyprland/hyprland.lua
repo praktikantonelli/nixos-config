@@ -4,6 +4,7 @@ local mod = "ALT"
 -- settings.bind
 hl.bind((mod .. " + D"), (hl.dsp.exec_cmd("fuzzel")))
 hl.bind((mod .. " + Return"), (hl.dsp.exec_cmd("kitty")))
+hl.bind((mod .. " + Q"), (hl.dsp.window.close({})))
 hl.bind((mod .. " + 1"), (hl.dsp.focus({ workspace = 1 })))
 hl.bind((mod .. " + 2"), (hl.dsp.focus({ workspace = 2 })))
 hl.bind((mod .. " + 3"), (hl.dsp.focus({ workspace = 3 })))
