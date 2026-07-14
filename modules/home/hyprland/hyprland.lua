@@ -62,14 +62,11 @@ hl.config({
 			["natural_scroll"] = true,
 		},
 	},
-})
-
--- settings.misc
-hl.misc({
-	["disable_autoreload"] = true,
-	["disable_hyprland_logo"] = true,
-	["enable_swallog"] = true,
-	["focus_on_activate"] = true,
+	["misc"] = {
+		["disable_hyprland_logo"] = true,
+		["enable_swallow"] = true,
+		["focus_on_activate"] = true,
+	},
 })
 
 -- settings.on
