@@ -42,6 +42,8 @@ hl.bind("XF86AudioStop", (hl.dsp.exec_cmd("playerctl stop")))
 hl.bind("XF86MonBrightnessUp", (hl.dsp.exec_cmd("brightnessctl set 5%+")))
 hl.bind("XF86MonBrightnessDown", (hl.dsp.exec_cmd("brightnessctl set 5%-")))
 
+hl.bind(mod .. " + V", (hl.dsp.exec_cmd("cliphist list | fuzzel --dmenu | cliphist decode | wl-copy")))
+
 -- settings.config
 hl.config({
 	["decoration"] = {
