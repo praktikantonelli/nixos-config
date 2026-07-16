@@ -63,8 +63,8 @@ hl.config({
 			colors = {
 				"rgb(fe8019)",
 				"rgb(458588)",
-				45,
 			},
+			angle = 45,
 		},
 		["col.inactive_border"] = "0x00000000",
 		["gaps_in"] = 0,
