@@ -23,6 +23,6 @@
     systemd.enable = true;
 
     configType = "lua";
-    extraLuaFiles = { "raw.lua" = ./hyprland.lua; };
+    extraLuaFiles = { "config.lua" = ./config.lua; };
   };
 }
