@@ -75,6 +75,7 @@ There are other minor differences, mainly small changes like installed packages 
 | **Cursor**                  | [Nordzy-cursors][Nordzy-cursors] |
 | **Icons**                   | [Gruvbox-Icons][Gruvbox-Icons] + [Gruvbox-Icons-Plus][Gruvbox-Icons-Plus] |
 | **Lockscreen**              | [Swaylock-effects][Swaylock-effects] |
+| Login Manager           | [Hyprlogin][Hyprlogin]
 | **Image Viewer**            | [imv][imv] |
 | **Media Player**            | [mpv][mpv] |
 | **Music Player**            | [audacious][audacious] |
@@ -429,6 +430,7 @@ Other dotfiles that I learned/copied from:
 [nemo]: https://github.com/linuxmint/nemo
 [yazi]: https://github.com/sxyazi/yazi
 [Swaylock-effects]: https://github.com/mortie/swaylock-effects
+[Hyprlogin]: https://github.com/sashisashi569/nix-hyprlogin
 [audacious]: https://audacious-media-player.org/
 [mpv]: https://github.com/mpv-player/mpv
 [VSCodium]:https://vscodium.com/
