@@ -231,43 +231,15 @@ Keybindings
 </summary>
 
 - ```bind = $mainMod, Return, exec, kitty```
-- ```bind = ALT, Return, exec, kitty --title float_kitty```
-- ```bind = $mainMod SHIFT, Return, exec, kitty --start-as=fullscreen -o 'font_size=16'```
-- ```bind = $mainMod, B, exec, firefox```
 - ```bind = $mainMod, Q, killactive,```
 - ```bind = $mainMod, F, fullscreen, 0```
 - ```bind = $mainMod SHIFT, F, fullscreen, 1```
-- ```bind = $mainMod, Space, togglefloating,```
 - ```bind = $mainMod, D, exec, fuzzel```
 - ```bind = $mainMod, Escape, exec, swaylock```
 - ```bind = $mainMod SHIFT, Escape, exec, shutdown-script```
-- ```bind = $mainMod, P, pseudo,```
-- ```bind = $mainMod, J, togglesplit,```
 - ```bind = $mainMod, E, exec, nemo```
-- ```bind = $mainMod SHIFT, B, exec, pkill -SIGUSR1 .waybar-wrapped```
-- ```bind = $mainMod, C ,exec, hyprpicker -a```
-- ```bind = $mainMod, W,exec, wallpaper-picker```
 </details>
 
-<details>
-<summary>
-Screenshot 
-</summary>
-
-- ```bind = $mainMod, Print, exec, grimblast --notify --cursor save area ~/Pictures/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png```
-- ```bind = ,Print, exec, grimblast --notify --cursor  copy area```
-</details>
-
-<details>
-<summary>
-Switch window focus 
-</summary>
-
-- ```bind = $mainMod, left, movefocus, l```
-- ```bind = $mainMod, right, movefocus, r```
-- ```bind = $mainMod, up, movefocus, u```
-- ```bind = $mainMod, down, movefocus, d```
-</details>
 
 <details>
 <summary>
@@ -306,25 +278,6 @@ Switch window to workspace
 
 <details>
 <summary>
-Window control 
-</summary>
-
-- ```bind = $mainMod SHIFT, left, movewindow, l```
-- ```bind = $mainMod SHIFT, right, movewindow, r```
-- ```bind = $mainMod SHIFT, up, movewindow, u```
-- ```bind = $mainMod SHIFT, down, movewindow, d```
-- ```bind = $mainMod CTRL, left, resizeactive, -80 0```
-- ```bind = $mainMod CTRL, right, resizeactive, 80 0```
-- ```bind = $mainMod CTRL, up, resizeactive, 0 -80```
-- ```bind = $mainMod CTRL, down, resizeactive, 0 80```
-- ```bind = $mainMod ALT, left, moveactive,  -80 0```
-- ```bind = $mainMod ALT, right, moveactive, 80 0```
-- ```bind = $mainMod ALT, up, moveactive, 0 -80```
-- ```bind = $mainMod ALT, down, moveactive, 0 80```
-</details>
-
-<details>
-<summary>
 Media and volume controls 
 </summary>
    
@@ -335,17 +288,6 @@ Media and volume controls
 - ```bind = ,XF86AudioNext,exec, playerctl next```
 - ```bind = ,XF86AudioPrev,exec, playerctl previous```
 - ```bind = , XF86AudioStop, exec, playerctl stop```
-- ```bind = $mainMod, mouse_down, workspace, e-1```
-- ```bind = $mainMod, mouse_up, workspace, e+1```
-</details>
-
-<details>
-<summary>
-Mouse binding 
-</summary>
-
-- ```bindm = $mainMod, mouse:272, movewindow```
-- ```bindm = $mainMod, mouse:273, resizewindow```
 </details>
 
 # 🚀 Installation 
