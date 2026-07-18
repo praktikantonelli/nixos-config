@@ -239,6 +239,7 @@ Keybindings
 - ```bind = $mainMod, Escape, exec, swaylock```
 - ```bind = $mainMod SHIFT, Escape, exec, shutdown-script```
 - ```bind = $mainMod, E, exec, nemo```
+- ```bind = $mainMode, F1, exec show-keybinds```
 </details>
 
 

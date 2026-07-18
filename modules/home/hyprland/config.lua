@@ -44,6 +44,8 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"), { rep
 
 hl.bind(mod .. " + V", hl.dsp.exec_cmd("cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"))
 
+hl.bind(mod .. " + F1", hl.dsp.exec_cmd("show-keybinds"))
+
 -- settings.config
 hl.config({
 	["decoration"] = {
