@@ -224,7 +224,7 @@ runbg.sh
 
 ### ⌨️ Keybinds
 
-View all keybinds by pressing ```$mainMod F1``` and wallpaper picker by pressing ```$mainMod w```. By default ```$mainMod``` is the ```SUPER``` key. 
+View all keybinds by pressing ```$mainMod F1``` and wallpaper picker by pressing ```$mainMod w```. By default ```$mainMod``` is the ```ALT``` key. 
 
 <details>
 <summary>
