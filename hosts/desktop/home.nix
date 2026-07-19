@@ -6,7 +6,7 @@
     ../../modules/home/fuzzel.nix # launcher
     ../../modules/home/git.nix # version control
     ../../modules/home/gtk.nix # gtk theme
-    ../../modules/home/hyprland # window manager
+    ./hyprland.nix # window manager
     ../../modules/home/kitty.nix # terminal
     ../../modules/home/swaync/swaync.nix # notification deamon
     ../../modules/home/nvim.nix # lazyvim config
