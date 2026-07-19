@@ -29,17 +29,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # IMPORTANT: This only works if the command sudo ssh -T git@github.com 
+    # IMPORTANT: This only works if the command sudo ssh -T git@github.com
     # can be executed (root needs to have ssh access to the private repo!)
     # This can be achieved by copying the ~/.ssh directory to /root/.ssh
     # and adding the necessary permissions for the root user
     secrets = {
-      url =
-        "git+ssh://git@github.com/praktikantonelli/nix-secrets.git?ref=main";
+      url = "git+ssh://git@github.com/praktikantonelli/nix-secrets.git?ref=main";
       inputs = { };
     };
 
-    sops-nix = { url = "github:Mic92/sops-nix"; };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+    };
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -55,7 +56,13 @@
     };
   };
 
-  outputs = { nixpkgs, self, home-manager, ... }@inputs:
+  outputs =
+    {
+      nixpkgs,
+      self,
+      home-manager,
+      ...
+    }@inputs:
     let
       username = "luca";
       system = "x86_64-linux";
@@ -63,7 +70,8 @@
         inherit system;
         config.allowUnfree = true;
       };
-    in {
+    in
+    {
 
       nixosConfigurations = {
         desktop = nixpkgs.lib.nixosSystem {
@@ -104,7 +112,7 @@
 
         "${username}@desktop" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./modules/home ];
+          modules = [ ./hosts/desktop/home.nix ];
           extraSpecialArgs = {
             host = "desktop";
             inherit self inputs username;
