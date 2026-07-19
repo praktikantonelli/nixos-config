@@ -9,6 +9,7 @@
   ];
 
   home.pointerCursor = {
+    enable = true;
     gtk.enable = true;
     package = pkgs.nordzy-cursor-theme;
     name = "Nordzy-cursors";
