@@ -224,7 +224,7 @@ runbg.sh
 
 ### ⌨️ Keybinds
 
-View all keybinds by pressing ```$mainMod F1``` and wallpaper picker by pressing ```$mainMod w```. By default ```$mainMod``` is the ```ALT``` key. 
+By default ```$mainMod``` is the ```ALT``` key. 
 
 <details>
 <summary>
@@ -239,7 +239,6 @@ Keybindings
 - ```bind = $mainMod, Escape, exec, swaylock```
 - ```bind = $mainMod SHIFT, Escape, exec, shutdown-script```
 - ```bind = $mainMod, E, exec, nemo```
-- ```bind = $mainMode, F1, exec show-keybinds```
 </details>
 
 
