@@ -1,8 +1,17 @@
 { pkgs, ... }:
 let
   calibre-web-with-kobo = pkgs.calibre-web.overridePythonAttrs (oldAttrs: {
-    dependencies = oldAttrs.dependencies
-      ++ [ pkgs.calibre-web.optional-dependencies.kobo ];
+    dependencies = (oldAttrs.dependencies or [ ]) ++ pkgs.calibre-web.optional-dependencies.kobo;
+
+    # The current Calibre-Web snapshot has upper bounds that are too
+    # restrictive for the certifi and chardet versions in this Nixpkgs pin.
+    pythonRelaxDeps = pkgs.lib.unique (
+      (oldAttrs.pythonRelaxDeps or [ ])
+      ++ [
+        "certifi"
+        "chardet"
+      ]
+    );
   });
 in
 {
