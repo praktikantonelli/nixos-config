@@ -1,7 +1,14 @@
-{ pkgs, username, inputs, config, ... }: {
+{
+  pkgs,
+  username,
+  inputs,
+  config,
+  ...
+}:
+{
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud33;
+    package = pkgs.nextcloud34;
     hostName = "nextcloud.${inputs.secrets.domain}";
     config = {
       adminuser = username;
