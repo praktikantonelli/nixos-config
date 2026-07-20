@@ -44,6 +44,18 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"), { rep
 
 hl.bind(mod .. " + V", hl.dsp.exec_cmd("cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"))
 
+-- make Bitwarden browser extension float
+hl.on("window.title", function(w)
+	if w ~= nil and w.title == "Extension: (Bitwarden Password Manager) - Bitwarden — Zen Browser" then
+		-- make the window float
+		hl.dispatch(hl.dsp.window.float({ action = "set" }))
+		-- center it
+		hl.dispatch(hl.dsp.window.center())
+		-- make it smaller
+		hl.dispatch(hl.dsp.window.resize({ x = 500, y = 600 }))
+	end
+end)
+
 -- settings.config
 hl.config({
 	["decoration"] = {
