@@ -23,6 +23,9 @@
               toString config.services.vaultwarden.config.ROCKET_PORT
             }";
           proxyWebsockets = true;
+          extraConfig = ''
+            proxy_set_header X-Forwarded-Proto https;
+          '';
         };
       };
 
@@ -32,6 +35,9 @@
               toString config.services.immich.port
             }";
           proxyWebsockets = true;
+          extraConfig = ''
+            proxy_set_header X-Forwarded-Proto https;
+          '';
         };
       };
 
@@ -41,6 +47,9 @@
               toString config.services.calibre-web.listen.port
             }";
           proxyWebsockets = true;
+          extraConfig = ''
+            proxy_set_header X-Forwarded-Proto https;
+          '';
         };
       };
 
@@ -50,6 +59,9 @@
               toString config.services.audiobookshelf.port
             }";
           proxyWebsockets = true;
+          extraConfig = ''
+            proxy_set_header X-Forwarded-Proto https;
+          '';
         };
       };
 
@@ -59,6 +71,9 @@
               toString config.services.navidrome.settings.Port
             }";
           proxyWebsockets = true;
+          extraConfig = ''
+            proxy_set_header X-Forwarded-Proto https;
+          '';
         };
       };
 
@@ -66,6 +81,9 @@
         locations."/" = {
           proxyPass = "http://127.0.0.1:180";
           proxyWebsockets = true;
+          extraConfig = ''
+            proxy_set_header X-Forwarded-Proto https;
+          '';
         };
       };
     };
