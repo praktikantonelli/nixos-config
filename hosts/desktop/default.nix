@@ -9,15 +9,20 @@
     ../../modules/services
   ];
 
-  services.power-profiles-daemon.enable = true;
-  hardware.graphics = { 
-    enable = true; 
-    enable32Bit = true;
+  services = {
+    power-profiles-daemon.enable = true;
+    hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+    xserver.videoDrivers = [ "amdgpu" ];
+    seatd.enable = true;
   };
 
-  services.xserver.videoDrivers = [ "amdgpu" ];
-  boot.initrd.kernelModules = ["amdgpu"];
-  boot.kernelModules = ["amdgpu"];
+  boot = {
+    initrd.kernelModules = [ "amdgpu" ];
+    kernelModules = [ "amdgpu" ];
+  };
 
   environment.systemPackages = with pkgs; [
     mesa
@@ -26,8 +31,12 @@
     wayland-utils
   ];
 
-  services.seatd.enable = true;
-
-  users.users.${username}.extraGroups = ["wheel" "networkmanager" "video" "render" "seat"];
+  users.users.${username}.extraGroups = [
+    "wheel"
+    "networkmanager"
+    "video"
+    "render"
+    "seat"
+  ];
 
 }
