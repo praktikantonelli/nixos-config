@@ -64,7 +64,7 @@
         "actions": [
           {
             "label": "󰹑  Whole screen",
-            "command": "grimblast --notify --cursor --freeze copy output"
+            "command": "swaync-client -cp; grimblast --wait 0.3 --notify --cursor copy output"
           },
           {
             "label": "󰩭  Window / Region",
