@@ -2,7 +2,7 @@
 {
   services.audiobookshelf = {
     enable = true;
-    host = "192.168.1.212";
+    host = "127.0.0.1";
     port = 8084;
     group = "media";
   };
