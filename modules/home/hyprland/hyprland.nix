@@ -11,8 +11,6 @@
     glib
     wayland
   ];
-  systemd.user.targets.hyprland-session.Unit.Wants =
-    [ "xdg-desktop-autostart.target" ];
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
@@ -21,7 +19,8 @@
       # hidpi = true;
     };
     # enableNvidiaPatches = false;
-    systemd.enable = true;
+    # UWSM owns the graphical-session lifecycle and environment.
+    systemd.enable = false;
 
     configType = "lua";
     extraLuaFiles = { "config.lua" = ./config.lua; };
