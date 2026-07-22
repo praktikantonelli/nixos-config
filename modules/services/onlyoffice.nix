@@ -20,6 +20,7 @@
       "DB_TYPE" = "postgres";
       "DB_USER" = "onlyoffice";
       "JWT_SECRET" = inputs.secrets.onlyoffice-jwt-token;
+      "PLUGINS_ENABLED" = "false";
     };
     volumes = [
       "/var/www/onlyoffice/Data"
