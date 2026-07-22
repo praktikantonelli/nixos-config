@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }: {
+{ inputs, ... }: {
   nixpkgs.overlays = [
     (final: _prev: {
       hyprland = inputs.hyprland.packages.${final.stdenv.hostPlatform.system}.hyprland;
@@ -12,11 +12,6 @@
   };
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
     xdgOpenUsePortal = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
-      pkgs.xdg-desktop-portal-gtk
-    ];
   };
 }
