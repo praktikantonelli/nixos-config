@@ -36,7 +36,7 @@
         format = { today = "<span color='#b4befe'><b><u>{}</u></b></span>"; };
       };
       format = " {:%H:%M}";
-      tooltip = "true";
+      tooltip = true;
       tooltip-format = ''
         <big>{:%Y %B}</big>
         <tt><small>{calendar}</small></tt>'';
@@ -45,6 +45,7 @@
     "hyprland/workspaces" = {
       active-only = false;
       disable-scroll = true;
+      sort-by-number = true;
       format = "{icon}";
       on-click = "activate";
       format-icons = {
@@ -60,7 +61,6 @@
         "10" = "X";
         urgent = "";
         default = "";
-        sort-by-number = true;
       };
       persistent-workspaces = lib.mkMerge [
         { "1" = [ ]; }
