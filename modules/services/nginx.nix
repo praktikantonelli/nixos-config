@@ -1,4 +1,15 @@
-{ inputs, config, ... }: {
+{ inputs, config, ... }:
+let
+  cloudflareProxyHeaders = ''
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header X-Forwarded-Host $host;
+    proxy_set_header X-Forwarded-Server $hostname;
+  '';
+in
+{
   services.nginx = {
     enable = true;
     defaultListen = [
@@ -21,11 +32,10 @@
         locations."/" = {
           proxyPass = "http://127.0.0.1:${
               toString config.services.vaultwarden.config.ROCKET_PORT
-            }";
+          }";
           proxyWebsockets = true;
-          extraConfig = ''
-            proxy_set_header X-Forwarded-Proto https;
-          '';
+          recommendedProxySettings = false;
+          extraConfig = cloudflareProxyHeaders;
         };
       };
 
@@ -33,11 +43,10 @@
         locations."/" = {
           proxyPass = "http://${config.services.immich.host}:${
               toString config.services.immich.port
-            }";
+          }";
           proxyWebsockets = true;
-          extraConfig = ''
-            proxy_set_header X-Forwarded-Proto https;
-          '';
+          recommendedProxySettings = false;
+          extraConfig = cloudflareProxyHeaders;
         };
       };
 
@@ -45,11 +54,10 @@
         locations."/" = {
           proxyPass = "http://${config.services.calibre-web.listen.ip}:${
               toString config.services.calibre-web.listen.port
-            }";
+          }";
           proxyWebsockets = true;
-          extraConfig = ''
-            proxy_set_header X-Forwarded-Proto https;
-          '';
+          recommendedProxySettings = false;
+          extraConfig = cloudflareProxyHeaders;
         };
       };
 
@@ -57,11 +65,10 @@
         locations."/" = {
           proxyPass = "http://${config.services.audiobookshelf.host}:${
               toString config.services.audiobookshelf.port
-            }";
+          }";
           proxyWebsockets = true;
-          extraConfig = ''
-            proxy_set_header X-Forwarded-Proto https;
-          '';
+          recommendedProxySettings = false;
+          extraConfig = cloudflareProxyHeaders;
         };
       };
 
@@ -69,11 +76,10 @@
         locations."/" = {
           proxyPass = "http://${config.services.navidrome.settings.Address}:${
               toString config.services.navidrome.settings.Port
-            }";
+          }";
           proxyWebsockets = true;
-          extraConfig = ''
-            proxy_set_header X-Forwarded-Proto https;
-          '';
+          recommendedProxySettings = false;
+          extraConfig = cloudflareProxyHeaders;
         };
       };
 
@@ -81,9 +87,8 @@
         locations."/" = {
           proxyPass = "http://127.0.0.1:180";
           proxyWebsockets = true;
-          extraConfig = ''
-            proxy_set_header X-Forwarded-Proto https;
-          '';
+          recommendedProxySettings = false;
+          extraConfig = cloudflareProxyHeaders;
         };
       };
     };
