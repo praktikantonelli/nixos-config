@@ -24,8 +24,8 @@
   ];
   nixpkgs.config.allowUnfree = true;
   home = {
-    username = "luca";
-    homeDirectory = "/home/luca";
+    inherit username;
+    homeDirectory = "/home/${username}";
     stateVersion = "24.05";
   };
   programs.home-manager.enable = true;
