@@ -15,4 +15,3 @@ in {
     theme = spicePkgs.themes.onepunch;
   };
 }
-
