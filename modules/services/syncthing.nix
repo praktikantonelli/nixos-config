@@ -18,7 +18,7 @@ let
     "homelab" = {
       id = inputs.secrets.syncthing-ids.homelab;
     };
-    "desktop-nixos" = {
+    "desktop" = {
       id = inputs.secrets.syncthing-ids.desktop-nixos;
     };
   };
