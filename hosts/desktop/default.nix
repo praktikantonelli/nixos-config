@@ -11,12 +11,13 @@
 
   services = {
     power-profiles-daemon.enable = true;
-    hardware.graphics = {
-      enable = true;
-      enable32Bit = true;
-    };
     xserver.videoDrivers = [ "amdgpu" ];
     seatd.enable = true;
+  };
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
   };
 
   boot = {
