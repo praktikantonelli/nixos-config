@@ -103,7 +103,7 @@
       homeConfigurations = {
         "${username}@laptop" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./modules/home ];
+          modules = [ ./hosts/laptop/home.nix ];
           extraSpecialArgs = {
             host = "laptop";
             inherit self inputs username;

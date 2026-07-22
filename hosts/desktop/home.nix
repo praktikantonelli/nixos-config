@@ -1,7 +1,7 @@
 { ... }: {
   imports = [
     ../../modules/home/bat.nix # better cat command
-    ../../modules/home/btop.nix # resouces monitor
+    ./btop.nix # resouces monitor
     ../../modules/home/discord.nix # discord with catppuccin theme
     ../../modules/home/fuzzel.nix # launcher
     ../../modules/home/git.nix # version control
