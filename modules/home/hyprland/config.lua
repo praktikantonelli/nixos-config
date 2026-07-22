@@ -28,6 +28,7 @@ hl.bind((mod .. " + SHIFT + 9"), hl.dsp.window.move({ workspace = 9 }))
 hl.bind((mod .. " + SHIFT + 0"), hl.dsp.window.move({ workspace = 10 }))
 
 hl.bind((mod .. " + F"), hl.dsp.window.fullscreen({ action = "toggle" }))
+hl.bind((mod .. " + SPACE"), hl.dsp.window.float())
 
 hl.bind((mod .. " + SHIFT + Escape"), hl.dsp.exec_cmd("shutdown-script"))
 hl.bind((mod .. " + Escape"), hl.dsp.exec_cmd("swaylock"))
