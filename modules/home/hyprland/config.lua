@@ -75,6 +75,8 @@ hl.bind(
 	{ description = "Launch fuzzel clipboard history" }
 )
 
+hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true, drag = true, description = "Drag window" })
+
 -- make Bitwarden browser extension float
 hl.on("window.title", function(w)
 	if w ~= nil and w.title == "Extension: (Bitwarden Password Manager) - Bitwarden — Zen Browser" then
@@ -125,6 +127,9 @@ hl.config({
 	["misc"] = {
 		["disable_hyprland_logo"] = true,
 		["enable_swallow"] = true,
+	},
+	["binds"] = {
+		["drag_threshold"] = 10,
 	},
 })
 
