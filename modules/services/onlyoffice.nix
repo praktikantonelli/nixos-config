@@ -33,6 +33,8 @@
     dependsOn = [ "onlyoffice-postgresql" "onlyoffice-rabbitmq" ];
     log-driver = "journald";
     extraOptions = [
+      "--memory=4g"
+      "--memory-swap=5g"
       "--network-alias=onlyoffice-documentserver"
       "--network=onlyoffice_default"
     ];
