@@ -90,16 +90,7 @@
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     22
-    80
-    180
-    443
-    1443
     2283
-    8080
-    8083
-    8084
-    8222
-    8888
     1234
   ];
 
