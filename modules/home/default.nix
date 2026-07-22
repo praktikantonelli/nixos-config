@@ -1,7 +1,6 @@
 { username, ... }: {
   imports = [
     ./bat.nix # better cat command
-    ./btop.nix # resouces monitor
     ./discord.nix # discord with catppuccin theme
     ./fuzzel.nix # launcher
     ./git.nix # version control
