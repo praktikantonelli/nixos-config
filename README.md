@@ -201,12 +201,14 @@ toggle_blur.sh
 
 <details>
 <summary>
-toggle_oppacity.sh 
+toggle_opacity.sh
 </summary>
 
-**Description:** This script toggles the Hyperland oppacity effect. If the oppacity is currently set to 0.90, it will be set to 1, and if it's set to 1, it will be set to 0.90. 
+**Description:** This script toggles the Hyprland opacity effect. If the opacity is currently set to 0.90, it will be set to 1, and if it's set to 1, it will be set to 0.90.
 
-**Usage:** ```toggle_oppacity```
+**Usage:** ```toggle_opacity```
+
+The old misspelled command, `toggle_oppacity`, remains available as a compatibility alias.
 </details>
 
 <details>
