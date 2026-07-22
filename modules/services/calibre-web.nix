@@ -47,7 +47,7 @@ in
     };
     group = "media"; # allow using syncthing to sync library
     listen = {
-      ip = "192.168.1.212";
+      ip = "127.0.0.1";
       port = 8083;
     };
   };
