@@ -3,6 +3,5 @@
   networking.firewall = {
     checkReversePath = "loose";
     trustedInterfaces = [ "tailscale0" ];
-    allowedUDPPorts = [ 8080 ];
   };
 }
