@@ -1,4 +1,4 @@
-{ ... }: {
+{ username, ... }: {
   imports = [
     ./bat.nix # better cat command
     ./btop.nix # resouces monitor
