@@ -57,6 +57,23 @@ There are other minor differences, mainly small changes like installed packages 
     -   [services](modules/services/) 📥 Self-hosted services mainly running on homelab
 -   [wallpapers](wallpapers/) 🌄 wallpaper and lock screen images
 
+### Applying the configuration
+
+The private `secrets` flake input uses the current user's SSH credentials. Run
+evaluation and builds as the normal user, and elevate only system activation:
+
+```bash
+nh os switch
+```
+
+Alternatively, without `nh`:
+
+```bash
+nixos-rebuild switch --flake .#desktop --sudo
+```
+
+Do not copy personal SSH keys into `/root`.
+
 ### 📓 Components
 |                             | NixOS + Hyprland                                                                              |
 | --------------------------- | :---------------------------------------------------------------------------------------------:

@@ -34,10 +34,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # IMPORTANT: This only works if the command sudo ssh -T git@github.com
-    # can be executed (root needs to have ssh access to the private repo!)
-    # This can be achieved by copying the ~/.ssh directory to /root/.ssh
-    # and adding the necessary permissions for the root user
+    # Evaluate the flake as the normal user so this private input can use the
+    # user's SSH credentials. Elevate only the NixOS activation step.
     secrets = {
       url = "git+ssh://git@github.com/praktikantonelli/nix-secrets.git?ref=main";
       inputs = { };
