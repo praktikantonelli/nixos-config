@@ -6,6 +6,11 @@
 
     hypr-contrib.url = "github:hyprwm/contrib";
 
+    nordzy-cursors = {
+      url = "github:guillaumeboehm/Nordzy-cursors";
+      flake = false;
+    };
+
     mms.url = "github:mkaito/nixos-modded-minecraft-servers";
 
     hyprland = {

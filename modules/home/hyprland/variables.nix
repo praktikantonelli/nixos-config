@@ -18,7 +18,7 @@
     GTK_THEME = "gruvbox-dark";
     XCURSOR_THEME = "Nordzy-cursors";
     XCURSOR_SIZE = "22";
-    HYPRCURSOR_THEME = "Nordzy-cursors";
+    HYPRCURSOR_THEME = "Nordzy-hyprcursors";
     HYPRCURSOR_SIZE = "22";
     KWIN_DRM_USE_MODIFIERS = "0";
     EDITOR = "nvim";

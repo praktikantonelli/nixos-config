@@ -1,4 +1,24 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, inputs, ... }:
+let
+  nordzy-cursors = pkgs.stdenvNoCC.mkDerivation {
+    pname = "nordzy-cursors";
+    version = "git";
+    src = inputs.nordzy-cursors;
+
+    dontBuild = true;
+
+    installPhase = ''
+      runHook preInstall
+
+      mkdir -p "$out/share/icons"
+      cp -r xcursors/Nordzy-cursors "$out/share/icons/"
+      cp -r hyprcursors/themes/Nordzy-hyprcursors "$out/share/icons/"
+
+      runHook postInstall
+    '';
+  };
+in
+{
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
@@ -11,7 +31,7 @@
   home.pointerCursor = {
     enable = true;
     gtk.enable = true;
-    package = pkgs.nordzy-cursor-theme;
+    package = nordzy-cursors;
     name = "Nordzy-cursors";
     size = 22;
   };
@@ -33,7 +53,7 @@
     };
     cursorTheme = {
       name = "Nordzy-cursors";
-      package = pkgs.nordzy-cursor-theme;
+      package = nordzy-cursors;
       size = 22;
     };
   };
