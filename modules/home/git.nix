@@ -15,7 +15,6 @@
 
       };
       init.defaultBranch = "main";
-      credential.helper = "store";
       core.editor = "nvim";
       gpg.ssh.allowedSignersFile = "${config.home.homeDirectory}/.ssh/allowed_signers";
     };
