@@ -1,16 +1,8 @@
 { ... }: {
   services = {
     xserver = {
-      enable = true;
       xkb.layout = "ch";
       xkb.variant = "";
-    };
-
-    libinput = {
-      enable = true;
-      # mouse = {
-      #   accelProfile = "flat";
-      # };
     };
   };
 
