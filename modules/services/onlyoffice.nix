@@ -28,7 +28,7 @@
       "/var/www/onlyoffice/documentserver-example/public/files"
       "/usr/share/fonts"
     ];
-    ports = [ "180:80/tcp" "1443:443/tcp" ];
+    ports = [ "127.0.0.1:180:80/tcp" "127.0.0.1:1443:443/tcp" ];
     dependsOn = [ "onlyoffice-postgresql" "onlyoffice-rabbitmq" ];
     log-driver = "journald";
     extraOptions = [
