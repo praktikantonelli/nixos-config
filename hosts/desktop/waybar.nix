@@ -26,7 +26,6 @@ in
       "memory"
       "disk"
       "pulseaudio"
-      "battery"
       "network"
       "custom/notification"
     ];
