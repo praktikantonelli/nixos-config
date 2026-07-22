@@ -23,11 +23,10 @@
       "PLUGINS_ENABLED" = "false";
     };
     volumes = [
-      "/var/www/onlyoffice/Data"
-      "/var/log/onlyoffice"
-      "/var/lib/onlyoffice/documentserver/App_Data/cache/files"
-      "/var/www/onlyoffice/documentserver-example/public/files"
-      "/usr/share/fonts"
+      "/var/www/onlyoffice/Data:/var/www/onlyoffice/Data"
+      "/var/log/onlyoffice:/var/log/onlyoffice"
+      "/var/lib/onlyoffice:/var/lib/onlyoffice"
+      "/var/lib/onlyoffice/custom-fonts:/usr/share/fonts/truetype/custom"
     ];
     ports = [ "127.0.0.1:180:80/tcp" "127.0.0.1:1443:443/tcp" ];
     dependsOn = [ "onlyoffice-postgresql" "onlyoffice-rabbitmq" ];
@@ -35,10 +34,20 @@
     extraOptions = [
       "--memory=4g"
       "--memory-swap=5g"
+      "--tmpfs=/var/lib/postgresql"
+      "--tmpfs=/var/lib/rabbitmq"
+      "--tmpfs=/var/lib/redis"
       "--network-alias=onlyoffice-documentserver"
       "--network=onlyoffice_default"
     ];
   };
+
+  systemd.tmpfiles.rules = [
+    "d /var/lib/onlyoffice 0755 105 107 -"
+    "d /var/lib/onlyoffice/custom-fonts 0755 root root -"
+    "d /var/log/onlyoffice 0755 root root -"
+    "d /var/www/onlyoffice/Data 0755 root root -"
+  ];
   systemd.services."docker-onlyoffice-documentserver" = {
     serviceConfig = {
       Restart = lib.mkOverride 90 "always";
