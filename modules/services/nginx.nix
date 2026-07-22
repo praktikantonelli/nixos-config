@@ -10,6 +10,11 @@
     recommendedProxySettings = true;
 
     virtualHosts = {
+      "_" = {
+        default = true;
+        locations."/".return = "404";
+      };
+
       "nextcloud.${inputs.secrets.domain}" = { };
 
       "bitwarden.${inputs.secrets.domain}" = {
