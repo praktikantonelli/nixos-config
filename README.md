@@ -302,7 +302,7 @@ Media and volume controls
 1. **Install NixOs**
 
    First install NixOS using any [graphical ISO image](https://nixos.org/download.html#nixos-iso). 
-   > Only been tested using the Gnome graphical installer and choosing the ```No desktop``` option durring instalation.
+   > Only been tested using the Gnome graphical installer and choosing the ```No desktop``` option during instalation.
 
 2. **Clone the repo**
 
