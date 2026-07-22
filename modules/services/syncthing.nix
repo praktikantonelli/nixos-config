@@ -70,5 +70,4 @@ in
     "d /srv/music 2775 syncthing media - -"
     "d /srv/library 2775 syncthing media - -"
   ];
-  systemd.services.calibre-web.serviceConfig.UMask = "0002";
 }

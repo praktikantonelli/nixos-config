@@ -51,4 +51,6 @@ in
       port = 8083;
     };
   };
+
+  systemd.services.calibre-web.serviceConfig.UMask = "0002";
 }
