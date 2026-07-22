@@ -38,6 +38,7 @@ in
 
   gtk = {
     enable = true;
+    colorScheme = "dark";
     gtk4.theme = config.gtk.theme;
     font = {
       name = "SN Pro";
