@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 let
   wall-change = pkgs.writeShellScriptBin "wall-change" (builtins.readFile ./scripts/wall-change.sh);
   wallpaper-picker = pkgs.writeShellScriptBin "wallpaper-picker" (
@@ -27,6 +27,25 @@ let
 
   fzfdiff = pkgs.writeShellScriptBin "fzfdiff" (builtins.readFile ./scripts/fzfdiff.sh);
 
+  record = pkgs.writeShellApplication {
+    name = "record";
+    runtimeInputs = with pkgs; [
+      coreutils
+      ffmpeg
+      gifsicle
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
+      jq
+      libnotify
+      procps
+      slurp
+      systemd
+      wf-recorder
+      wl-clipboard
+      zenity
+    ];
+    text = builtins.readFile ./scripts/record.sh;
+  };
+
 in
 {
   home.packages = [
@@ -50,6 +69,8 @@ in
     connect-vpn
 
     fzfdiff
+
+    record
 
   ];
 }

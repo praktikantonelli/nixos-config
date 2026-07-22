@@ -78,19 +78,19 @@
         "actions": [
           {
             "label": "  Record screen",
-            "command": "record screen & ; swaync-client -t"
+            "command": "swaync-client -cp; record launch screen"
           },
           {
             "label": "  Record selection",
-            "command": "record area & ; swaync-client -t"
+            "command": "swaync-client -cp; record launch area"
           },
           {
             "label": "  Record GIF",
-            "command": "record gif & ; swaync-client -t"
+            "command": "swaync-client -cp; record launch gif"
           },
           {
             "label": "󰻃  Stop",
-            "command": "record stop"
+            "command": "swaync-client -cp; record stop"
           }
         ]
       },
