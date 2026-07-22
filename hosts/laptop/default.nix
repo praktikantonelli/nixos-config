@@ -1,5 +1,13 @@
 { pkgs, config, ... }: {
-  imports = [ ./hardware-configuration.nix ./../../modules/core ];
+  imports = [
+    ./hardware-configuration.nix
+    ../../modules/core
+    ../../modules/core/steam.nix
+    ../../modules/core/tailscale-client.nix
+    ../../modules/core/sops.nix
+    ../../modules/core/work.nix
+    ../../modules/services
+  ];
 
   environment.systemPackages = with pkgs; [
     acpi

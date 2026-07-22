@@ -1,5 +1,13 @@
 { config, pkgs, username, ... }: {
-  imports = [ ./hardware-configuration.nix ./../../modules/core ];
+  imports = [
+    ./hardware-configuration.nix
+    ../../modules/core
+    ../../modules/core/steam.nix
+    ../../modules/core/tailscale-client.nix
+    ../../modules/core/sops.nix
+    ../../modules/core/work.nix
+    ../../modules/services
+  ];
 
   services.power-profiles-daemon.enable = true;
   hardware.graphics = { 

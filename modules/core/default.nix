@@ -12,13 +12,8 @@
     ./user.nix
     ./wayland.nix
     ./fonts.nix
-    ./steam.nix
     ./nix-helper.nix
-    ./tailscale-client.nix
-    ./sops.nix
-    ../services
     ./groups.nix
     ./hyprlogin.nix
-    ./work.nix
   ];
 }
