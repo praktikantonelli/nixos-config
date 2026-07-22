@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
 respond="$(
   printf "Shutdown\nRestart\nCancel\n" |
     fuzzel --dmenu --lines=3 --width=10 --prompt=''
@@ -8,12 +5,10 @@ respond="$(
 
 case "$respond" in
 Shutdown)
-  echo "shutdown"
-  shutdown now
+  systemctl poweroff
   ;;
 Restart)
-  echo "restart"
-  reboot
+  systemctl reboot
   ;;
 "" | Cancel)
   notify-send "cancel shutdown"

@@ -1,31 +1,65 @@
-{ inputs, pkgs, ... }:
+{
+  host,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 let
-  wall-change = pkgs.writeShellScriptBin "wall-change" (builtins.readFile ./scripts/wall-change.sh);
-  wallpaper-picker = pkgs.writeShellScriptBin "wallpaper-picker" (
-    builtins.readFile ./scripts/wallpaper-picker.sh
-  );
+  mkScript = name: runtimeInputs: file:
+    pkgs.writeShellApplication {
+      inherit name runtimeInputs;
+      text = builtins.readFile file;
+    };
 
-  runbg = pkgs.writeShellScriptBin "runbg" (builtins.readFile ./scripts/runbg.sh);
+  wall-change = mkScript "wall-change" (with pkgs; [ procps swaybg ]) ./scripts/wall-change.sh;
+  wallpaper-picker = mkScript "wallpaper-picker" (with pkgs; [
+    coreutils
+    findutils
+    fuzzel
+    wall-change
+  ]) ./scripts/wallpaper-picker.sh;
 
-  toggle_blur = pkgs.writeScriptBin "toggle_blur" (builtins.readFile ./scripts/toggle_blur.sh);
-  toggle_oppacity = pkgs.writeScriptBin "toggle_oppacity" (
-    builtins.readFile ./scripts/toggle_oppacity.sh
-  );
+  runbg = mkScript "runbg" [ pkgs.coreutils ] ./scripts/runbg.sh;
 
-  offload = pkgs.writeScriptBin "offload" (builtins.readFile ./scripts/offload.sh);
+  hyprland = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+  toggle_blur = mkScript "toggle_blur" [ pkgs.gnugrep hyprland ] ./scripts/toggle_blur.sh;
+  toggle_opacity = mkScript "toggle_opacity" [ pkgs.gnugrep hyprland ] ./scripts/toggle_oppacity.sh;
+  toggle_oppacity = pkgs.writeShellApplication {
+    name = "toggle_oppacity";
+    runtimeInputs = [ toggle_opacity ];
+    text = ''exec toggle_opacity "$@"'';
+  };
 
-  maxfetch = pkgs.writeScriptBin "maxfetch" (builtins.readFile ./scripts/maxfetch.sh);
+  offload = mkScript "offload" [ ] ./scripts/offload.sh;
 
-  compress = pkgs.writeScriptBin "compress" (builtins.readFile ./scripts/compress.sh);
-  extract = pkgs.writeScriptBin "extract" (builtins.readFile ./scripts/extract.sh);
+  maxfetch = mkScript "maxfetch" (with pkgs; [
+    coreutils
+    gawk
+    gnused
+    ncurses
+    nix
+    procps
+  ]) ./scripts/maxfetch.sh;
 
-  shutdown-script = pkgs.writeScriptBin "shutdown-script" (
-    builtins.readFile ./scripts/shutdown-script.sh
-  );
+  archiveInputs = with pkgs; [ coreutils gnutar gzip ];
+  compress = mkScript "compress" archiveInputs ./scripts/compress.sh;
+  extract = mkScript "extract" archiveInputs ./scripts/extract.sh;
 
-  connect-vpn = pkgs.writeScriptBin "connect-vpn" (builtins.readFile ./scripts/connect_vpn.sh);
+  shutdown-script = mkScript "shutdown-script" (with pkgs; [
+    coreutils
+    fuzzel
+    libnotify
+    systemd
+  ]) ./scripts/shutdown-script.sh;
 
-  fzfdiff = pkgs.writeShellScriptBin "fzfdiff" (builtins.readFile ./scripts/fzfdiff.sh);
+  connect-vpn = mkScript "connect-vpn" (with pkgs; [
+    openfortivpn
+    openfortivpn-webview
+    sudo
+  ]) ./scripts/connect_vpn.sh;
+
+  fzfdiff = mkScript "fzfdiff" (with pkgs; [ fzf git ]) ./scripts/fzfdiff.sh;
 
   record = pkgs.writeShellApplication {
     name = "record";
@@ -33,7 +67,7 @@ let
       coreutils
       ffmpeg
       gifsicle
-      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
+      hyprland
       jq
       libnotify
       procps
@@ -55,9 +89,8 @@ in
     runbg
 
     toggle_blur
+    toggle_opacity
     toggle_oppacity
-
-    offload
 
     maxfetch
 
@@ -71,6 +104,5 @@ in
     fzfdiff
 
     record
-
-  ];
+  ] ++ lib.optionals (host == "laptop") [ offload ];
 }
