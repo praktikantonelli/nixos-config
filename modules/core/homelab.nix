@@ -67,7 +67,7 @@
     };
     sudo.extraRules = [
       {
-        users = [ "luca" ];
+        users = [ username ];
         commands = [
           {
             command = "ALL";

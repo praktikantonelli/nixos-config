@@ -3,6 +3,7 @@
   pkgs,
   lib,
   inputs,
+  username,
   ...
 }:
 
@@ -192,7 +193,7 @@
           TimeoutSec = 300;
         };
         script = ''
-          cd /home/luca/Docker-DocumentServer
+          cd /home/${username}/Docker-DocumentServer
           docker build -t compose2nix/onlyoffice-documentserver .
         '';
       };
