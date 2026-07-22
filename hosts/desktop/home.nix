@@ -17,7 +17,7 @@
     ../../modules/home/swaylock.nix # lock screen
     ../../modules/home/vscodium.nix # vscode forck
     ../../modules/home/zellij.nix
-    ../../modules/home/waybar # status bar
+    ./waybar.nix # status bar
     ../../modules/home/nu.nix # nushell
     ../../modules/home/zen.nix # zen browser
     ../../modules/home/direnv.nix

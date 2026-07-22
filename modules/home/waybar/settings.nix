@@ -1,4 +1,4 @@
-{ host, lib, ... }: {
+{ lib, ... }: {
   programs.waybar.settings.mainBar = {
     position = "top";
     layer = "top";
@@ -13,10 +13,9 @@
       "tray"
     ];
     modules-center = [ "clock" ];
-    modules-right = [
+    modules-right = lib.mkDefault [
       "bluetooth"
       "cpu"
-      "custom/gpu"
       "memory"
       "disk"
       "pulseaudio"
