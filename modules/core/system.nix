@@ -29,6 +29,4 @@
   system.stateVersion = "24.05";
 
   fonts.fontDir.enable = true;
-
-  services.automatic-timezoned.enable = true;
 }
