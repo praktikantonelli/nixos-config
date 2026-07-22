@@ -18,10 +18,6 @@ let
   '';
 in
 {
-  imports = [
-    ../../modules/home/waybar
-  ];
-
   programs.waybar.settings.mainBar = {
     modules-right = [
       "bluetooth"
