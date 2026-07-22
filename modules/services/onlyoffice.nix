@@ -67,7 +67,7 @@
       "POSTGRES_HOST_AUTH_METHOD" = "trust";
       "POSTGRES_USER" = "onlyoffice";
     };
-    volumes = [ "onlyoffice_postgresql_data:/var/lib/postgresql:rw" ];
+    volumes = [ "onlyoffice_postgresql_data:/var/lib/postgresql/data:rw" ];
     log-driver = "journald";
     extraOptions = [
       "--network-alias=onlyoffice-postgresql"
@@ -94,6 +94,7 @@
   };
   virtualisation.oci-containers.containers."onlyoffice-rabbitmq" = {
     image = "rabbitmq";
+    volumes = [ "onlyoffice_rabbitmq_data:/var/lib/rabbitmq" ];
     log-driver = "journald";
     extraOptions =
       [ "--network-alias=onlyoffice-rabbitmq" "--network=onlyoffice_default" ];
@@ -105,8 +106,14 @@
       RestartSec = lib.mkOverride 90 "100ms";
       RestartSteps = lib.mkOverride 90 9;
     };
-    after = [ "docker-network-onlyoffice_default.service" ];
-    requires = [ "docker-network-onlyoffice_default.service" ];
+    after = [
+      "docker-network-onlyoffice_default.service"
+      "docker-volume-onlyoffice_rabbitmq_data.service"
+    ];
+    requires = [
+      "docker-network-onlyoffice_default.service"
+      "docker-volume-onlyoffice_rabbitmq_data.service"
+    ];
     partOf = [ "docker-compose-onlyoffice-root.target" ];
     wantedBy = [ "docker-compose-onlyoffice-root.target" ];
   };
@@ -135,6 +142,19 @@
     };
     script = ''
       docker volume inspect onlyoffice_postgresql_data || docker volume create onlyoffice_postgresql_data
+    '';
+    partOf = [ "docker-compose-onlyoffice-root.target" ];
+    wantedBy = [ "docker-compose-onlyoffice-root.target" ];
+  };
+
+  systemd.services."docker-volume-onlyoffice_rabbitmq_data" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker volume inspect onlyoffice_rabbitmq_data || docker volume create onlyoffice_rabbitmq_data
     '';
     partOf = [ "docker-compose-onlyoffice-root.target" ];
     wantedBy = [ "docker-compose-onlyoffice-root.target" ];
