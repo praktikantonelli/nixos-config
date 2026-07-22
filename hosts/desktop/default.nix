@@ -1,7 +1,7 @@
 { config, pkgs, username, ... }: {
   imports = [ ./hardware-configuration.nix ./../../modules/core ];
 
-  powerManagement.cpuFreqGovernor = "performance";
+  services.power-profiles-daemon.enable = true;
   hardware.graphics = { 
     enable = true; 
     enable32Bit = true;
