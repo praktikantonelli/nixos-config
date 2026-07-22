@@ -117,7 +117,7 @@
       format = "";
       on-click = "fuzzel";
       on-click-right = "wallpaper-picker";
-      tooltip = "false";
+      tooltip = false;
     };
     "custom/notification" = {
       tooltip = false;
