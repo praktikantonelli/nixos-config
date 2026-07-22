@@ -7,7 +7,11 @@
     margin-bottom = 0;
     margin-left = 0;
     margin-right = 0;
-    modules-left = [ "custom/launcher" "hyprland/workspaces" "tray" ];
+    modules-left = [
+      "custom/launcher"
+      "hyprland/workspaces"
+      "tray"
+    ];
     modules-center = [ "clock" ];
     modules-right = [
       "bluetooth"
@@ -27,13 +31,14 @@
       tooltip-format-on = "Not Connected";
       tooltip-format-off = "Disabled";
       tooltip-format-connected = "{device_enumerate}";
-      on-click =
-        "sh -c 'if bluetoothctl show | grep -q \"Powered: yes\"; then bluetoothctl power off; else bluetoothctl power on; fi'";
+      on-click = "sh -c 'if bluetoothctl show | grep -q \"Powered: yes\"; then bluetoothctl power off; else bluetoothctl power on; fi'";
       tooltip-format-enumerate-connected = "{device_alias}	{device_address}";
     };
     clock = {
       calendar = {
-        format = { today = "<span color='#b4befe'><b><u>{}</u></b></span>"; };
+        format = {
+          today = "<span color='#b4befe'><b><u>{}</u></b></span>";
+        };
       };
       format = " {:%H:%M}";
       tooltip = true;
@@ -62,10 +67,6 @@
         urgent = "";
         default = "";
       };
-      persistent-workspaces = lib.mkMerge [
-        { "1" = [ ]; }
-        (lib.optionalAttrs (host == "desktop") { "6" = [ ]; })
-      ];
     };
     memory = {
       format = "󰟜 {:2}%";
@@ -97,18 +98,28 @@
     pulseaudio = {
       format = "{icon} {volume:2}%";
       format-muted = "  {volume:2}%";
-      format-icons = { default = [ " " ]; };
+      format-icons = {
+        default = [ " " ];
+      };
       scroll-step = 5;
       on-click = "pamixer -t";
     };
     battery = {
       format = "{icon} {capacity:2}%";
-      format-icons = [ " " " " " " " " " " ];
+      format-icons = [
+        " "
+        " "
+        " "
+        " "
+        " "
+      ];
       format-charging = " {capacity:2}%";
       format-full = " {capacity:2}%";
       format-warning = " {capacity:2}%";
       interval = 5;
-      states = { warning = 20; };
+      states = {
+        warning = 20;
+      };
       format-time = "{H}h{M}m";
       tooltip = true;
       tooltip-format = "{time}";
@@ -127,11 +138,9 @@
         none = "   ";
         dnd-notification = "<span foreground='red'><sup></sup></span>   ";
         dnd-none = "   ";
-        inhibited-notification =
-          "<span foreground='red'><sup></sup></span>   ";
+        inhibited-notification = "<span foreground='red'><sup></sup></span>   ";
         inhibited-none = "   ";
-        dnd-inhibited-notification =
-          "<span foreground='red'><sup></sup></span>   ";
+        dnd-inhibited-notification = "<span foreground='red'><sup></sup></span>   ";
         dnd-inhibited-none = "   ";
       };
       return-type = "json";
