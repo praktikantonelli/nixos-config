@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  username,
   ...
 }:
 let
@@ -56,6 +57,9 @@ in
           git commit -m $msg
         }
       '';
+
+      # also define NH_FLAKE here so nushell has access to it -> needed for nix-helper on homelab
+      extraEnv = ''$env.NH_FLAKE = "/home/${username}/nixos-config"'';
       shellAliases = {
 
         # Utils
