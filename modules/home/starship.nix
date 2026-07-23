@@ -43,7 +43,7 @@
         color_orange = "#FE8019";
         color_purple = "#b16286";
         color_red = "#cc241d";
-        color_yellow = "#FFAF00";
+        color_yellow = "#D79921";
       };
 
       os = {
