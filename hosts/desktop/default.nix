@@ -24,7 +24,6 @@
   users.users.${username}.extraGroups = [
     "video"
     "render"
-    "media"
   ];
 
 }
