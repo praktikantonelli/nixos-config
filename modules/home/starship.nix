@@ -68,7 +68,7 @@
       };
 
       directory = {
-        style = "bold fg:color_fg1 bg:color_yellow";
+        style = "bold fg:color_fg0 bg:color_yellow";
         format = "[ $path ]($style)";
         truncation_length = 3;
       };
