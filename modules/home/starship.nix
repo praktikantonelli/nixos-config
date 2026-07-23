@@ -48,7 +48,7 @@
 
       os = {
         disabled = false;
-        style = "bg:color_orange bold fg:color_fg0";
+        style = "bg:color_orange bold fg:color_bg2";
         symbols = {
           NixOS = " ";
         };
