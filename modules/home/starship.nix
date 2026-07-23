@@ -10,6 +10,9 @@
       format = lib.concatStrings [
         "[](color_orange)"
         "$os"
+        "$username"
+        "[@](bg:color_orange bold fg:color_fg0)"
+        "$hostname"
         "[](bg:color_yellow fg:color_orange)"
         "$directory"
         "[](fg:color_yellow bg:color_aqua)"
@@ -43,6 +46,20 @@
         symbols = {
           NixOS = " ";
         };
+      };
+
+      username = {
+        disabled = false;
+        show_always = true;
+        style_user = "bg:color_orange bold fg:color_fg0";
+        style_root = "bg:color_orange bold fg:color_red";
+        format = "[$user]($style)";
+      };
+
+      hostname = {
+        ssh_only = false;
+        style = "bg:color_orange bold fg:color_fg0";
+        format = "[$ssh_symbol$hostname ]($style)";
       };
 
       directory = {
