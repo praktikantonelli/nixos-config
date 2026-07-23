@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
   zellijBin = lib.getExe pkgs.zellij;
 in
@@ -28,14 +33,16 @@ in
                 }
               }
 
-              { ||  # zellij auto-attach
-                let in_zellij = ('ZELLIJ' in $env)
-                let term = ($env | get --optional TERM | default "")
+              ${lib.optionalString config.programs.zellij.enable ''
+                { ||  # zellij auto-attach
+                  let in_zellij = ('ZELLIJ' in $env)
+                  let term = ($env | get --optional TERM | default "")
 
-                if $nu.is-interactive and (not $in_zellij) and ($term != "dumb") {
-                  exec ${zellijBin} attach --create ($env | get --optional USER | default 'user')
-                }
-              }
+                  if $nu.is-interactive and (not $in_zellij) and ($term != "dumb") {
+                    exec ${zellijBin} attach --create ($env | get --optional USER | default 'user')
+                  }
+                }   
+              ''}
             ]
           }
         }
