@@ -39,6 +39,7 @@
   };
 
   services = {
+    automatic-timezoned.enable = true;
     # thermald.enable = true;
     # cpupower-gui.enable = true;
     power-profiles-daemon.enable = true;

@@ -125,13 +125,6 @@ let
         }
     }
 
-    sessions {
-      wayland_path = ${desktops}/share/wayland-sessions
-      x11_path = ${desktops}/share/xsessions
-
-      default_user = ${username}
-      default_session = hyprland-uwsm.desktop
-    }
   '';
 
   hyprlandGreeterConfig = pkgs.writeText "hyprland-greeter.conf" ''

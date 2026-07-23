@@ -109,7 +109,7 @@ in {
         padding-right: 30px;
     }
 
-    custom-notification {
+    #custom-notification {
         padding-left: 20px;
         padding-right: 20px;
     }

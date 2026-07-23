@@ -1,11 +1,8 @@
-{ pkgs, lib, inputs, ... }:
+{ pkgs, inputs, ... }:
 let
   spicePkgs =
     inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in {
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [ "spotify" ];
-
   imports = [ inputs.spicetify-nix.homeManagerModules.default ];
 
   programs.spicetify = {
@@ -18,4 +15,3 @@ in {
     theme = spicePkgs.themes.onepunch;
   };
 }
-

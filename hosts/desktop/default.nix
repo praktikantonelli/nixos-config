@@ -9,34 +9,21 @@
     ../../modules/services
   ];
 
-  services = {
-    power-profiles-daemon.enable = true;
-    hardware.graphics = {
-      enable = true;
-      enable32Bit = true;
-    };
-    xserver.videoDrivers = [ "amdgpu" ];
-    seatd.enable = true;
-  };
+  services.power-profiles-daemon.enable = true;
 
-  boot = {
-    initrd.kernelModules = [ "amdgpu" ];
-    kernelModules = [ "amdgpu" ];
-  };
+  hardware.graphics.enable32Bit = true;
+
+  boot.initrd.kernelModules = [ "amdgpu" ];
 
   environment.systemPackages = with pkgs; [
-    mesa
     vulkan-tools
     libva-utils
     wayland-utils
   ];
 
   users.users.${username}.extraGroups = [
-    "wheel"
-    "networkmanager"
     "video"
     "render"
-    "seat"
   ];
 
 }

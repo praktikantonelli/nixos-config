@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
+set -euo pipefail
+
+REPO_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 init() {
-  # Vars
-  CURRENT_USERNAME='luca'
-
   # Colors
   NORMAL=$(tput sgr0)
   WHITE=$(tput setaf 7)
@@ -51,19 +51,29 @@ print_header() {
 
 get_username() {
   echo -en "Enter your$GREEN username$NORMAL : $YELLOW"
-  read username
+  read -r username
+
+  if [[ ! "$username" =~ ^[a-z_][a-z0-9_-]*$ ]]; then
+    echo "Invalid username. Use lowercase letters, digits, underscores, and hyphens."
+    exit 1
+  fi
+
   echo -en "$NORMAL"
-  echo -en "Use$YELLOW "$username"$NORMAL as ${GREEN}username${NORMAL} ? "
+  echo -en "Use ${YELLOW}${username}${NORMAL} as ${GREEN}username${NORMAL}? "
   confirm
 }
 
 set_username() {
-  sed -i -e "s/${CURRENT_USERNAME}/${username}/g" ./flake.nix
-  sed -i -e "s/${CURRENT_USERNAME}/${username}/g" ./modules/home/audacious/config
+  if ! grep -Eq '^[[:space:]]*username = "[^"]+";' flake.nix; then
+    echo "Could not find the central username declaration in flake.nix."
+    exit 1
+  fi
+
+  sed -Ei 's/^([[:space:]]*username = ")[^"]+(";)/\1'"${username}"'\2/' flake.nix
 }
 
 get_host() {
-  echo -en "Choose a ${GREEN}host${NORMAL} - [${YELLOW}D${NORMAL}]esktop, [${YELLOW}L${NORMAL}]aptop or [${YELLOW}H{NORMAL}]omelab: "
+  echo -en "Choose a ${GREEN}host${NORMAL} - [${YELLOW}D${NORMAL}]esktop, [${YELLOW}L${NORMAL}]aptop or [${YELLOW}H${NORMAL}]omelab: "
   read -n 1 -r
   echo
 
@@ -79,7 +89,7 @@ get_host() {
   fi
 
   echo -en "$NORMAL"
-  echo -en "Use the$YELLOW "$HOST"$NORMAL ${GREEN}host${NORMAL} ? "
+  echo -en "Use the ${YELLOW}${HOST}${NORMAL} ${GREEN}host${NORMAL}? "
   confirm
 }
 
@@ -93,24 +103,25 @@ install() {
     echo -e "Creating folders:"
     echo -e "    - ${MAGENTA}~/Documents${NORMAL}"
     echo -e "    - ${MAGENTA}~/Pictures/wallpapers/others${NORMAL}"
-    mkdir -p ~/Documents
-    mkdir -p ~/Pictures/wallpapers/others
+    mkdir -p "$HOME/Documents"
+    mkdir -p "$HOME/Pictures/wallpapers/others"
     sleep 0.2
 
     # Copy the wallpapers
-    echo -e "Copying all ${MAGENTA}wallpapers${NORMAL}"
-    cp -r wallpapers/wallpaper.png ~/Pictures/wallpapers
-    cp -r wallpapers/lock-screen.png ~/Pictures/wallpapers/others
+    echo -e "Installing ${MAGENTA}wallpapers${NORMAL}"
+    if [[ ! -e "$HOME/Pictures/wallpapers/wallpaper.png" ]]; then
+      install -Dm644 wallpapers/wallpaper.png "$HOME/Pictures/wallpapers/wallpaper.png"
+    fi
+    if [[ ! -e "$HOME/Pictures/wallpapers/others/lock-screen.png" ]]; then
+      install -Dm644 wallpapers/lock-screen.png "$HOME/Pictures/wallpapers/others/lock-screen.png"
+    fi
     sleep 0.2
   fi
 
   # Get the hardware configuration
   echo -e "Copying ${MAGENTA}/etc/nixos/hardware-configuration.nix${NORMAL} to ${MAGENTA}./hosts/${HOST}/${NORMAL}\n"
-  cp /etc/nixos/hardware-configuration.nix hosts/${HOST}/hardware-configuration.nix
+  cp /etc/nixos/hardware-configuration.nix "hosts/${HOST}/hardware-configuration.nix"
   sleep 0.2
-
-  # General installation will be via HTTPS, not ssh -> switch
-  git remote set-url origin git@github.com:praktikantonelli/nixos-config.git
 
   # Last Confirmation
   echo -en "You are about to start the system build, do you want to process ? "
@@ -118,12 +129,16 @@ install() {
 
   # Start with LazyVim config setup
   # NeoVim itself will be installed by home-manager afterwards
-  echo -en "Cloning NeoVim config into ~/.config/nvim"
-  git clone git@github.com:praktikantonelli/lazyvim-config.git ~/.config/nvim
+  if [[ -e "$HOME/.config/nvim" ]]; then
+    echo "Skipping NeoVim config clone because $HOME/.config/nvim already exists."
+  else
+    echo "Cloning NeoVim config into $HOME/.config/nvim"
+    git clone git@github.com:praktikantonelli/lazyvim-config.git "$HOME/.config/nvim"
+  fi
 
   # Build the system (flakes + home manager)
   echo -e "\nBuilding dotfiles with home-manager...\n"
-  nix run .#homeConfigurations."${username}@${HOST}".activationPackage --extra-experimental-features "nix-command flakes" -- switch
+  nix run ".#homeConfigurations.${username}@${HOST}.activationPackage" --extra-experimental-features "nix-command flakes" -- switch
   echo -e "\nBuilding NixOS core configuration...\n"
   nixos-rebuild switch --flake ".#${HOST}" --sudo
 }
@@ -131,7 +146,8 @@ install() {
 ssh_key_handling() {
   echo "Setting up ssh key..."
   # Check for existing ssh keys
-  files=("id_rsa.pub" "id_ecdsa.pub" "id_ed25519.pub")
+  local files=("id_rsa.pub" "id_ecdsa.pub" "id_ed25519.pub")
+  local file
 
   # Loop through each file
   for file in "${files[@]}"; do
@@ -146,14 +162,14 @@ ssh_key_handling() {
   echo "No key was found, would you like to generate one?"
   confirm
   echo "Please enter the email address you wish to use for the key:"
-  read email
+  read -r email
   echo "Use email $email?"
   confirm
   echo "Generating ssh key..."
   ssh-keygen -t ed25519 -C "$email"
   echo "Adding key to ssh-agent..."
   if [[ -n "${SSH_AUTH_SOCK:-}" ]]; then
-    ssh-add ~/.ssh/id_ed25519
+    ssh-add "$HOME/.ssh/id_ed25519"
   else
     echo "No ssh-agent is available; SSH will read the key directly."
   fi
@@ -187,6 +203,7 @@ verify_secrets_access() {
 }
 
 main() {
+  cd "$REPO_ROOT"
   init
 
   print_header
@@ -201,4 +218,4 @@ main() {
   install
 }
 
-main && exit 0
+main
