@@ -11,7 +11,7 @@
         "[](color_orange)"
         "$os"
         "$username"
-        "[@](bg:color_orange bold fg:color_fg0)"
+        "[@](bg:color_orange bold fg:color_bg2)"
         "$hostname"
         "[](bg:color_yellow fg:color_orange)"
         "$directory"
@@ -27,14 +27,20 @@
 
       palette = "gruvbox_dark";
       palettes.gruvbox_dark = {
-        color_fg0 = "#CDC09F";
-        color_fg1 = "#4E4E4E";
-        color_bg1 = "#3c3836";
-        color_bg3 = "#3A3A3A";
+        color_fg0 = "#FBF1C7";
+        color_fg1 = "#EBDBB2";
+        color_fg2 = "#D5C5A1";
+        color_fg3 = "#BDAE93";
+        color_fg4 = "#A89984";
+        color_bg0 = "#282828";
+        color_bg1 = "#3C3836";
+        color_bg2 = "#504945";
+        color_bg3 = "#665C54";
+        color_bg4 = "#7C6F64";
         color_blue = "#458588";
         color_aqua = "#689d6a";
         color_green = "#98971a";
-        color_orange = "#d65d0e";
+        color_orange = "#FE8019";
         color_purple = "#b16286";
         color_red = "#cc241d";
         color_yellow = "#FFAF00";
@@ -51,15 +57,14 @@
       username = {
         disabled = false;
         show_always = true;
-        style_user = "bg:color_orange bold fg:color_fg0";
-        style_root = "bg:color_orange bold fg:color_red";
+        style_user = "bg:color_orange bold fg:color_bg2";
         format = "[$user]($style)";
       };
 
       hostname = {
         ssh_only = false;
-        style = "bg:color_orange bold fg:color_fg0";
-        format = "[$ssh_symbol$hostname ]($style)";
+        style = "bg:color_orange bold fg:color_bg2";
+        format = "[$hostname ]($style)";
       };
 
       directory = {
