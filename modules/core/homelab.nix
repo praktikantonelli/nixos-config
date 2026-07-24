@@ -98,6 +98,8 @@
     enable = true;
     algorithm = "zstd";
     memoryPercent = 50;
+    # set higher priority than swapfile
+    priority = 100;
   };
 
   nix.settings = {
@@ -110,6 +112,8 @@
     {
       device = "/swapfile";
       size = 8192;
+      # lower priority than zram, use only in emergency
+      priority = 0;
     }
   ];
 
