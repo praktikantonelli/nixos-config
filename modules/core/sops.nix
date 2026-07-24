@@ -26,6 +26,8 @@ in
             owner = "nextcloud";
             group = "nextcloud";
           };
+          # cloudflared does not access the file directly, goes through root
+          cloudflared-credentials = { };
         }
       else
         { };
