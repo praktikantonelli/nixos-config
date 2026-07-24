@@ -20,6 +20,7 @@
     maxUploadSize = "16G";
     https = true;
     extraAppsEnable = true;
+    datadir = "/srv/nextcloud";
     extraApps = { inherit (pkgs.nextcloud34Packages.apps) onlyoffice; };
   };
 }
