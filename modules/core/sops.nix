@@ -1,6 +1,13 @@
-{ inputs, username, pkgs, host, ... }:
-let secretspath = builtins.toString inputs.secrets;
-in {
+{
+  inputs,
+  pkgs,
+  host,
+  ...
+}:
+let
+  secretspath = builtins.toString inputs.secrets;
+in
+{
   imports = [ inputs.sops-nix.nixosModules.sops ];
 
   sops = {
@@ -8,17 +15,20 @@ in {
     validateSopsFiles = false;
 
     age = {
-      sshKeyPaths = [ "/home/${username}/.ssh/id_ed25519" ];
+      sshKeyPaths = [ ];
       keyFile = "/var/lib/sops-nix/key.txt";
-      generateKey = true;
+      generateKey = false;
     };
-    secrets = if host == "homelab" then {
-      nextcloud-admin-pass = {
-        owner = "nextcloud";
-        group = "nextcloud";
-      };
-    } else
-      { };
+    secrets =
+      if host == "homelab" then
+        {
+          nextcloud-admin-pass = {
+            owner = "nextcloud";
+            group = "nextcloud";
+          };
+        }
+      else
+        { };
   };
 
   environment.systemPackages = [ pkgs.sops ];
