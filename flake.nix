@@ -11,8 +11,6 @@
       flake = false;
     };
 
-    mms.url = "github:mkaito/nixos-modded-minecraft-servers";
-
     hyprland = {
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";

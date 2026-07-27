@@ -8,7 +8,6 @@
     ./onlyoffice.nix
     ./vaultwarden.nix
     ./cloudflared.nix
-    ./minecraft.nix
     ./calibre-web.nix
     ./audiobookshelf.nix
     ./syncthing.nix
