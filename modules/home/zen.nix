@@ -4,5 +4,42 @@
   programs.zen-browser = {
     enable = true;
     setAsDefaultBrowser = true;
+    profiles.default = {
+      extensions.packages = with firefox-addons; [
+        ublock-origin
+        vimium
+        bitwarden
+      ];
+      # delete all spaces not declared here (i.e. all)
+      spacesForce = true;
+
+      search = {
+        force = true;
+        default = "google";
+      };
+
+      userChrome = ''
+        :root {
+          --zen-primary-color: rgb(235, 219, 178) !important; /* fg */
+          --zen-border-radius: 10px !important;
+          --zen-element-separation: 8px !important;
+          --zen-background-opacity: 1 !important;
+          --zen-grainy-background-opacity: 0.1 !important;
+          --zen-main-browser-background-toolbar: rgba(40, 40, 40, 1) !important; /* dark0 */
+          --zen-main-browser-background: rgba(50, 48, 47, 0.95) !important; /* dark1 */
+          --toolbox-textcolor: rgba(213, 196, 161, 0.85) !important; /* light2 */
+          --zen-main-browser-background-old: rgba(50, 48, 47, 0.95) !important; /* dark1 */
+          --mod-sameerasw-zen_transparency_color: #00000000 !important;
+          --mod-sameerasw-zen_notab_img: url('https://github.com/sameerasw/my-internet/blob/main/wave-light.png?raw=true') !important;
+          --mod-sameerasw-zen_notab_img_size: 150px !important;
+          --mod-sameerasw-zen_notab_img_opacity: 0.6 !important;
+          --mod-sameerasw-zen_compact_sidebar_width: 165px !important;
+        }
+
+        .urlbarView-row-inner:hover {
+          color: rgba(204, 36, 29, 0.95) !important;
+        }
+      '';
+    };
   };
 }
