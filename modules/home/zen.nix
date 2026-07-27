@@ -9,6 +9,7 @@ in
   programs.zen-browser = {
     enable = true;
     setAsDefaultBrowser = true;
+    enablePrivateDesktopEntry = true;
     profiles.default = {
       extensions.packages = with firefox-addons; [
         ublock-origin
