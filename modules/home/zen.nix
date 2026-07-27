@@ -1,4 +1,9 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, ... }:
+let
+  firefox-addons = inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system};
+
+in
+{
   imports = [ inputs.zen-browser.homeModules.beta ];
 
   programs.zen-browser = {
