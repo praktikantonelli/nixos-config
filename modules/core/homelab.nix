@@ -1,11 +1,4 @@
-{
-  pkgs,
-  host,
-  username,
-  inputs,
-  ...
-}:
-{
+{ pkgs, host, username, inputs, ... }: {
   imports = [
     ./sops.nix # secrets management
     ../services/homelab.nix # definitions of systemd services for homelab
@@ -27,14 +20,11 @@
   users.users.${username} = {
     isNormalUser = true;
     description = "${username}";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-    ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     openssh.authorizedKeys.keyFiles = [
       ../../hosts/desktop/ssh-key.pub
       ../../hosts/laptop/ssh-key.pub
+      ../../hosts/desktop-windows/ssh-key.pub
     ];
     shell = pkgs.nushell;
   };
@@ -65,34 +55,23 @@
       defaults.email = inputs.secrets.email;
       acceptTerms = true;
     };
-    sudo.extraRules = [
-      {
-        users = [ username ];
-        commands = [
-          {
-            command = "ALL";
-            options = [ "NOPASSWD" ];
-          }
-        ];
-      }
-    ];
+    sudo.extraRules = [{
+      users = [ username ];
+      commands = [{
+        command = "ALL";
+        options = [ "NOPASSWD" ];
+      }];
+    }];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # Enable experimental features
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [
-    22
-    2283
-    1234
-  ];
+  networking.firewall.allowedTCPPorts = [ 22 2283 1234 ];
 
   zramSwap = {
     enable = true;
@@ -108,14 +87,12 @@
     auto-optimise-store = true;
   };
 
-  swapDevices = [
-    {
-      device = "/swapfile";
-      size = 8192;
-      # lower priority than zram, use only in emergency
-      priority = 0;
-    }
-  ];
+  swapDevices = [{
+    device = "/swapfile";
+    size = 8192;
+    # lower priority than zram, use only in emergency
+    priority = 0;
+  }];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
