@@ -19,6 +19,7 @@ in
       }
     ];
     recommendedProxySettings = true;
+    clientMaxBodySize = "70M";
 
     virtualHosts = {
       "_" = {
@@ -30,9 +31,7 @@ in
 
       "bitwarden.${inputs.secrets.domain}" = {
         locations."/" = {
-          proxyPass = "http://127.0.0.1:${
-              toString config.services.vaultwarden.config.ROCKET_PORT
-          }";
+          proxyPass = "http://127.0.0.1:${toString config.services.vaultwarden.config.ROCKET_PORT}";
           proxyWebsockets = true;
           recommendedProxySettings = false;
           extraConfig = cloudflareProxyHeaders;
@@ -41,9 +40,7 @@ in
 
       "immich.${inputs.secrets.domain}" = {
         locations."/" = {
-          proxyPass = "http://${config.services.immich.host}:${
-              toString config.services.immich.port
-          }";
+          proxyPass = "http://${config.services.immich.host}:${toString config.services.immich.port}";
           proxyWebsockets = true;
           recommendedProxySettings = false;
           extraConfig = cloudflareProxyHeaders;
@@ -52,9 +49,7 @@ in
 
       "calibre.${inputs.secrets.domain}" = {
         locations."/" = {
-          proxyPass = "http://${config.services.calibre-web.listen.ip}:${
-              toString config.services.calibre-web.listen.port
-          }";
+          proxyPass = "http://${config.services.calibre-web.listen.ip}:${toString config.services.calibre-web.listen.port}";
           proxyWebsockets = true;
           recommendedProxySettings = false;
           extraConfig = cloudflareProxyHeaders;
@@ -63,9 +58,7 @@ in
 
       "audiobookshelf.${inputs.secrets.domain}" = {
         locations."/" = {
-          proxyPass = "http://${config.services.audiobookshelf.host}:${
-              toString config.services.audiobookshelf.port
-          }";
+          proxyPass = "http://${config.services.audiobookshelf.host}:${toString config.services.audiobookshelf.port}";
           proxyWebsockets = true;
           recommendedProxySettings = false;
           extraConfig = cloudflareProxyHeaders;
@@ -74,9 +67,7 @@ in
 
       "navidrome.${inputs.secrets.domain}" = {
         locations."/" = {
-          proxyPass = "http://${config.services.navidrome.settings.Address}:${
-              toString config.services.navidrome.settings.Port
-          }";
+          proxyPass = "http://${config.services.navidrome.settings.Address}:${toString config.services.navidrome.settings.Port}";
           proxyWebsockets = true;
           recommendedProxySettings = false;
           extraConfig = cloudflareProxyHeaders;
@@ -94,9 +85,9 @@ in
 
       "bookorbit.${inputs.secrets.domain}" = {
         locations."/" = {
-        proxyPass = "http://127.0.0.1:3000";
-        extraConfig = cloudflareProxyHeaders;
-      };
+          proxyPass = "http://127.0.0.1:3000";
+          extraConfig = cloudflareProxyHeaders;
+        };
       };
     };
   };
