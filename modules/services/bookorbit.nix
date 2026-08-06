@@ -7,7 +7,7 @@
 }:
 
 let
-  appImage = "ghcr.io/bookorbit/bookorbit:latest";
+  appImage = "ghcr.io/bookorbit/bookorbit:pr-904-b4b41554ac7f";
   postgresImage = "pgvector/pgvector:pg16";
 
   contentRoot = "/srv/bookorbit";
