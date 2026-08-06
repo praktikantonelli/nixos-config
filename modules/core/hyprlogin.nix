@@ -1,26 +1,17 @@
-{
-  config,
-  pkgs,
-  lib,
-  username,
-  inputs,
-  ...
-}:
+{ config, pkgs, lib, username, inputs, ... }:
 
 let
   desktops = config.services.displayManager.sessionData.desktops;
 
-  runtimePath =
-    lib.makeBinPath [
-      pkgs.bash
-      pkgs.coreutils
-      pkgs.gnugrep
-      pkgs.gnused
-      pkgs.hyprland
-      pkgs.uwsm
-      pkgs.hyprlogin
-    ]
-    + ":/run/current-system/sw/bin";
+  runtimePath = lib.makeBinPath [
+    pkgs.bash
+    pkgs.coreutils
+    pkgs.gnugrep
+    pkgs.gnused
+    pkgs.hyprland
+    pkgs.uwsm
+    pkgs.hyprlogin
+  ] + ":/run/current-system/sw/bin";
 
   hyprloginConfig = pkgs.writeText "hyprlogin.conf" ''
 
@@ -147,20 +138,30 @@ let
       exec ${pkgs.hyprland}/bin/Hyprland --config ${hyprlandGreeterConfig}
     fi
   '';
-in
-{
+in {
 
-  nixpkgs.overlays = [ inputs.nix-hyprlogin.overlays.default ];
+  nixpkgs.overlays = [
+    inputs.nix-hyprlogin.overlays.default
+
+    (_final: prev: {
+      hyprlogin = (prev.hyprlogin.override {
+        gcc15Stdenv = _final.gcc16Stdenv;
+      }).overrideAttrs (old: {
+        postPatch = (old.postPatch or "") + ''
+          substituteInPlace src/core/Seat.cpp \
+            --replace-fail \
+            "return m_pSeat;" \
+            "return !!m_pSeat;"
+        '';
+      });
+    })
+  ];
   imports = [ inputs.nix-hyprlogin.nixosModules.default ];
 
   programs.uwsm.enable = true;
 
-  environment.systemPackages = [
-    desktops
-    pkgs.hyprlogin
-    pkgs.hyprland
-    pkgs.uwsm
-  ];
+  environment.systemPackages =
+    [ desktops pkgs.hyprlogin pkgs.hyprland pkgs.uwsm ];
 
   services.greetd = {
     enable = true;
@@ -178,11 +179,7 @@ in
   users.users.greeter = {
     isSystemUser = true;
     group = "greeter";
-    extraGroups = [
-      "video"
-      "render"
-      "input"
-    ];
+    extraGroups = [ "video" "render" "input" ];
   };
 
   users.groups.greeter = { };
