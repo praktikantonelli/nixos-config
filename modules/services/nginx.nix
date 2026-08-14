@@ -47,15 +47,6 @@ in
         };
       };
 
-      "calibre.${inputs.secrets.domain}" = {
-        locations."/" = {
-          proxyPass = "http://${config.services.calibre-web.listen.ip}:${toString config.services.calibre-web.listen.port}";
-          proxyWebsockets = true;
-          recommendedProxySettings = false;
-          extraConfig = cloudflareProxyHeaders;
-        };
-      };
-
       "audiobookshelf.${inputs.secrets.domain}" = {
         locations."/" = {
           proxyPass = "http://${config.services.audiobookshelf.host}:${toString config.services.audiobookshelf.port}";
