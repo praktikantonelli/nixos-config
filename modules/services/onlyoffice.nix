@@ -1,214 +1,35 @@
-# Auto-generated using compose2nix v0.3.1.
 {
-  pkgs,
-  lib,
   inputs,
-  username,
+  config,
+  lib,
   ...
 }:
-
+let
+  domain = inputs.secrets.domain;
+in
 {
-  # Runtime
-  virtualisation = {
-    docker = {
-      enable = true;
-      autoPrune.enable = true;
-    };
-
-    oci-containers = {
-
-      backend = "docker";
-      # Containers
-      containers = {
-        "onlyoffice-documentserver" = {
-          image = "onlyoffice/documentserver";
-          environment = {
-            "AMQP_URI" = "amqp://guest:guest@onlyoffice-rabbitmq";
-            "DB_HOST" = "onlyoffice-postgresql";
-            "DB_NAME" = "onlyoffice";
-            "DB_PORT" = "5432";
-            "DB_TYPE" = "postgres";
-            "DB_USER" = "onlyoffice";
-            "JWT_SECRET" = inputs.secrets.onlyoffice-jwt-token;
-            "PLUGINS_ENABLED" = "false";
-          };
-          volumes = [
-            "/var/www/onlyoffice/Data:/var/www/onlyoffice/Data"
-            "/var/log/onlyoffice:/var/log/onlyoffice"
-            "/var/lib/onlyoffice:/var/lib/onlyoffice"
-            "/var/lib/onlyoffice/custom-fonts:/usr/share/fonts/truetype/custom"
-          ];
-          ports = [
-            "127.0.0.1:180:80/tcp"
-            "127.0.0.1:1443:443/tcp"
-          ];
-          dependsOn = [
-            "onlyoffice-postgresql"
-            "onlyoffice-rabbitmq"
-          ];
-          log-driver = "journald";
-          extraOptions = [
-            "--memory=4g"
-            "--memory-swap=5g"
-            "--tmpfs=/var/lib/postgresql"
-            "--tmpfs=/var/lib/rabbitmq"
-            "--tmpfs=/var/lib/redis"
-            "--network-alias=onlyoffice-documentserver"
-            "--network=onlyoffice_default"
-          ];
-        };
-        "onlyoffice-postgresql" = {
-          image = "postgres:12";
-          environment = {
-            "POSTGRES_DB" = "onlyoffice";
-            "POSTGRES_HOST_AUTH_METHOD" = "trust";
-            "POSTGRES_USER" = "onlyoffice";
-          };
-          volumes = [ "onlyoffice_postgresql_data:/var/lib/postgresql/data:rw" ];
-          log-driver = "journald";
-          extraOptions = [
-            "--network-alias=onlyoffice-postgresql"
-            "--network=onlyoffice_default"
-          ];
-        };
-        "onlyoffice-rabbitmq" = {
-          image = "rabbitmq";
-          volumes = [ "onlyoffice_rabbitmq_data:/var/lib/rabbitmq" ];
-          log-driver = "journald";
-          extraOptions = [
-            "--network-alias=onlyoffice-rabbitmq"
-            "--network=onlyoffice_default"
-          ];
-        };
-      };
-    };
-  };
-  systemd = {
-    tmpfiles.rules = [
-      "d /var/lib/onlyoffice 0755 105 107 -"
-      "d /var/lib/onlyoffice/custom-fonts 0755 root root -"
-      "d /var/log/onlyoffice 0755 root root -"
-      "d /var/www/onlyoffice/Data 0755 root root -"
-    ];
-
-    services = {
-      "docker-onlyoffice-documentserver" = {
-        serviceConfig = {
-          Restart = lib.mkOverride 90 "always";
-          RestartMaxDelaySec = lib.mkOverride 90 "1m";
-          RestartSec = lib.mkOverride 90 "100ms";
-          RestartSteps = lib.mkOverride 90 9;
-        };
-        after = [ "docker-network-onlyoffice_default.service" ];
-        requires = [ "docker-network-onlyoffice_default.service" ];
-        partOf = [ "docker-compose-onlyoffice-root.target" ];
-        wantedBy = [ "docker-compose-onlyoffice-root.target" ];
-      };
-      "docker-onlyoffice-postgresql" = {
-        serviceConfig = {
-          Restart = lib.mkOverride 90 "always";
-          RestartMaxDelaySec = lib.mkOverride 90 "1m";
-          RestartSec = lib.mkOverride 90 "100ms";
-          RestartSteps = lib.mkOverride 90 9;
-        };
-        after = [
-          "docker-network-onlyoffice_default.service"
-          "docker-volume-onlyoffice_postgresql_data.service"
-        ];
-        requires = [
-          "docker-network-onlyoffice_default.service"
-          "docker-volume-onlyoffice_postgresql_data.service"
-        ];
-        partOf = [ "docker-compose-onlyoffice-root.target" ];
-        wantedBy = [ "docker-compose-onlyoffice-root.target" ];
-      };
-      "docker-onlyoffice-rabbitmq" = {
-        serviceConfig = {
-          Restart = lib.mkOverride 90 "always";
-          RestartMaxDelaySec = lib.mkOverride 90 "1m";
-          RestartSec = lib.mkOverride 90 "100ms";
-          RestartSteps = lib.mkOverride 90 9;
-        };
-        after = [
-          "docker-network-onlyoffice_default.service"
-          "docker-volume-onlyoffice_rabbitmq_data.service"
-        ];
-        requires = [
-          "docker-network-onlyoffice_default.service"
-          "docker-volume-onlyoffice_rabbitmq_data.service"
-        ];
-        partOf = [ "docker-compose-onlyoffice-root.target" ];
-        wantedBy = [ "docker-compose-onlyoffice-root.target" ];
-      };
-      # Networks
-      "docker-network-onlyoffice_default" = {
-        path = [ pkgs.docker ];
-        serviceConfig = {
-          Type = "oneshot";
-          RemainAfterExit = true;
-          ExecStop = "docker network rm -f onlyoffice_default";
-        };
-        script = ''
-          docker network inspect onlyoffice_default || docker network create onlyoffice_default
-        '';
-        partOf = [ "docker-compose-onlyoffice-root.target" ];
-        wantedBy = [ "docker-compose-onlyoffice-root.target" ];
-      };
-
-      # Volumes
-      "docker-volume-onlyoffice_postgresql_data" = {
-        path = [ pkgs.docker ];
-        serviceConfig = {
-          Type = "oneshot";
-          RemainAfterExit = true;
-        };
-        script = ''
-          docker volume inspect onlyoffice_postgresql_data || docker volume create onlyoffice_postgresql_data
-        '';
-        partOf = [ "docker-compose-onlyoffice-root.target" ];
-        wantedBy = [ "docker-compose-onlyoffice-root.target" ];
-      };
-
-      "docker-volume-onlyoffice_rabbitmq_data" = {
-        path = [ pkgs.docker ];
-        serviceConfig = {
-          Type = "oneshot";
-          RemainAfterExit = true;
-        };
-        script = ''
-          docker volume inspect onlyoffice_rabbitmq_data || docker volume create onlyoffice_rabbitmq_data
-        '';
-        partOf = [ "docker-compose-onlyoffice-root.target" ];
-        wantedBy = [ "docker-compose-onlyoffice-root.target" ];
-      };
-
-      # Builds
-      "docker-build-onlyoffice-documentserver" = {
-        path = [
-          pkgs.docker
-          pkgs.git
-        ];
-        serviceConfig = {
-          Type = "oneshot";
-          TimeoutSec = 300;
-        };
-        script = ''
-          cd /home/${username}/Docker-DocumentServer
-          docker build -t compose2nix/onlyoffice-documentserver .
-        '';
-      };
-
-    };
-
-    # Root service
-    # When started, this will automatically create all resources and start
-    # the containers. When stopped, this will teardown all resources.
-    targets."docker-compose-onlyoffice-root" = {
-      unitConfig = {
-        Description = "Root target generated by compose2nix.";
-      };
-      wantedBy = [ "multi-user.target" ];
-    };
+  services.onlyoffice = {
+    enable = true;
+    hostname = "onlyoffice.${domain}";
+    jwtSecretFile = config.sops.secrets.onlyoffice-jwt-token.path;
+    securityNonceFile = config.sops.templates."onlyoffice-nginx-nonce.conf".path;
+    allowLocalConnections = true;
   };
 
+  # cloudflared reaches nginx over HTTP, but browser-facing OnlyOffice URLs must
+  # stay HTTPS for the editor iframe and cache/download links.
+  services.nginx.virtualHosts."onlyoffice.${domain}".extraConfig = lib.mkForce ''
+    rewrite ^/$ /welcome/ redirect;
+    rewrite ^\/OfficeWeb(\/apps\/.*)$ /${config.services.onlyoffice.package.version}/web-apps$1 redirect;
+    rewrite ^(\/web-apps\/apps\/(?!api\/).*)$ /${config.services.onlyoffice.package.version}$1 redirect;
+
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-Host $host;
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header X-Forwarded-Ssl on;
+    proxy_set_header X-Forwarded-Port 443;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+  '';
 }

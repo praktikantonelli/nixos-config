@@ -2,6 +2,7 @@
   inputs,
   pkgs,
   host,
+  config,
   ...
 }:
 let
@@ -27,6 +28,31 @@ in
           };
           # cloudflared does not access the file directly, goes through root
           cloudflared-credentials = { };
+          onlyoffice-jwt-token = {
+            owner = "onlyoffice";
+            group = "onlyoffice";
+            restartUnits = [
+              "onlyoffice-docservice.service"
+              "onlyoffice-converter.service"
+              "nextcloud-onlyoffice-config.service"
+            ];
+          };
+        }
+      else
+        { };
+
+    templates =
+      if host == "homelab" then
+        {
+          "onlyoffice-nginx-nonce.conf" = {
+            content = ''
+              set $secure_link_secret "${config.sops.placeholder.onlyoffice-jwt-token}";
+            '';
+            owner = "onlyoffice";
+            group = "onlyoffice";
+            mode = "0440";
+            restartUnits = [ "nginx.service" ];
+          };
         }
       else
         { };

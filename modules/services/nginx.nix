@@ -74,15 +74,6 @@ in
         };
       };
 
-      "onlyoffice.${inputs.secrets.domain}" = {
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:180";
-          proxyWebsockets = true;
-          recommendedProxySettings = false;
-          extraConfig = cloudflareProxyHeaders;
-        };
-      };
-
       "bookorbit.${inputs.secrets.domain}" = {
         locations."/" = {
           proxyPass = "http://127.0.0.1:3000";
