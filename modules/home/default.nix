@@ -1,4 +1,4 @@
-{ username, ... }: {
+{ host, username, ... }: {
   imports = [
     ./bat.nix # better cat command
     ./discord.nix # discord with catppuccin theme
@@ -31,6 +31,6 @@
 
   services = {
     network-manager-applet.enable = true;
-    poweralertd.enable = true;
+    poweralertd.enable = host == "laptop";
   };
 }
