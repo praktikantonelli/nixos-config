@@ -3,6 +3,7 @@
     ./hardware-configuration.nix
     ./../../modules/core/homelab.nix
     ./disko.nix
+    ./sops.nix
   ];
 
 }
