@@ -388,7 +388,6 @@ carouselindicatordots {
     margin-top: 3px
 }
 
-.widget-backlight,
 .widget-volume {
     background-color: @crust;
     border-top: none;
@@ -439,23 +438,6 @@ carouselindicatordots {
     background: transparent;
     box-shadow: none;
     border-radius: 4px;
-}
-
-.widget-backlight>scale {
-    background: @mantle;
-    border-radius: 0px 4px 4px 0px;
-    margin: 5px 10px 5px 0px;
-    padding: 0px 10px 0px 0px;
-    min-height: 50px;
-}
-
-.widget-backlight>label {
-    background: @surface0;
-    margin: 5px 0px 5px 10px;
-    border-radius: 4px 0px 0px 4px;
-    padding: 0px;
-    min-height: 50px;
-    min-width: 50px;
 }
 
 .widget-dnd {

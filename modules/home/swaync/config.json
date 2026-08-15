@@ -28,7 +28,6 @@
     "title",
     "menubar#desktop",
     "volume",
-    "backlight#mobile",
     "mpris",
     "dnd",
     "notifications"
@@ -112,10 +111,6 @@
           }
         ]
       }
-    },
-    "backlight#mobile": {
-      "label": " 󰃠 ",
-      "device": "panel"
     },
     "volume": {
       "label": "",
