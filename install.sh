@@ -93,7 +93,7 @@ get_host() {
   confirm
 }
 
-install() {
+run_install() {
   echo -e "\n${RED}START INSTALL PHASE${NORMAL}\n"
   sleep 0.2
 
@@ -102,18 +102,15 @@ install() {
     # Create basic directories
     echo -e "Creating folders:"
     echo -e "    - ${MAGENTA}~/Documents${NORMAL}"
-    echo -e "    - ${MAGENTA}~/Pictures/wallpapers/others${NORMAL}"
+    echo -e "    - ${MAGENTA}~/Pictures/wallpapers${NORMAL}"
     mkdir -p "$HOME/Documents"
-    mkdir -p "$HOME/Pictures/wallpapers/others"
+    mkdir -p "$HOME/Pictures/wallpapers"
     sleep 0.2
 
     # Copy the wallpapers
     echo -e "Installing ${MAGENTA}wallpapers${NORMAL}"
     if [[ ! -e "$HOME/Pictures/wallpapers/wallpaper.png" ]]; then
       install -Dm644 wallpapers/wallpaper.png "$HOME/Pictures/wallpapers/wallpaper.png"
-    fi
-    if [[ ! -e "$HOME/Pictures/wallpapers/others/lock-screen.png" ]]; then
-      install -Dm644 wallpapers/lock-screen.png "$HOME/Pictures/wallpapers/others/lock-screen.png"
     fi
     sleep 0.2
   fi
@@ -215,7 +212,7 @@ main() {
   ssh_key_handling
   verify_secrets_access || return 1
 
-  install
+  run_install
 }
 
 main
