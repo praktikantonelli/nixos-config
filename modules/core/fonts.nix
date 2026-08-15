@@ -26,6 +26,12 @@
 
   fonts = {
     fontDir.enable = true;
-    packages = with pkgs; [ nerd-fonts.jetbrains-mono nerd-fonts.noto sn-pro ];
+    packages = with pkgs; [
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.noto
+      noto-fonts-color-emoji
+      sn-pro
+      twemoji-color-font
+    ];
   };
 }

@@ -5,7 +5,6 @@
     ../../modules/core/steam.nix
     ../../modules/core/tailscale-client.nix
     ../../modules/core/sops.nix
-    ../../modules/core/work.nix
     ../../modules/services
   ];
 

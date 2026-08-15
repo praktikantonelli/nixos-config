@@ -11,6 +11,7 @@
     jdk8 # legacy java version for Minecraft
     libreoffice
     nemo-with-extensions # file manager
+    nextcloud-client
     thunderbird
     calibre
     nitch # systhem fetch util
@@ -24,6 +25,9 @@
     obsidian
     audacity
     remmina
+    freerdp
+    openfortivpn
+    openfortivpn-webview
     dust
     lshw
 
