@@ -25,6 +25,11 @@ let
   bookorbitGid = 971;
 
   mediaGid = config.users.groups.media.gid;
+
+  inherit (import ./nginx-proxy.nix) cloudflareProxy;
+
+  host = "127.0.0.1";
+  port = 3000;
 in
 {
   users.groups.bookorbit = {
@@ -110,8 +115,8 @@ in
             APP_URL = "https://bookorbit.lucaantonelli.xyz";
             CLIENT_URL = "https://bookorbit.lucaantonelli.xyz";
 
-            APP_PORT = "3000";
-            PORT = "3000";
+            APP_PORT = toString port;
+            PORT = toString port;
 
             DATABASE_URL = "";
             POSTGRES_HOST = "postgres";
@@ -137,7 +142,7 @@ in
           ];
 
           ports = [
-            "127.0.0.1:3000:3000/tcp"
+            "${host}:${port}:3000/tcp"
           ];
 
           log-driver = "journald";
@@ -216,6 +221,12 @@ in
           RestartSec = lib.mkOverride 90 "10s";
         };
       };
+    };
+  };
+
+  services.nginx.virtualHosts."bookorbit.${inputs.secrets.domain}" = {
+    locations."/" = cloudflareProxy {
+      proxyPass = "https://${host}:${toString port}";
     };
   };
 }

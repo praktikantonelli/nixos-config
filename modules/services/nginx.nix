@@ -26,51 +26,6 @@ in
         default = true;
         locations."/".return = "404";
       };
-
-      "nextcloud.${inputs.secrets.domain}" = { };
-
-      "bitwarden.${inputs.secrets.domain}" = {
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString config.services.vaultwarden.config.ROCKET_PORT}";
-          proxyWebsockets = true;
-          recommendedProxySettings = false;
-          extraConfig = cloudflareProxyHeaders;
-        };
-      };
-
-      "immich.${inputs.secrets.domain}" = {
-        locations."/" = {
-          proxyPass = "http://${config.services.immich.host}:${toString config.services.immich.port}";
-          proxyWebsockets = true;
-          recommendedProxySettings = false;
-          extraConfig = cloudflareProxyHeaders;
-        };
-      };
-
-      "audiobookshelf.${inputs.secrets.domain}" = {
-        locations."/" = {
-          proxyPass = "http://${config.services.audiobookshelf.host}:${toString config.services.audiobookshelf.port}";
-          proxyWebsockets = true;
-          recommendedProxySettings = false;
-          extraConfig = cloudflareProxyHeaders;
-        };
-      };
-
-      "navidrome.${inputs.secrets.domain}" = {
-        locations."/" = {
-          proxyPass = "http://${config.services.navidrome.settings.Address}:${toString config.services.navidrome.settings.Port}";
-          proxyWebsockets = true;
-          recommendedProxySettings = false;
-          extraConfig = cloudflareProxyHeaders;
-        };
-      };
-
-      "bookorbit.${inputs.secrets.domain}" = {
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:3000";
-          extraConfig = cloudflareProxyHeaders;
-        };
-      };
     };
   };
 }
