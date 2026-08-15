@@ -21,9 +21,7 @@
     wget
     git
     nextcloud-client
-    thunderbird
     # mcpelauncher-ui-qt
-    calibre
   ];
 
   time.timeZone = lib.mkDefault "Europe/Zurich";

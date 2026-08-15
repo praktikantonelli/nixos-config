@@ -11,6 +11,8 @@
     jdk8 # legacy java version for Minecraft
     libreoffice
     nemo-with-extensions # file manager
+    thunderbird
+    calibre
     nitch # systhem fetch util
     nix-prefetch-github
     prismlauncher # minecraft launcher
@@ -20,6 +22,8 @@
     zenity
 
     obsidian
+    audacity
+    remmina
     dust
     lshw
 
