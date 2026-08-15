@@ -91,7 +91,6 @@ Do not copy personal SSH keys into `/root`.
 | **Color Scheme**            | [Gruvbox-Dark][Gruvbox-Dark] |
 | **Cursor**                  | [Nordzy-cursors][Nordzy-cursors] |
 | **Icons**                   | [Gruvbox-Icons][Gruvbox-Icons] + [Gruvbox-Icons-Plus][Gruvbox-Icons-Plus] |
-| **Lockscreen**              | [Swaylock-effects][Swaylock-effects] |
 | Login Manager           | [Hyprlogin][Hyprlogin]
 | **Image Viewer**            | [imv][imv] |
 | **Media Player**            | [mpv][mpv] |
@@ -111,15 +110,8 @@ Utils (EXPAND)
 
 - ```c```     $\rightarrow$ ```clear```
 - ```cd```    $\rightarrow$ ```z```
-- ```tt```    $\rightarrow$ ```gtrash put```
 - ```vim```   $\rightarrow$ ```nvim```
 - ```cat```   $\rightarrow$ ```bat```
-- ```nano```  $\rightarrow$ ```micro```
-- ```icat```  $\rightarrow$ ```kitten icat```
-- ```dsize``` $\rightarrow$ ```du -hs```
-- ```findw``` $\rightarrow$ ```grep -rl```
-- ```l```     $\rightarrow$ ```eza --icons  -a --group-directories-first -1```
-- ```ll```    $\rightarrow$ ```eza --icons  -a --group-directories-first -1 --no-user --long```
 - ```tree```  $\rightarrow$ ```eza --icons --tree --group-directories-first```
 - ```inv```   $\rightarrow$ ```fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"```
 - ```clip```  $\rightarrow$ ```wl-copy < ```
@@ -132,15 +124,13 @@ Nixos (EXPAND)
 
 > ${host} is either `desktop`, `laptop` or `homelab`
 
-- ```cdnix```            $\rightarrow$ ```cd ~/nixos-config && codium ~/nixos-config```
-- ```nix-switch```       $\rightarrow$ ```nh os switch ~/nixos-config```
-- ```nix-flake-update``` $\rightarrow$ ```nh os switch --upgrade ~/nixos-config#```
-- ```nix-clean```        $\rightarrow$ ```nh clean all --keep 5```
+- ```nix-switch```       $\rightarrow$ ```nh os switch```
+- ```nix-flake-update``` $\rightarrow$ ```nh os switch --update```
+- ```nix-clean```        $\rightarrow$ ```nh clean all --keep 5 --no-gcroots```
 - ```nix-list```         $\rightarrow$ ```sudo nix-env --list-generations --profile /nix/var/nix/profiles/system```
-- ```hm-switch```        $\rightarrow$ ```nh home switch ~/nixos-config```
+- ```hm-switch```        $\rightarrow$ ```nh home switch```
 - ```hm-list```          $\rightarrow$ ```home-manager generations```
 - ```nix-switch-all```   $\rightarrow$ ```hm-switch && nix-switch```
-- ```nix-develop```      $\rightarrow$ ```nix develop -c $SHELL```
 </details>
 
 <details>
@@ -161,8 +151,6 @@ Git (EXPAND)
 - ```gcm```  $\rightarrow$ ```git commit -m```
 - ```gch```  $\rightarrow$ ```git checkout```
 - ```gchb``` $\rightarrow$ ```git checkout -b```
-- ```gcoe``` $\rightarrow$ ```git config user.email```
-- ```gcon``` $\rightarrow$ ```git config user.name```
 </details>
 
 ### 🛠️ Scripts

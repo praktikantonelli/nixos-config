@@ -65,36 +65,23 @@ in
         # Utils
         c = "clear";
         cd = "z";
-        tt = "gtrash put";
         cat = "bat";
-        nano = "micro";
         code = "codium";
-        icat = "kitten icat";
-        # dsize = "du -hs";
-        findw = "grep -rl";
-        pdf = "tdf";
         open = "xdg-open";
-        inv = ''fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"''; # open fuzzy finder for neovim with syntax-highlighted preview
         clip = "wl-copy < "; # use with file path to copy file content
-
-        l = "eza --icons  -a --group-directories-first -1"; # EZA_ICON_SPACING=2
-        ll = "eza --icons  -a --group-directories-first -1 --no-user --long";
         tree = "eza --icons --tree --group-directories-first";
 
         # Nixos
-        cdnix = "cd ~/nixos-config and codium ~/nixos-config";
         nix-switch = "nh os switch";
         nix-flake-update = "nh os  switch --update"; # Upgrade just the flake inputs
         nix-list = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
         nix-clean = "nh clean all --keep 5 --no-gcroots";
-        # nix-clean = "sudo nix-collect-garbage && sudo nix-collect-garbage -d && sudo rm /nix/var/nix/gcroots/auto/* && nix-collect-garbage && nix-collect-garbage -d";
-        nix-develop = "nix develop -c $env.SHELL";
         hm-switch = "nh home switch";
         hm-list = "home-manager generations";
         nix-switch-all = "hm-switch and nix-switch";
 
         # Git
-        ga = "git add .";
+        ga = "git add";
         gaa = "git add --all";
         gs = "git status";
         gb = "git branch";
@@ -108,8 +95,6 @@ in
         gtag = "git tag -ma";
         gch = "git checkout";
         gchb = "git checkout -b";
-        gcoe = "git config user.email";
-        gcon = "git config user.name";
 
       };
 
