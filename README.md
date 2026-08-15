@@ -389,11 +389,11 @@ A brief walkthrough of what the install script does.
    The following directories will be created:
    - ```~/Music```
    - ```~/Documents```
-   - ```~/Pictures/wallpapers/others```
+   - ```~/Pictures/wallpapers```
 
 4. Copy the wallpapers
 
-   Then the wallpapers will be copied into ```~/Pictures/wallpapers/others``` which is the folder in which the ```wallpaper-picker.sh``` script will be looking for them.
+   The default wallpaper is copied into ```~/Pictures/wallpapers/wallpaper.png```.
 
 5. Get the hardware configuration
 

@@ -126,7 +126,6 @@
     "custom/launcher" = {
       format = "";
       on-click = "fuzzel";
-      on-click-right = "wallpaper-picker";
       tooltip = false;
     };
     "custom/notification" = {

@@ -12,14 +12,6 @@ let
       text = builtins.readFile file;
     };
 
-  wall-change = mkScript "wall-change" (with pkgs; [ procps swaybg ]) ./scripts/wall-change.sh;
-  wallpaper-picker = mkScript "wallpaper-picker" (with pkgs; [
-    coreutils
-    findutils
-    fuzzel
-    wall-change
-  ]) ./scripts/wallpaper-picker.sh;
-
   runbg = mkScript "runbg" [ pkgs.coreutils ] ./scripts/runbg.sh;
 
   hyprland = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
@@ -83,9 +75,6 @@ let
 in
 {
   home.packages = [
-    wall-change
-    wallpaper-picker
-
     runbg
 
     toggle_blur
