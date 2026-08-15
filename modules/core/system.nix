@@ -23,7 +23,7 @@
   ];
 
   time.timeZone = lib.mkDefault "Europe/Zurich";
-  time.hardwareClockInLocalTime = host == "desktop";
+  time.hardwareClockInLocalTime = false;
   i18n.defaultLocale = "en_US.UTF-8";
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "24.05";

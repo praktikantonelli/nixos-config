@@ -149,6 +149,7 @@ let
   startHyprloginGreeter = pkgs.writeShellScript "start-hyprlogin-greeter" ''
     export PATH="${runtimePath}"
     export XDG_DATA_DIRS="${desktops}/share:/run/current-system/sw/share:/usr/share''${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
+    export TZDIR="/etc/zoneinfo"
 
     if command -v start-hyprland >/dev/null 2>&1; then
       exec start-hyprland -- --config ${hyprlandGreeterConfig}
