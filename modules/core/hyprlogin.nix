@@ -65,8 +65,8 @@ let
         # TIME
         label {
           monitor =
-          text = cmd[update:30000] echo "<b><big> $(date +"%R") </big></b>"
           color = $text
+          text = <b><big> $TIME </big></b>
           font_size = 110
           font_family = $font
           shadow_passes = 3
