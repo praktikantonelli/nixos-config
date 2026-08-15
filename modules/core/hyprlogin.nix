@@ -139,6 +139,10 @@ let
       input={
         kb_layout="ch",
       },
+      misc = {
+        disable_hyprland_logo = true,
+        disable_splash_rendering = true,
+      },
     })
 
     hl.on("hyprland.start", function()
@@ -202,14 +206,9 @@ in
     };
   };
 
-  users.users.greeter = {
-    isSystemUser = true;
-    group = "greeter";
-    extraGroups = [
-      "video"
-      "render"
-      "input"
-    ];
+  systemd.services.greetd.serviceConfig = {
+    StandardOutput = "journal";
+    StandardError = "journal";
   };
 
   users.groups.greeter = { };
