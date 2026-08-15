@@ -135,7 +135,6 @@ hl.config({
 
 -- settings.on
 hl.on("hyprland.start", function()
-	hl.exec_cmd("swaybg -m fill -i $(find ~/Pictures/wallpapers/ -maxdepth 1 -type f)")
 	hl.exec_cmd("hyprctl setcursor Nordzy-hyprcursors 22")
 	hl.exec_cmd("hyprctl dispatch workspace 1")
 end)

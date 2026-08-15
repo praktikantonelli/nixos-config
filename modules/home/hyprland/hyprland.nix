@@ -53,4 +53,21 @@
       Install.WantedBy = [ "graphical-session.target" ];
     };
   };
+
+  # hyprland background manager
+  services.hyprpaper = {
+    enable = true;
+
+    settings = {
+      splash = false;
+
+      wallpaper = [
+        {
+          monitor = "";
+          path = "~/Pictures/wallpapers/wallpaper.png";
+          fit_mode = "fill";
+        }
+      ];
+    };
+  };
 }
