@@ -29,7 +29,7 @@ let
   inherit (import ./nginx-proxy.nix) cloudflareProxy;
 
   host = "127.0.0.1";
-  port = 3000;
+  port = "3000";
 in
 {
   users.groups.bookorbit = {
@@ -115,8 +115,8 @@ in
             APP_URL = "https://bookorbit.lucaantonelli.xyz";
             CLIENT_URL = "https://bookorbit.lucaantonelli.xyz";
 
-            APP_PORT = toString port;
-            PORT = toString port;
+            APP_PORT = port;
+            PORT = port;
 
             DATABASE_URL = "";
             POSTGRES_HOST = "postgres";
@@ -226,7 +226,7 @@ in
 
   services.nginx.virtualHosts."bookorbit.${inputs.secrets.domain}" = {
     locations."/" = cloudflareProxy {
-      proxyPass = "https://${host}:${toString port}";
+      proxyPass = "https://${host}:${port}";
     };
   };
 }
