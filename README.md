@@ -179,54 +179,12 @@ compress.sh
 
 <details>
 <summary>
-toggle_blur.sh 
-</summary>
-
-**Description:** This script toggles the Hyprland blur effect. If the blur is currently enabled, it will be disabled, and if it's disabled, it will be turned on. 
-
-**Usage:** ```toggle_blur```
-</details>
-
-<details>
-<summary>
-toggle_opacity.sh
-</summary>
-
-**Description:** This script toggles the Hyprland opacity effect. If the opacity is currently set to 0.90, it will be set to 1, and if it's set to 1, it will be set to 0.90.
-
-**Usage:** ```toggle_opacity```
-
-The old misspelled command, `toggle_oppacity`, remains available as a compatibility alias.
-</details>
-
-<details>
-<summary>
 maxfetch.sh 
 </summary>
 
 **Description:** This script is a modified version of the [jobcmax/maxfetch][maxfetch] script.
 
 **Usage:** ```maxfetch```
-</details>
-
-<details>
-<summary>
-music.sh 
-</summary>
-
-**Description:** This script is for managing Audacious (music player). If Audacious is currently running, it will be killed (stopping the music); otherwise, it will start Audacious in the 8th workspace and resume the music. 
-
-**Usage:** ```music```
-</details>
-
-<details>
-<summary>
-runbg.sh 
-</summary>
-
-**Description:** This script runs a provided command along with its arguments and detaches it from the terminal. Handy for launching apps from the command line without blocking it. 
-
-**Usage:** ```runbg <command> <arg1> <arg2> <...>```
 </details>
 
 ### ⌨️ Keybinds

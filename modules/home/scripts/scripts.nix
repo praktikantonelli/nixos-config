@@ -1,7 +1,5 @@
 {
-  host,
   inputs,
-  lib,
   pkgs,
   ...
 }:
@@ -13,18 +11,7 @@ let
       text = builtins.readFile file;
     };
 
-  runbg = mkScript "runbg" [ pkgs.coreutils ] ./scripts/runbg.sh;
-
   hyprland = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-  toggle_blur = mkScript "toggle_blur" [ pkgs.gnugrep hyprland ] ./scripts/toggle_blur.sh;
-  toggle_opacity = mkScript "toggle_opacity" [ pkgs.gnugrep hyprland ] ./scripts/toggle_oppacity.sh;
-  toggle_oppacity = pkgs.writeShellApplication {
-    name = "toggle_oppacity";
-    runtimeInputs = [ toggle_opacity ];
-    text = ''exec toggle_opacity "$@"'';
-  };
-
-  offload = mkScript "offload" [ ] ./scripts/offload.sh;
 
   maxfetch = mkScript "maxfetch" (with pkgs; [
     coreutils
@@ -83,12 +70,6 @@ let
 in
 {
   home.packages = [
-    runbg
-
-    toggle_blur
-    toggle_opacity
-    toggle_oppacity
-
     maxfetch
 
     compress
@@ -101,6 +82,5 @@ in
     fzfdiff
 
     record
-  ]
-  ++ lib.optionals (host == "laptop") [ offload ];
+  ];
 }
