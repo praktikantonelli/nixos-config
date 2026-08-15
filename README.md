@@ -297,7 +297,7 @@ Media and volume controls
    ```
 4. **Reboot**
 
-   After rebooting, you'll be greeted by swaylock prompting for your password, with the wallpaper in the background.
+   After rebooting, you'll be greeted by hyprlogin prompting for your password, with the wallpaper in the background.
 
 5. **Manual config**
 
@@ -394,7 +394,6 @@ Other dotfiles that I learned/copied from:
 [Btop]: https://github.com/aristocratos/btop
 [nemo]: https://github.com/linuxmint/nemo
 [yazi]: https://github.com/sxyazi/yazi
-[Swaylock-effects]: https://github.com/mortie/swaylock-effects
 [Hyprlogin]: https://github.com/sashisashi569/nix-hyprlogin
 [audacious]: https://audacious-media-player.org/
 [mpv]: https://github.com/mpv-player/mpv
