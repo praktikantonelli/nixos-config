@@ -1,7 +1,6 @@
 { inputs, pkgs, ... }: {
   home.packages = with pkgs; [
     # swww
-    swaybg
     inputs.hypr-contrib.packages.${pkgs.stdenv.hostPlatform.system}.grimblast
     hyprpicker
     grim
@@ -23,7 +22,9 @@
     systemd.enable = false;
 
     configType = "lua";
-    extraLuaFiles = { "config.lua" = ./config.lua; };
+    extraLuaFiles = {
+      "config.lua" = ./config.lua;
+    };
   };
 
   systemd.user.services = {
