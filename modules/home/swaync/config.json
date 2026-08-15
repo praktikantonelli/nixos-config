@@ -63,11 +63,19 @@
         "actions": [
           {
             "label": "󰹑  Whole screen",
-            "command": "swaync-client -cp; grimblast --wait 0.3 --notify --cursor copy output"
+            "command": "DEFAULT_TARGET_DIR=$HOME/Pictures/Screenshots grimblast --notify --cursor copysave output"
+          },
+          {
+            "label": "󰹑  Whole screen (Hide SwayNC)",
+            "command": "swaync-client -cp; sleep 0.5; DEFAULT_TARGET_DIR=$HOME/Pictures/Screenshots grimblast --notify --cursor copysave output"
           },
           {
             "label": "󰩭  Window / Region",
-            "command": "grimblast --notify --freeze copy area"
+            "command": "swaync-client -cp; sleep 0.5; DEFAULT_TARGET_DIR=$HOME/Pictures/Screenshots grimblast --notify --freeze copysave area"
+          },
+          {
+            "label": "󰩭  Window / Region (Hide SwayNC)",
+            "command": "DEFAULT_TARGET_DIR=$HOME/Pictures/Screenshots grimblast --notify --freeze copysave area"
           }
         ]
       },
