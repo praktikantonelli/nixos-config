@@ -1,9 +1,8 @@
 { pkgs, ... }: {
-  home.packages = with pkgs;
-    [
-      # discord
-      (discord.override { withVencord = true; })
-    ];
+  home.packages = with pkgs; [
+    # discord
+    (discord.override { withVencord = true; })
+  ];
   xdg.configFile."Vencord/themes/custom.css".text = ''
         /**
         * @name Gruvbox-dark

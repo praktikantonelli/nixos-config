@@ -15,7 +15,9 @@
     powertop
   ];
 
-  hardware.graphics = { enable = true; };
+  hardware.graphics = {
+    enable = true;
+  };
 
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
@@ -70,7 +72,12 @@
 
   boot = {
     kernelModules = [ "acpi_call" ];
-    extraModulePackages = with config.boot.kernelPackages;
-      [ acpi_call cpupower ] ++ [ pkgs.cpupower-gui ];
+    extraModulePackages =
+      with config.boot.kernelPackages;
+      [
+        acpi_call
+        cpupower
+      ]
+      ++ [ pkgs.cpupower-gui ];
   };
 }

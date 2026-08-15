@@ -6,7 +6,8 @@
   ...
 }:
 let
-  mkScript = name: runtimeInputs: file:
+  mkScript =
+    name: runtimeInputs: file:
     pkgs.writeShellApplication {
       inherit name runtimeInputs;
       text = builtins.readFile file;
@@ -34,7 +35,11 @@ let
     procps
   ]) ./scripts/maxfetch.sh;
 
-  archiveInputs = with pkgs; [ coreutils gnutar gzip ];
+  archiveInputs = with pkgs; [
+    coreutils
+    gnutar
+    gzip
+  ];
   compress = mkScript "compress" archiveInputs ./scripts/compress.sh;
   extract = mkScript "extract" archiveInputs ./scripts/extract.sh;
 
@@ -51,7 +56,10 @@ let
     sudo
   ]) ./scripts/connect_vpn.sh;
 
-  fzfdiff = mkScript "fzfdiff" (with pkgs; [ fzf git ]) ./scripts/fzfdiff.sh;
+  fzfdiff = mkScript "fzfdiff" (with pkgs; [
+    fzf
+    git
+  ]) ./scripts/fzfdiff.sh;
 
   record = pkgs.writeShellApplication {
     name = "record";
@@ -93,5 +101,6 @@ in
     fzfdiff
 
     record
-  ] ++ lib.optionals (host == "laptop") [ offload ];
+  ]
+  ++ lib.optionals (host == "laptop") [ offload ];
 }

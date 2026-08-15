@@ -1,1 +1,7 @@
-{ ... }: { imports = [ ./waybar.nix ./settings.nix ./style.nix ]; }
+{ ... }: {
+  imports = [
+    ./waybar.nix
+    ./settings.nix
+    ./style.nix
+  ];
+}

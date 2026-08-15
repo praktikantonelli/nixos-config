@@ -51,7 +51,10 @@
         tmux._children = [
           {
             bind = {
-              _args = [ "Ctrl Space" "Esc" ];
+              _args = [
+                "Ctrl Space"
+                "Esc"
+              ];
               SwitchToMode = [ "Normal" ];
             };
           }
@@ -106,28 +109,40 @@
           }
           {
             bind = {
-              _args = [ "h" "Left" ];
+              _args = [
+                "h"
+                "Left"
+              ];
               MoveFocus = [ "Left" ];
               SwitchToMode = [ "Normal" ];
             };
           }
           {
             bind = {
-              _args = [ "j" "Down" ];
+              _args = [
+                "j"
+                "Down"
+              ];
               MoveFocus = [ "Down" ];
               SwitchToMode = [ "Normal" ];
             };
           }
           {
             bind = {
-              _args = [ "k" "Up" ];
+              _args = [
+                "k"
+                "Up"
+              ];
               MoveFocus = [ "Up" ];
               SwitchToMode = [ "Normal" ];
             };
           }
           {
             bind = {
-              _args = [ "l" "Right" ];
+              _args = [
+                "l"
+                "Right"
+              ];
               MoveFocus = [ "Right" ];
               SwitchToMode = [ "Normal" ];
             };

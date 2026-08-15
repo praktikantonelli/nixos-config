@@ -1,4 +1,9 @@
-{ pkgs, config, inputs, ... }:
+{
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
 let
   nordzy-cursors = pkgs.stdenvNoCC.mkDerivation {
     pname = "nordzy-cursors";
