@@ -71,7 +71,7 @@
           },
           {
             "label": "󰩭  Window / Region",
-            "command": "swaync-client -cp; sleep 0.5; DEFAULT_TARGET_DIR=$HOME/Pictures/Screenshots grimblast --notify --freeze copysave area"
+            "command": "DEFAULT_TARGET_DIR=$HOME/Pictures/Screenshots grimblast --notify --freeze copysave area"
           },
           {
             "label": "󰩭  Window / Region (Hide SwayNC)",
