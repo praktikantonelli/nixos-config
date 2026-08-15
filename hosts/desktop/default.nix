@@ -6,6 +6,7 @@
     ../../modules/core/tailscale-client.nix
     ../../modules/core/sops.nix
     ../../modules/services
+    ./boot.nix
   ];
 
   services.power-profiles-daemon.enable = true;
