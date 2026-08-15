@@ -186,8 +186,6 @@ in
   environment.systemPackages = [
     desktops
     pkgs.hyprlogin
-    pkgs.hyprland
-    pkgs.uwsm
   ];
 
   services.greetd = {
