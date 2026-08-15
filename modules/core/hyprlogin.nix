@@ -154,12 +154,9 @@ let
     export PATH="${runtimePath}"
     export XDG_DATA_DIRS="${desktops}/share:/run/current-system/sw/share:/usr/share''${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
     export TZDIR="/etc/zoneinfo"
+    export TZ="Europe/Zurich"
 
-    if command -v start-hyprland >/dev/null 2>&1; then
-      exec start-hyprland -- --config ${hyprlandGreeterConfig}
-    else
-      exec ${pkgs.hyprland}/bin/Hyprland --config ${hyprlandGreeterConfig}
-    fi
+    exec ${pkgs.hyprland}/bin/start-hyprland -- --config ${hyprlandGreeterConfig}
   '';
 in
 {
@@ -210,6 +207,12 @@ in
     StandardOutput = "journal";
     StandardError = "journal";
   };
+
+  users.users.greeter.extraGroups = [
+    "video"
+    "render"
+    "input"
+  ];
 
   users.groups.greeter = { };
 }

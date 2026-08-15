@@ -5,7 +5,10 @@
     })
   ];
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+  };
   security.pam.services = {
     greetd.enableGnomeKeyring = true;
     login.enableGnomeKeyring = true;
