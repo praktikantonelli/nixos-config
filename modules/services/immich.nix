@@ -1,12 +1,13 @@
-{ inputs, config, ... }:
+{ inputs, ... }:
 let
   inherit (import ./nginx-proxy.nix) cloudflareProxy;
+  host = "192.168.1.243";
+  port = 2283;
 in
 {
   services.immich = {
     enable = true;
-    port = 2283;
-    host = "192.168.1.243";
+    inherit host port;
     mediaLocation = "/srv/immich";
   };
 
@@ -18,7 +19,7 @@ in
 
   services.nginx.virtualHosts."immich.${inputs.secrets.domain}" = {
     locations."/" = cloudflareProxy {
-      proxyPass = "https://${config.services.immich.host}:${toString config.services.immich.port}";
+      proxyPass = "https://${host}:${toString port}";
     };
   };
 

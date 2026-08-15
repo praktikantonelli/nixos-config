@@ -1,13 +1,16 @@
-{ inputs, config, ... }:
+{ inputs, ... }:
 let
   inherit (import ./nginx-proxy.nix) cloudflareProxy;
+  host = "127.0.0.1";
+  port = 4533;
 in
 {
   services.navidrome = {
     enable = true;
     group = "media";
     settings = {
-      Address = "127.0.0.1";
+      Address = host;
+      Port = port;
       MusicFolder = "/srv/music";
       Scanner.Schedule = "@every 1h";
     };
@@ -15,7 +18,7 @@ in
 
   services.nginx.virtualHosts."navidrome.${inputs.secrets.domain}" = {
     locations."/" = cloudflareProxy {
-      proxyPass = "https://${config.services.navidrome.settings.Address}:${toString config.services.navidrome.settings.Port}";
+      proxyPass = "https://${host}:${toString port}";
     };
   };
 }

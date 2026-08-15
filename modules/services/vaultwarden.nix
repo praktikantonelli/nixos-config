@@ -1,19 +1,21 @@
-{ inputs, config, ... }:
+{ inputs, ... }:
 let
   inherit (import ./nginx-proxy.nix) cloudflareProxy;
+  host = "127.0.0.1";
+  port = 8222;
 in
 {
   services.vaultwarden = {
     enable = true;
     config = {
-      ROCKET_ADDRESS = "127.0.0.1";
-      ROCKET_PORT = 8222;
+      ROCKET_ADDRESS = host;
+      ROCKET_PORT = port;
     };
   };
 
   services.nginx.virtualHosts."bitwarden.${inputs.secrets.domain}" = {
     locations."/" = cloudflareProxy {
-      proxyPass = "https://${config.services.vaultwarden.config.ROCKET_ADDRESS}:${toString config.services.vaultwarden.config.ROCKET-PORT}";
+      proxyPass = "https://${host}:${toString port}";
     };
   };
 
