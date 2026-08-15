@@ -19,7 +19,7 @@ in
 
   services.nginx.virtualHosts."immich.${inputs.secrets.domain}" = {
     locations."/" = cloudflareProxy {
-      proxyPass = "https://${host}:${toString port}";
+      proxyPass = "http://${host}:${toString port}";
     };
   };
 

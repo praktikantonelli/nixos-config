@@ -226,7 +226,7 @@ in
 
   services.nginx.virtualHosts."bookorbit.${inputs.secrets.domain}" = {
     locations."/" = cloudflareProxy {
-      proxyPass = "https://${host}:${port}";
+      proxyPass = "http://${host}:${port}";
     };
   };
 }

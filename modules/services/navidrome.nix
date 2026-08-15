@@ -18,7 +18,7 @@ in
 
   services.nginx.virtualHosts."navidrome.${inputs.secrets.domain}" = {
     locations."/" = cloudflareProxy {
-      proxyPass = "https://${host}:${toString port}";
+      proxyPass = "http://${host}:${toString port}";
     };
   };
 }
