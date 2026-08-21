@@ -54,5 +54,6 @@
     ssh-to-age
     # whatsapp client
     whatsapp-electron
+    qbittorrent
   ];
 }
