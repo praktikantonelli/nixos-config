@@ -19,6 +19,10 @@
           "nextcloud-onlyoffice-config.service"
         ];
       };
+      paperless-admin-pass = {
+        owner = "paperless";
+        group = "paperless";
+      };
     };
 
     templates = {
