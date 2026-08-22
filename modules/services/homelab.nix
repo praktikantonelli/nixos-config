@@ -12,5 +12,6 @@
     ./syncthing.nix
     ./navidrome.nix
     ./bookorbit.nix
+    ./paperless.nix
   ];
 }
