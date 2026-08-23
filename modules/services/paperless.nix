@@ -10,6 +10,10 @@ in
     passwordFile = config.sops.secrets.paperless-admin-pass.path;
     address = host;
     inherit port;
+    settings = {
+      PAPERLESS_OCR_LANGUAGE = "deu+eng";
+      PAPERLESS_URL = "https://paperless.${inputs.secrets.domain}";
+    };
   };
 
   services.nginx.virtualHosts."paperless.${inputs.secrets.domain}" = {
