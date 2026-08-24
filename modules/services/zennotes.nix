@@ -8,7 +8,7 @@ let
   stateDir = "/var/lib/zennotes";
   workVault = "${vaultRoot}/Work";
   notesVault = "${vaultRoot}/Notes";
-  zennotesServer = inputs.zennotes.packages.${pkgs.system}.zennotes-server;
+  zennotesServer = inputs.zennotes.packages.${pkgs.stdenv.hostPlatform.system}.zennotes-server;
 in
 {
   users.groups.${zennotesGroup} = { };
