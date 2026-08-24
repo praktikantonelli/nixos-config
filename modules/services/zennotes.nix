@@ -1,11 +1,56 @@
 { inputs, pkgs, ... }:
 let
   inherit (import ./nginx-proxy.nix) cloudflareProxy;
+  zennotesUser = "zennotes";
+  zennotesGroup = "zennotes";
+  vaultRoot = "/srv/zennotes";
+  defaultVault = "${vaultRoot}/default";
+  stateDir = "/var/lib/zennotes";
+  zennotesServer = inputs.zennotes.packages.${pkgs.system}.zennotes-server;
 in
 {
-  environment.systemPackages = [
-    inputs.zennotes.packages.${pkgs.system}.zennotes-server
+  users.groups.${zennotesGroup} = { };
+
+  users.users.${zennotesUser} = {
+    isSystemUser = true;
+    group = zennotesGroup;
+
+    # in case zennotes needs a state/config directory
+    home = "/var/lib/zennotes";
+    createHome = true;
+  };
+
+  systemd.tmpfiles.rules = [
+    "d ${vaultRoot} 0750 ${zennotesUser} ${zennotesGroup} -"
+    "d ${stateDir} 0750 ${zennotesUser} ${zennotesGroup} -"
+    "d ${defaultVault} 0750 ${zennotesUser} ${zennotesGroup} -"
   ];
+
+  environment.systemPackages = [
+    zennotesServer
+  ];
+
+  systemd.services.zennotes-server = {
+    enable = true;
+    after = [ "network.target" ];
+    wantedBy = [ "default.target" ];
+    description = "zennotes self-hosted server";
+    serviceConfig = {
+      Type = "simple";
+      User = zennotesUser;
+      Group = zennotesGroup;
+
+      ExecStart = "${zennotesServer}/bin/zennotes-server";
+      Restart = "on-failure";
+      RestartSec = "5s";
+
+    };
+    environment = {
+      ZENNOTES_BROWSE_ROOTS = vaultRoot;
+      ZENNOTES_DEFAULT_VAULT_PATH = defaultVault;
+      ZENNOTES_CONFIG_PATH = "${stateDir}/server.json";
+    };
+  };
 
   services.nginx.virtualHosts."zennotes.${inputs.secrets.domain}" = {
     locations."/" = cloudflareProxy {
