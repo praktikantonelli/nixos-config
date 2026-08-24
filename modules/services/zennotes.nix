@@ -6,6 +6,8 @@ let
   vaultRoot = "/srv/zennotes";
   defaultVault = "${vaultRoot}/default";
   stateDir = "/var/lib/zennotes";
+  workVault = "${vaultRoot}/Work";
+  notesVault = "${vaultRoot}/Notes";
   zennotesServer = inputs.zennotes.packages.${pkgs.system}.zennotes-server;
 in
 {
@@ -24,6 +26,8 @@ in
     "d ${vaultRoot} 0750 ${zennotesUser} ${zennotesGroup} -"
     "d ${stateDir} 0750 ${zennotesUser} ${zennotesGroup} -"
     "d ${defaultVault} 0750 ${zennotesUser} ${zennotesGroup} -"
+    "d ${workVault} 0750 ${zennotesUser} ${zennotesGroup} -"
+    "d ${notesVault} 0750 ${zennotesUser} ${zennotesGroup} -"
   ];
 
   environment.systemPackages = [
