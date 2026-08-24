@@ -112,8 +112,8 @@ in
             NODE_ENV = "production";
             NODE_MAX_OLD_SPACE_SIZE = "1024";
 
-            APP_URL = "https://bookorbit.lucaantonelli.xyz";
-            CLIENT_URL = "https://bookorbit.lucaantonelli.xyz";
+            APP_URL = "https://bookorbit.${inputs.secrets.domain}";
+            CLIENT_URL = "https://bookorbit.${inputs.secrets.domain}";
 
             APP_PORT = port;
             PORT = port;
