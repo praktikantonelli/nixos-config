@@ -67,7 +67,7 @@
 
     zennotes = {
       url = "github:ZenNotes/zennotes";
-      inputs.nixpkgs.folows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

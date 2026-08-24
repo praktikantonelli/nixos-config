@@ -573,7 +573,8 @@
         "secrets": "secrets",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
-        "zen-browser": "zen-browser"
+        "zen-browser": "zen-browser",
+        "zennotes": "zennotes"
       }
     },
     "secrets": {
@@ -724,6 +725,26 @@
       "original": {
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
+        "type": "github"
+      }
+    },
+    "zennotes": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1787452080,
+        "narHash": "sha256-19PPUbXkaUZQITBEugdoPNqOkcTQL6WdR/FsF/q8Duw=",
+        "owner": "ZenNotes",
+        "repo": "zennotes",
+        "rev": "17af9acf0b8a266b77648d191af146bf95c40cf2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ZenNotes",
+        "repo": "zennotes",
         "type": "github"
       }
     }
