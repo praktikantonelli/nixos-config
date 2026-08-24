@@ -64,6 +64,11 @@
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zennotes = {
+      url = "github:ZenNotes/zennotes";
+      inputs.nixpkgs.folows = "nixpkgs";
+    };
   };
 
   outputs =

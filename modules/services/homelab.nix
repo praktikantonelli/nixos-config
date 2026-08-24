@@ -13,5 +13,6 @@
     ./navidrome.nix
     ./bookorbit.nix
     ./paperless.nix
+    ./zennotes.nix
   ];
 }
