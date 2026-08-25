@@ -50,6 +50,8 @@ in
     settings = {
       FIREFLY_III_URL = "https://${fireflyHost}";
 
+      FIREFLY_III_ACCESS_TOKEN_FILE = config.sops.secrets.firefly-importer-token.path;
+
       TZ = "Europe/Zurich";
     };
   };

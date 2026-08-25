@@ -28,6 +28,10 @@
         owner = "firefly-iii";
         group = "nginx";
       };
+      firefly-importer-token = {
+        owner = "firefly-iii-data-importer";
+        group = "nginx";
+      };
     };
 
     templates = {
