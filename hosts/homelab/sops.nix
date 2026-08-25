@@ -23,6 +23,11 @@
         owner = "paperless";
         group = "paperless";
       };
+      firefly-app-key = {
+        # defaults
+        owner = "firefly-iii";
+        group = "nginx";
+      };
     };
 
     templates = {
