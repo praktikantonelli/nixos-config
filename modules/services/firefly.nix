@@ -29,4 +29,9 @@ in
       TZ = "Europe/Zurich";
     };
   };
+  services.nginx.virtualHosts.${fireflyHost}.locations."~ \\.php$" =
+    httpsFastcgi config.services.phpfpm.pools.firefly-iii.socket;
+
+  services.nginx.virtualHosts.${importerHost}.locations."~ \\.php$" =
+    httpsFastcgi config.services.phpfpm.pools.firefly-iii-data-importer.socket;
 }
