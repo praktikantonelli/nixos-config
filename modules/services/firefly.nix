@@ -12,6 +12,8 @@ in
     settings = {
       TZ = "Europe/Zurich";
 
+      APP_KEY_FILE = config.sops.secrets.firefly-app-key.path;
+
       COOKIE_SECURE = true;
     };
   };
