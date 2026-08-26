@@ -23,15 +23,6 @@
         owner = "paperless";
         group = "paperless";
       };
-      firefly-app-key = {
-        # defaults
-        owner = "firefly-iii";
-        group = "nginx";
-      };
-      firefly-importer-token = {
-        owner = "firefly-iii-data-importer";
-        group = "nginx";
-      };
     };
 
     templates = {
