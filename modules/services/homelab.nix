@@ -14,5 +14,6 @@
     ./bookorbit.nix
     ./paperless.nix
     ./zennotes.nix
+    ./comin.nix
   ];
 }
