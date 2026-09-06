@@ -60,9 +60,7 @@ let
       procps
       slurp
       systemd
-      (pkgs.wf-recorder.override {
-        ffmpeg = pkgs.ffmpeg_8;
-      })
+      wf-recorder
       wl-clipboard
       zenity
     ];
