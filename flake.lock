@@ -634,11 +634,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1787759470,
-        "narHash": "sha256-I78DnOxt2vRg/ibcM3HdfJhpgbgWog8dGik+OBEzCy8=",
+        "lastModified": 1788975257,
+        "narHash": "sha256-fPmNjhvFkIwe4m1D7C8b/pykfdxBz2UJRHyCr2jhg2o=",
         "ref": "main",
-        "rev": "6f26ca932a3bcb84b42e16d306deeae1f244362c",
-        "revCount": 41,
+        "rev": "bfdcecb9ee685cc3e073568cf1b7bc4ee4c2cb53",
+        "revCount": 43,
         "type": "git",
         "url": "ssh://git@github.com/praktikantonelli/nix-secrets.git"
       },
