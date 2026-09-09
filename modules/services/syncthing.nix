@@ -65,9 +65,12 @@ in
 
   systemd.tmpfiles.rules = [
     "d /srv/audiobooks 2775 syncthing media - -"
+    "a+ /srv/audiobooks - - - - group:media:rwx,d:group:media:rwx,d:mask::rwx"
     # syncthing writes, navidrome reads only
     # 2775 = rwxrwsr-x, with setgid so new subdirs inherit group media
     "d /srv/music 2775 syncthing media - -"
+    "a+ /srv/music - - - - group:media:rwx,d:group:media:rwx,d:mask::rwx"
     "d /srv/library 2775 syncthing media - -"
+    "a+ /srv/library - - - - group:media:rwx,d:group:media:rwx,d:mask::rwx"
   ];
 }
