@@ -6,6 +6,7 @@
     ./starship.nix
     ./git.nix
     ./nu.nix
+    ./tmux.nix
   ];
   nixpkgs.config.allowUnfree = true;
   home = {

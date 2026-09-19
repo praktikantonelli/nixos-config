@@ -15,7 +15,7 @@
     ./starship.nix # shell prompt
     ./swaylock.nix # lock screen
     ./vscodium.nix # vscode forck
-    ./zellij.nix
+    ./tmux.nix
     ./waybar # status bar
     ./nu.nix # nushell
     ./zen.nix # zen browser
