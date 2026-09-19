@@ -14,5 +14,6 @@
     ./bookorbit.nix
     ./paperless.nix
     ./comin.nix
+    ./livesync.nix
   ];
 }
