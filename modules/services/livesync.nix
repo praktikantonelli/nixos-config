@@ -1,8 +1,7 @@
-{ config, ... }:
+{ config, inputs, ... }:
 
 let
   inherit (import ./nginx-proxy.nix) cloudflareProxy;
-  syncHost = "obsidian-sync.example.com";
   couchdbAdmin = "obsidian";
 in
 {
@@ -66,33 +65,29 @@ in
     };
   };
 
-  services.nginx = {
-    enable = true;
+  services.nginx.virtualHosts."livesync.${inputs.secrets.domain}" = {
+    locations."/" = cloudflareProxy {
+      proxyPass = "http://127.0.0.1:5984";
 
-    virtualHosts."${syncHost}" = {
-      locations."/" = cloudflareProxy {
-        proxyPass = "http://127.0.0.1:5984";
+      extraConfig = ''
+        # Required/recommended for CouchDB replication.
+        proxy_buffering off;
 
-        extraConfig = ''
-          # Required/recommended for CouchDB replication.
-          proxy_buffering off;
+        # Match LiveSync's recommended max document size.
+        client_max_body_size 50M;
 
-          # Match LiveSync's recommended max document size.
-          client_max_body_size 50M;
+        proxy_read_timeout 120s;
+        proxy_send_timeout 120s;
 
-          proxy_read_timeout 120s;
-          proxy_send_timeout 120s;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      '';
+    };
 
-          proxy_set_header Host $host;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        '';
-      };
-
-      # Fauxton is not needed remotely.
-      locations."~ ^/_utils" = {
-        return = "404";
-      };
+    # Fauxton is not needed remotely.
+    locations."~ ^/_utils" = {
+      return = "404";
     };
   };
 }
