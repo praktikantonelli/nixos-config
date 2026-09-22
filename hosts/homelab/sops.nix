@@ -23,6 +23,10 @@
         owner = "paperless";
         group = "paperless";
       };
+      storyteller-secret = {
+        owner = "storyteller";
+        group = "storyteller";
+      };
     };
 
     templates = {
