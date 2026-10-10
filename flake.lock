@@ -84,18 +84,18 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1788581480,
-        "narHash": "sha256-SXd7V3KE7DALG3TVUf2oZJGXS9QGBPhkQIKNlbkvOzA=",
-        "owner": "rycee",
-        "repo": "nur-expressions",
-        "rev": "8f383bcc9d61bf3153cb8e6254dda1eb19289b7c",
-        "type": "gitlab"
+        "lastModified": 1791604957,
+        "narHash": "sha256-h6bw5DW0rPZyx6S0blUQTtPitNPJHa9VhJCEJvGhJ3E=",
+        "ref": "refs/heads/master",
+        "rev": "e61aa36c42c130b4498f47c119ac3e77e518a176",
+        "revCount": 4984,
+        "type": "git",
+        "url": "https://gitlab.com/rycee/nur-expressions.git"
       },
       "original": {
         "dir": "pkgs/firefox-addons",
-        "owner": "rycee",
-        "repo": "nur-expressions",
-        "type": "gitlab"
+        "type": "git",
+        "url": "https://gitlab.com/rycee/nur-expressions.git"
       }
     },
     "flake-compat": {
@@ -628,8 +628,7 @@
         "secrets": "secrets",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
-        "zen-browser": "zen-browser",
-        "zennotes": "zennotes"
+        "zen-browser": "zen-browser"
       }
     },
     "secrets": {
@@ -798,26 +797,6 @@
       "original": {
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "type": "github"
-      }
-    },
-    "zennotes": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1788567676,
-        "narHash": "sha256-ECikAyTFqkZzkIuVw4bJe3kZR9a8jJIZa5Usb88eojQ=",
-        "owner": "ZenNotes",
-        "repo": "zennotes",
-        "rev": "6f2865d14388ce8258a52f98bf0c95f255d0e748",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ZenNotes",
-        "repo": "zennotes",
         "type": "github"
       }
     }
