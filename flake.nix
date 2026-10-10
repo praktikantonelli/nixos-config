@@ -65,11 +65,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    zennotes = {
-      url = "github:ZenNotes/zennotes";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     comin = {
       url = "github:nlewo/comin";
       inputs.nixpkgs.follows = "nixpkgs";
