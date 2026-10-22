@@ -15,7 +15,7 @@ in
   networking.hosts."127.0.0.1" = [ "nextcloud.${domain}" ];
 
   services.nextcloud = {
-    enable = true;
+    enable = false;
     package = pkgs.nextcloud34;
     hostName = "nextcloud.${inputs.secrets.domain}";
     config = {
