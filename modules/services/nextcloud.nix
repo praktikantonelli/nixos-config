@@ -15,12 +15,12 @@ in
   networking.hosts."127.0.0.1" = [ "nextcloud.${domain}" ];
 
   services.nextcloud = {
-    enable = false;
-    package = pkgs.nextcloud34;
+    enable = true;
+    package = pkgs.nextcloud35;
     hostName = "nextcloud.${inputs.secrets.domain}";
     config = {
-      adminuser = username;
-      adminpassFile = config.sops.secrets.nextcloud-admin-pass.path;
+      # adminuser = username;
+      # adminpassFile = config.sops.secrets.nextcloud-admin-pass.path;
       dbtype = "mysql";
     };
     settings = {
