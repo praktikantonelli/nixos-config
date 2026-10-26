@@ -13,6 +13,7 @@ in
       Port = port;
       MusicFolder = "/srv/music";
       Scanner.Schedule = "@every 1h";
+      Plugins.Enabled = false;
     };
   };
 
