@@ -15,5 +15,6 @@
     ./paperless.nix
     ./comin.nix
     ./livesync.nix
+    ./mealie.nix
   ];
 }
