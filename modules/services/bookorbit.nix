@@ -12,6 +12,7 @@ let
 
   contentRoot = "/srv/bookorbit";
   booksDir = "${contentRoot}/books";
+  audiobooksDir = "${contentRoot}/audiobooks";
   incomingDir = "${contentRoot}/incoming";
 
   stateRoot = "/var/lib/bookorbit";
@@ -48,6 +49,7 @@ in
   systemd.tmpfiles.rules = [
     "d ${contentRoot} 0755 syncthing media -"
     "d ${booksDir} 2775 syncthing media -"
+    "d ${audiobooksDir} 2775 syncthing media -"
     "d ${incomingDir} 2775 syncthing media -"
 
     "d ${stateRoot} 0750 bookorbit media -"
@@ -132,11 +134,12 @@ in
             PGID = toString mediaGid;
 
             BOOK_DOCK_PATH = "/data/book-dock";
-            LIBRARY_BROWSE_ROOT = "/books";
+            LIBRARY_BROWSE_ROOT = "/";
           };
 
           volumes = [
             "${booksDir}:/books:rw"
+            "${audiobooksDir}:/audiobooks:ro"
             "${incomingDir}:/data/book-dock:rw"
             "${appDataDir}:/data:rw"
           ];
