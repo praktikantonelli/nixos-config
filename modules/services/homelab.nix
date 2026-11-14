@@ -8,7 +8,6 @@
     ./onlyoffice.nix
     ./vaultwarden.nix
     ./cloudflared.nix
-    ./audiobookshelf.nix
     ./syncthing.nix
     ./navidrome.nix
     ./bookorbit.nix
