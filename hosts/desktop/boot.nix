@@ -12,5 +12,9 @@
         chainloader /EFI/Microsoft/Boot/bootmgfw.efi
       }
     '';
+    # TEMP: enable text boot for debugging hanging boot attempts
+    splashImage = null;
+    gfxmodeEfi = "text";
+    gfxpayloadEfi = "text";
   };
 }
