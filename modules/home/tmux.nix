@@ -13,11 +13,12 @@
       gruvbox
       yank
     ];
-    # add keyboard bindings for splitting horizontally and vertically
+    # add keyboard bindings for splitting horizontally and vertically in same working directory
     # add extra blank space after host name in tmux status bar (better formatting)
     extraConfig = ''
-      bind '"' split-window -v -c "#{pane_current_path}"
-      bind '%' split-window -h -c "#{pane_current_path}"
+      bind '"' run-shell 'tmux split-window -v -t "#{pane_id}" -c "$(readlink /proc/#{pane_pid}/cwd)"'
+      bind '%' run-shell 'tmux split-window -h -t "#{pane_id}" -c "$(readlink /proc/#{pane_pid}/cwd)"'
+      bind c run-shell 'tmux new-window -t "#{session_name}" -c "$(readlink /proc/#{pane_pid}/cwd)"'
       set -g status-right "#[bg=colour237,fg=colour239,nobold,nounderscore,noitalics]#[bg=colour239,fg=colour246] %Y-%m-%d  %H:%M #[bg=colour239,fg=colour248,nobold,noitalics,nounderscore]#[bg=colour248,fg=colour237] #h#[bg=colour248] "
     '';
   };
