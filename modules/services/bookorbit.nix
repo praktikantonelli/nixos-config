@@ -139,7 +139,7 @@ in
 
           volumes = [
             "${booksDir}:/books:rw"
-            "${audiobooksDir}:/audiobooks:ro"
+            "${audiobooksDir}:/audiobooks:rw"
             "${incomingDir}:/data/book-dock:rw"
             "${appDataDir}:/data:rw"
           ];
